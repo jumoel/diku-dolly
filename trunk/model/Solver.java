@@ -18,7 +18,7 @@ public abstract class Solver {
         * @param fieldNum The position of the number to check.
         * @param board The board in which the field is located.
         * @return 0 if there are several possibilities,
-        * 		  and the solution if it is singular.
+        * 		  and the solution if it is singular...
         */
        public int fieldSolver(int fieldNum, Board board) {
                int[] row = SudokuMath.getRowFromPos(fieldNum, board);
