@@ -239,4 +239,23 @@ public class Board {
 	public GameSettings getSettings() {
 		return settings;
 	}
+	/**
+	 * Compares current board to supplied board to determine if the 
+	 * sudoku is correctly solved.
+	 * @param compareBoard The board to compare to.
+	 * @return True or false depending on whether or not the boards are equal. 
+	 */
+	public boolean isEqualTo(Board compareBoard) {
+		int[] compare = compareBoard.toArray();
+		if (this.board.length != compare.length) {
+			return false;
+		}
+		for (int i = 0; i < this.board.length; i = i + 1) {
+			if (this.board[i] != compare[i]) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
