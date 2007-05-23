@@ -18,7 +18,7 @@ public abstract class Solver {
 	 * @param board
 	 * @return
 	 */
-	public int solveField(int fieldNum, Board board) {
+	public static int solveField(int fieldNum, Board board) {
         /**
          * This will be changed, the values should come from classes which 
          * specify the difficulty settings of the generated sudoku.
@@ -52,7 +52,7 @@ public abstract class Solver {
 		 * @return 0 if there are several possibilities,
 		 * 		  and the solution if it is singular.
 		 */
-		private int[] solverLevelOne(int fieldNum, int[] possibleValues, Board board) {
+		private static int[] solverLevelOne(int fieldNum, int[] possibleValues, Board board) {
     	   /**
     	    * Functions to keep the row, column and quadrant of the specific field
     	    * in local memory.
@@ -117,7 +117,7 @@ public abstract class Solver {
         * @param board
         * @return
         */
-       private int solverLevelTwo(int fieldNum, Board board, int[] previousPossibilities) {
+       private static int solverLevelTwo(int fieldNum, Board board, int[] previousPossibilities) {
     	   for (int i = 0; i < previousPossibilities.length; i++) {
     		   
     	   }
