@@ -19,7 +19,14 @@ public abstract class SudokuMath {
 	 * @return An int-array containing the row.
 	 */
 	public static int[] getRowFromPos(int position, Board board) {
-		return null;
+		int boardDim = board.getSettings().getBoardDimensions();
+		int[] rowResult = new int[boardDim];
+		
+		for(int i = position - getColumnNumber(position, board.getSettings()), j = 0;
+			i < boardDim; i++, j++) {
+			rowResult[j] = board.getValue(i);
+		}
+		return rowResult;
 	}
 	
 	/**
@@ -30,7 +37,15 @@ public abstract class SudokuMath {
 	 * @return An int-array containing the column.
 	 */
 	public static int[] getColumnFromPos(int position, Board board) {
-		return null;
+		int boardDim = board.getSettings().getBoardDimensions();
+		int[] columnResult = new int[boardDim];
+		int columnNum = getColumnNumber(position, board.getSettings());
+		
+		for(int i = 0; i < boardDim; i++) {
+			columnResult[i] = board.getValue(columnNum);
+			columnNum = columnNum + boardDim;
+		}
+		return columnResult;
 	}
 	
 	/**
@@ -41,6 +56,12 @@ public abstract class SudokuMath {
 	 * @return An int-array containing the quadrant.
 	 */
 	public static int[] getQuadrantFromPos(int position, Board board) {
+		int boardDim = board.getSettings().getBoardDimensions();
+		int[] quadrantResult = new int[boardDim];
+		int quadrantNum = getQuadrantNumber(position, board.getSettings());
+		
+		// Incomming soon! O:-)
+		
 		return null;
 	}
 	
@@ -50,7 +71,7 @@ public abstract class SudokuMath {
 	 * @return The rownumber
 	 */
 	public static int getRowNumber(int position, GameSettings settings) {
-		return position / settings.getBoardDimensions();
+		return (position / settings.getBoardDimensions());
 	}
 	
 	/**
@@ -59,15 +80,19 @@ public abstract class SudokuMath {
 	 * @return The columnnumber
 	 */
 	public static int getColumnNumber(int position, GameSettings settings) {
-		return 0;
+		return (position % settings.getBoardDimensions());
 	}
 	
 	/**
-	 * Converts a position to a quadrantnumber
+	 * Converts a position to a quadrantnumber.
+	 * The reason for adding and substracting 1 is because we're using 0-index,
+	 * and thus by
 	 * @param position The position
 	 * @return the quadrandtnumber.
 	 */
-	public static int getQuadrantNumber(int positionm, GameSettings settings) {
-		return 0;
+	public static int getQuadrantNumber(int position, GameSettings settings) {
+		int quadrantDim = settings.getQuadrantDimension();
+		return ((getRowNumber(position, settings) / quadrantDim) * quadrantDim + 
+				(getColumnNumber(position, settings) / quadrantDim));
 	}
 }
