@@ -8,8 +8,6 @@ import java.util.Random;
  */
 public abstract class Generator {
 	
-
-	
 /**
  * Generates a playable gameboard removing one field at a time untill the 
  * desired difficulty is achieved.
@@ -17,25 +15,29 @@ public abstract class Generator {
  * @param settings
  */
 	
-	public void generate(Board board, GameSettings settings) {
-		
-		// TODO: gør den rekursiv så den laver hele boardet.
-		
+	public static void generate(Board board, GameSettings settings) {
 		Random random = new Random();
-		// TODO: random(81) er et magisk tal, skal hentes fra model.gamesettings.boardSize eller lign
+		
+		for (int i = 0; i < settings.getNumbersToRemove(); i = i + 1) {
+			removeField(board, random, settings);
+		}
+	}
+	
+	private static void removeField (Board board, Random random, GameSettings settings) {
+		
+
 		
 		/*
 		 * Selects a random place on the gameboard.
 		 */
-		int fieldId = random.nextInt(81);	
+		int fieldId = random.nextInt(settings.getBoardLength());	
 		
 		
 		/*
 		 * If the field in empty (already removed) the following field is selected.
 		 */
-		// TODO: 80 = magic number
 		while (board.getValue(fieldId) == 0) {
-			fieldId = (fieldId + 1) % 80;
+			fieldId = (fieldId + 1) % settings.getBoardLength();
 		}
 		
 		/*
@@ -55,12 +57,12 @@ public abstract class Generator {
 			board.setValue(fieldId, currentValue);
 			fieldId = fieldId + 1;
 			while (board.getValue(fieldId) == 0) {
-				fieldId = (fieldId + 1) % 80;
+				fieldId = (fieldId + 1) % settings.getBoardLength();
 			}
 			currentValue = board.getValue(fieldId);
 			board.setValue(fieldId, 0);
 				
-			}
+		}
 
 	}
 }
