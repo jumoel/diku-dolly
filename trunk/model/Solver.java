@@ -29,8 +29,7 @@ public abstract class Solver {
          * Then, if this set consists of only one value, that value must be the
          * answer.
          */
-        int[] allValues = {1,2,3,4,5,6,7,8,9};
-        int[] possibleValues = allValues;
+        int[] possibleValues = board.getSettings().getValidValues();
         
 		int[] levelOneResult = solverLevelOne(fieldNum, possibleValues, board);
 		
@@ -140,7 +139,7 @@ public abstract class Solver {
     	   int boardLength = board.getSettings().getBoardDimensions();
     	   
     	   int quadStartPos = ((fieldQuadrantNum % quadDim) * quadDim) + 
-    	   					  (fieldRowNum / 3 * 3 * boardLength);
+    	   					  (fieldRowNum / quadDim * quadDim * boardLength);
     	   
     	   int l = prevSolutions.length;
     	   

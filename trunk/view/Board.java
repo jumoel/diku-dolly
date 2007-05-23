@@ -24,9 +24,7 @@ public class Board extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7704761091317274700L;
-	
-	private GridLayout layout;
-	
+		
 	public Board(model.Board board, Dimension dimension) {
 		super();
 		this.setPreferredSize(dimension);
@@ -56,7 +54,7 @@ public class Board extends JPanel {
 			button.setPreferredSize(ViewSettings.getButtonDimension());
 			button.setMargin(new Insets(0, 0, 0, 0));
 			button.setFocusable(false);
-			button.setFont(new Font("SansSerif", Font.PLAIN, 10));
+			button.setFont(ViewSettings.getButtonFont());
 			button.setBackground(Color.WHITE);
 			button.setForeground(Color.BLACK);
 			button.setBorderPainted(false);
