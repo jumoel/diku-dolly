@@ -26,31 +26,34 @@ public class Board {
 	
 	/**
 	 * Sets a value b into board[] at position a
-	 * @param a
-	 * @param b
-	 * @throws Exception
+	 * @param fieldId The fieldnumber whose value is to be set
+	 * @param value The value to set
+	 * @throws IllegalArgumentException
 	 */
-	public void setValue(int a, int b) {
-		//TODO: kontroller Exception er lavet korrekt
+	public void setValue(int fieldId, int value) throws IllegalArgumentException {
+		if (fieldId < 0 || fieldId >= settings.getBoardLength()) {
+			throw new IllegalArgumentException(
+					"fieldId is not in range of the boardlength."
+					);
+		}
 		
-		//if (a < 0 || a > (board.length-1)) 
-			
-			 board[a] = b;
-		
+		board[fieldId] = value;
 	}
 	
 	/**
 	 * Gets the value from board[] at position a
-	 * @param a
-	 * @return
-	 * @throws Exception
+	 * @param fieldId
+	 * @return The value at the fieldId-position.
+	 * @throws IllegalArgumentException
 	 */
-	public int getValue(int a) {
+	public int getValue(int fieldId) throws IllegalArgumentException {
+		if (fieldId < 0 || fieldId >= settings.getBoardLength()) {
+			throw new IllegalArgumentException(
+					"fieldId is not in range of the boardlength."
+					);
+		}
 		
-		// TODO: kontroller Exception er lavet korrekt
-		//if (a < 0 || a > (board.length-1)) 
-			
-			return board[a];
+		return board[fieldId];
 	}
 	
 	/**
@@ -134,6 +137,7 @@ public class Board {
 			int length = settings.getBoardLength();
 			int dimension = settings.getBoardDimensions();
 			
+			// TODO: Forklar hvorfor det her virker
 			for (int i = 0; i < length; i += dimension) {
 				int temp = board[i + first];
 				board[i + first] = board[i + second];
@@ -227,5 +231,12 @@ public class Board {
 	
 	public int[] toArray() {
 		return this.board;
+	}
+
+	/**
+	 * @return the settings
+	 */
+	public GameSettings getSettings() {
+		return settings;
 	}
 }
