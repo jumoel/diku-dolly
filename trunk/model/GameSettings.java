@@ -8,17 +8,22 @@ package model;
  *
  */
 public abstract class GameSettings {
-	private static int QuadrantDimension = 3;
-	private static int BoardDimensions = QuadrantDimension * QuadrantDimension;
-	private static int BoardLength = BoardDimensions * BoardDimensions;
+	
+	private abstract class defaultSettings {
+		private int QuadrantDimension = 3;
+		private int BoardDimensions = QuadrantDimension * QuadrantDimension;
+		private int BoardLength = BoardDimensions * BoardDimensions;
 
-	public static int getQuadrantDimension() {
-		return QuadrantDimension;
+		public int getQuadrantDimension() {
+			return QuadrantDimension;
+		}
+		public int getBoardDimensions() {
+			return BoardDimensions;
+		}
+		public int getBoardLength() {
+			return BoardLength;
+		}
 	}
-	public static int getBoardDimensions() {
-		return BoardDimensions;
-	}
-	public static int getBoardLength() {
-		return BoardLength;
-	}	
+	
+	//public abstract class normalSettings extends defaultSettings
 }
