@@ -38,6 +38,35 @@ public class Board {
 	}
 	
 	/**
+	 * Sets a value b into board[] at position a
+	 * @param a
+	 * @param b
+	 * @throws Exception
+	 */
+	public void setValue(int a, int b) {
+		//TODO: kontroller Exception er lavet korrekt
+		
+		//if (a < 0 || a > (board.length-1)) 
+			
+			 board[a] = b;
+		
+	}
+	
+	/**
+	 * Gets the value from board[] at position a
+	 * @param a
+	 * @return
+	 * @throws Exception
+	 */
+	public int getValue(int a) {
+		
+		// TODO: kontroller Exception er lavet korrekt
+		//if (a < 0 || a > (board.length-1)) 
+			
+			return board[a];
+	}
+	
+	/**
 	 * Shuffles rows, columns, quadrantcolums
 	 * and quadrantrows of the board.
 	 */
@@ -57,7 +86,7 @@ public class Board {
 		 * Perform random shuffles a
 		 * random number of times.
 		 */
-		int j = random.nextInt(10) + 25;
+		int j = random.nextInt(100) + 100;
 		for (int i = 0; i < j; i++) {
 			int h = random.nextInt(numOfShuffleOptions);
 			
