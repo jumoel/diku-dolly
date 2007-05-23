@@ -44,14 +44,29 @@ public abstract class SudokuMath {
 		return null;
 	}
 	
+	/**
+	 * Converts a position to a rownumber.
+	 * @param position The position
+	 * @return The rownumber
+	 */
 	public static int getRowNumber(int position) {
 		return 0;
 	}
 	
+	/**
+	 * Converts a position to a columnnumber.
+	 * @param position The position
+	 * @return The columnnumber
+	 */
 	public static int getColumnNumber(int position) {
 		return 0;
 	}
 	
+	/**
+	 * Converts a position to a quadrantnumber
+	 * @param position The position
+	 * @return the quadrandtnumber.
+	 */
 	public static int getQuadrantNumber(int position) {
 		return 0;
 	}
