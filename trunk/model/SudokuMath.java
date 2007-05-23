@@ -49,8 +49,8 @@ public abstract class SudokuMath {
 	 * @param position The position
 	 * @return The rownumber
 	 */
-	public static int getRowNumber(int position) {
-		return 0;
+	public static int getRowNumber(int position, GameSettings settings) {
+		return position / settings.getBoardDimensions();
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public abstract class SudokuMath {
 	 * @param position The position
 	 * @return The columnnumber
 	 */
-	public static int getColumnNumber(int position) {
+	public static int getColumnNumber(int position, GameSettings settings) {
 		return 0;
 	}
 	
@@ -67,7 +67,7 @@ public abstract class SudokuMath {
 	 * @param position The position
 	 * @return the quadrandtnumber.
 	 */
-	public static int getQuadrantNumber(int position) {
+	public static int getQuadrantNumber(int positionm, GameSettings settings) {
 		return 0;
 	}
 }
