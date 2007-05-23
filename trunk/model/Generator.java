@@ -31,6 +31,9 @@ public abstract class Generator {
 			removeField(board, random, settings);
 		}
 	}
+	public static void generate(Board board) {
+		generate(board, board.getSettings());
+	}
 	
 	/*
 	 * Removes a single random field (if it is solveable) from the gameboard.

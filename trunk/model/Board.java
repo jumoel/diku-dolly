@@ -18,9 +18,21 @@ public class Board {
 	 * Creates a board with all fields filled in.
 	 */
 	public Board() {
-		settings = new NormalSettings();
+		this(new NormalSettings());
+	}
+	public Board(GameSettings settings) {
+		this.settings = settings;
 		random = new Random();
 		this.board = settings.getStdBoardArray();
+		this.shuffle();
+	}
+	public Board(int[] boardArray) {
+		this(boardArray, new NormalSettings());
+	}
+	public Board(int[] boardArray, GameSettings settings) {
+		this.settings = settings;
+		random = new Random();
+		this.board = boardArray;
 		this.shuffle();
 	}
 	
