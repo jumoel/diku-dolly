@@ -3,8 +3,6 @@
  */
 package model;
 
-import sun.security.provider.JavaKeyStore.CaseExactJKS;
-
 /**
  * Performs various mathematical operations on
  * Sudokuboards.
