@@ -7,7 +7,7 @@ package model;
  * @author Julian
  *
  */
-interface GameSettings {
+public interface GameSettings {
 	public int getQuadrantDimension();
 	public int getBoardDimensions();
 	public int getBoardLength();
