@@ -3,6 +3,8 @@
  */
 package controller;
 
+import javax.swing.SwingUtilities;
+
 /**
  * @author Julian
  *
@@ -13,7 +15,12 @@ public class SudokuGame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		model.Board board = new model.Board();
-		board.print();
+		SwingUtilities.invokeLater(new Runnable()
+		{
+            public void run()
+            {
+            	new view.MainWindow();
+            }
+		});
 	}
 }
