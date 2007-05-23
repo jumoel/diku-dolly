@@ -1,9 +1,12 @@
+/**
+ * 
+ */
 package model;
 
 import java.util.Random;
 
 /**
- * @author Julian
+ * @author Steen
  *
  */
 public abstract class Generator {
@@ -17,13 +20,20 @@ public abstract class Generator {
 	
 	public static void generate(Board board, GameSettings settings) {
 		Random random = new Random();
-		
+		/*
+		 * calls removeField untill the desired number of fields are removed.
+		 */
 		for (int i = 0; i < settings.getNumbersToRemove(); i = i + 1) {
 			removeField(board, random, settings);
 		}
 	}
 	
-	private static void removeField (Board board, Random random, GameSettings settings) {
+	/*
+	 * Removes a single random field (if it is solveable) from the gameboard.
+	 */
+	private static void removeField (Board board,
+										Random random,
+										GameSettings settings) {
 		
 
 		
@@ -34,7 +44,8 @@ public abstract class Generator {
 		
 		
 		/*
-		 * If the field in empty (already removed) the following field is selected.
+		 * If the field in empty (already removed) the following field 
+		 * is selected.
 		 */
 		while (board.getValue(fieldId) == 0) {
 			fieldId = (fieldId + 1) % settings.getBoardLength();
