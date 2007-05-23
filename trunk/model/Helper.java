@@ -33,7 +33,8 @@ public abstract class Helper {
 		int fieldId = random.nextInt(settings.getBoardLength());	
 		
 		/*
-		 * 
+		 * If the solver cannont solve the targeted field or the field
+		 * is already removed it will move on and try the following field.
 		 */
 		while (Solver.solveField(fieldId, board) == 0 || 
 				board.getValue(fieldId) != 0) {
