@@ -14,11 +14,15 @@ public abstract class Generator {
 /**
  * Generates a playable gameboard removing one field at a time untill the 
  * desired difficulty is achieved.
- * @param board
- * @param settings
+ * @param board The board to remove fields from.
+ * @param settings The board settings (board size)
  */
 	
 	public static void generate(Board board, GameSettings settings) {
+		
+		/*
+		 * Creates a random to be used to select a random field.
+		 */
 		Random random = new Random();
 		/*
 		 * calls removeField untill the desired number of fields are removed.
