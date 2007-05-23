@@ -45,14 +45,14 @@ public abstract class SudokuMath {
 	}
 	
 	public static int getRowNumber(int position) {
-		return null;
+		return 0;
 	}
 	
 	public static int getColumnNumber(int position) {
-		return null;
+		return 0;
 	}
 	
 	public static int getQuadrantNumber(int position) {
-		return null;
+		return 0;
 	}
 }
