@@ -43,4 +43,16 @@ public abstract class SudokuMath {
 	public static int[] getQuadrantFromPos(int position, Board board) {
 		return null;
 	}
+	
+	public static int getRowNumber(int position) {
+		return null;
+	}
+	
+	public static int getColumnNumber(int position) {
+		return null;
+	}
+	
+	public static int getQuadrantNumber(int position) {
+		return null;
+	}
 }
