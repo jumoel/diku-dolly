@@ -23,21 +23,29 @@ public class MainWindow extends JFrame {
 
 	public MainWindow() {
 		super("Sudoku");
+		Container container = this.getContentPane();
+
 		Background background = new Background();
-		this.add(background);
-		//this.createBoard(this);
-		this.setBackground(Color.BLACK);
+		container.add(background);
+		
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		this.createBoard(panel);
+		
+		this.setGlassPane(panel);
+		panel.setVisible(true);
 		
 		this.setup();
 	}
 	
 	private void createBoard(Container container) {
 		FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
-		Dimension boardDimension = new Dimension(245, 245);
+		Dimension boardDimension = Calculator.getBoardDimensions(new model.Board());
 		JPanel panel = new JPanel();
 			panel.setLayout(layout);
 			panel.setSize(boardDimension);
 			panel.setPreferredSize(boardDimension);
+			panel.setOpaque(true);
 		
 			Board board = new Board(new model.Board(), boardDimension);
 			panel.add(board);

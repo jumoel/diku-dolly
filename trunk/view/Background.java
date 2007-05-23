@@ -24,6 +24,8 @@ public class Background extends JPanel {
 		ImageIcon tempImage = null;
 		tempImage = new ImageIcon(getClass().getResource("graphics/BG.jpg"));
 		backgroundImage = tempImage.getImage();
+		this.setSize(700, 500);
+		this.setPreferredSize(this.getSize());
 	}
 	
 	public void paint(Graphics g) {

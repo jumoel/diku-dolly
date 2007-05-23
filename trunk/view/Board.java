@@ -53,7 +53,7 @@ public class Board extends JPanel {
 	private void createButtons(model.GameSettings settings, JPanel panel) {
 		for (int i = 0; i < settings.getBoardDimensions(); i = i + 1) {
 			JButton button = new JButton(Integer.toString(i));
-			button.setPreferredSize(new Dimension(25, 25));
+			button.setPreferredSize(ViewSettings.getButtonDimension());
 			button.setMargin(new Insets(0, 0, 0, 0));
 			button.setFocusable(false);
 			button.setFont(new Font("SansSerif", Font.PLAIN, 10));
