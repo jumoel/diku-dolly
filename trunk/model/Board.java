@@ -12,28 +12,15 @@ import java.util.Random;
 public class Board {
 	private int[] board;
 	private Random random;
+	private GameSettings settings;
 	
 	/**
 	 * Creates a board with all fields filled in.
 	 */
 	public Board() {
-		/*
-		 * Creates a valid, shuffled board, which then gets shuffled.
-		 */
-		board = new int[] {
-				1, 2, 3, 4, 5, 6, 7, 8, 9,
-				4, 5, 6, 7, 8, 9, 1, 2, 3,
-				7, 8, 9, 1, 2, 3, 4, 5, 6,
-				2, 3, 4, 5, 6, 7, 8, 9, 1,
-				5, 6, 7, 8, 9, 1, 2, 3, 4,
-				8, 9, 1, 2, 3, 4, 5, 6, 7,
-				3, 4, 5, 6, 7, 8, 9, 1, 2,
-				6, 7, 8, 9, 1, 2, 3, 4, 5,
-				9, 1, 2, 3, 4, 5, 6, 7, 8
-				};
-		
+		settings = new NormalSettings();
 		random = new Random();
-		
+		this.board = settings.getStdBoardArray();
 		this.shuffle();
 	}
 	
@@ -105,7 +92,7 @@ public class Board {
 			 * and some columns needs to be shuffled, it will be the columns
 			 * 4 and 5 - both contained in the middle "large" column.
 			 */
-			int dimension = GameSettings.getQuadrantDimension();
+			int dimension = settings.getQuadrantDimension();
 			int first = random.nextInt(dimension);
 			int second = random.nextInt(dimension);
 			int adder = random.nextInt(dimension) * 
@@ -144,8 +131,8 @@ public class Board {
 			// TODO: Tjek om kolonnerne er inden for samme "store" kolonne.
 			// Dvs. tjek at de skal være mellem 1-3, 4-6 eller 7-9.
 			
-			int length = GameSettings.getBoardLength();
-			int dimension = GameSettings.getBoardDimensions();
+			int length = settings.getBoardLength();
+			int dimension = settings.getBoardDimensions();
 			
 			for (int i = 0; i < length; i += dimension) {
 				int temp = board[i + first];
@@ -168,7 +155,7 @@ public class Board {
 			// TODO: Tjek om rækkerne er inden for samme "store" række.
 			// Dvs. tjek at de skal være mellem 1-3, 4-6 eller 7-9.
 			
-			int dimension = GameSettings.getBoardDimensions();
+			int dimension = settings.getBoardDimensions();
 			
 			/*
 			 * Make sure that the first row is the one
@@ -197,7 +184,7 @@ public class Board {
 		 * Don't perform the switch if it's the same columns.
 		 */
 		if (first != second) {
-			int width = GameSettings.getQuadrantDimension();
+			int width = settings.getQuadrantDimension();
 			
 			int firstQC = first * width;
 			int secondQC = second * width;
@@ -219,7 +206,7 @@ public class Board {
 		 * Don't perform the switch if it's the same row.
 		 */
 		if (first != second) {
-			int width = GameSettings.getQuadrantDimension();
+			int width = settings.getQuadrantDimension();
 			
 			int firstQR = first * width;
 			int secondQR = second * width;
