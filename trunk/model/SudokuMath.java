@@ -60,7 +60,7 @@ public abstract class SudokuMath {
 		int quadrantNum = getQuadrantNumber(position, board.getSettings());
 		int[] quadrantResult = new int[boardDim];
 		
-		// Temporary Solution (Det er grimt, ja, men det virker fint indtil videre):
+		// Temporary Solution (Det er grimt, men virker for 3x3x9 boards):
 		// O:-)
 
 		switch(quadrantNum) {

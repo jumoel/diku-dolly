@@ -2,6 +2,7 @@
  * 
  */
 package view;
+import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -20,7 +21,10 @@ public class MainWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 3172688540921699213L;
-
+	JFrame mainFrame = new JFrame("Sudoku");
+	
+	
+	// mainWindow.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 	public MainWindow() {
 		super("Sudoku");
 		Container container = this.getContentPane();
