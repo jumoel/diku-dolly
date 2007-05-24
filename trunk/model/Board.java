@@ -26,6 +26,12 @@ public class Board {
 		this.board = settings.getStdBoardArray();
 		this.shuffle();
 	}
+	public Board(Board board) {
+		this.settings = board.getSettings();
+		random = new Random();
+		this.board = board.toArray();
+		this.shuffle();
+	}
 	public Board(int[] boardArray) {
 		this(boardArray, new NormalSettings());
 	}
@@ -34,6 +40,10 @@ public class Board {
 		random = new Random();
 		this.board = boardArray;
 		this.shuffle();
+	}
+	
+	public Board asBoard() throws CloneNotSupportedException {
+		return (Board)this.clone();
 	}
 	
 	/**
@@ -60,7 +70,6 @@ public class Board {
 	 */
 	public int getValue(int fieldId) throws IllegalArgumentException {
 		if (fieldId < 0 || fieldId >= settings.getBoardLength()) {
-			System.out.println("LOLOLOL KLAES OG/ELLER STEEN HAR FUCKED UP: " + fieldId + " settings: " + settings.getBoardLength());
 			throw new IllegalArgumentException(
 					"fieldId is not in range of the boardlength."
 					);
@@ -155,9 +164,7 @@ public class Board {
 			
 			// TODO: Forklar hvorfor det her virker
 			for (int i = 0; i < length; i += dimension) {
-				System.out.println("i = " + i + " first = " + first + " second = " + second);
 				int temp = board[i + first];
-				System.out.println((i + first));
 				board[i + first] = board[i + second];
 				board[i + second] = temp;
 			}

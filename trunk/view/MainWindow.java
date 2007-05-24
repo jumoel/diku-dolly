@@ -21,8 +21,6 @@ public class MainWindow extends JFrame {
 	private static final long serialVersionUID = 3172688540921699213L;
 	JFrame mainFrame = new JFrame("Sudoku");
 	
-	
-	// mainWindow.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 	public MainWindow() {
 		super("Sudoku");
 		Container container = this.getContentPane();
@@ -50,7 +48,7 @@ public class MainWindow extends JFrame {
 			panel.setPreferredSize(boardDimension);
 			panel.setOpaque(true);
 		
-			Board board = new Board(new model.Board(), boardDimension);
+			Board board = new Board(game.getCurrentBoard(), boardDimension);
 			panel.add(board);
 		
 		container.add(panel);
