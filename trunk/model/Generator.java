@@ -40,21 +40,20 @@ public abstract class Generator {
 	 */
 	private static void removeField (Board board,
 										Random random,
-										GameSettings settings) {
-		
-
+										GameSettings settings) {	
+		int count = 0;
 		
 		/*
 		 * Selects a random place on the gameboard.
 		 */
 		int fieldId = random.nextInt(settings.getBoardLength());	
-		
-		
+
 		/*
 		 * If the field in empty (already removed) the following field 
 		 * is selected.
 		 */
 		while (board.getValue(fieldId) == 0) {
+			count = count + 1;
 			fieldId = (fieldId + 1) % settings.getBoardLength();
 		}
 		
@@ -71,16 +70,17 @@ public abstract class Generator {
 		 * in line is examined.
 		 */
 		while (Solver.solveField(fieldId, board) == 0) {
-
+			if (count >= settings.getBoardLength())
+				return;
 			board.setValue(fieldId, currentValue);
 			fieldId = (fieldId + 1) % settings.getBoardLength();
+			count = count + 1;
 			while (board.getValue(fieldId) == 0) {
 				fieldId = (fieldId + 1) % settings.getBoardLength();
+				count = count + 1;
 			}
 			currentValue = board.getValue(fieldId);
 			board.setValue(fieldId, 0);
-				
 		}
-
 	}
 }
