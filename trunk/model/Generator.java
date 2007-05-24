@@ -70,9 +70,7 @@ public abstract class Generator {
 		 * in line is examined.
 		 */
 		while (Solver.solveField(fieldId, board) == 0) {
-			
 			board.setValue(fieldId, currentValue);
-			
 			if (count >= settings.getBoardLength())
 				return;
 			
