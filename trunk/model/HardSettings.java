@@ -4,7 +4,7 @@
 package model;
 
 /**
- * @author Julian
+ * @author Steen
  *
  */
 public class HardSettings implements GameSettings {
