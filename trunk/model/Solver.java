@@ -93,8 +93,7 @@ public abstract class Solver {
 		 * 
 		 * @param fieldNum The position of the number to check.
 		 * @param board The board in which the field is located.
-		 * @return 0 if there are several possibilities,
-		 * 		  and the solution if it is singular.
+		 * @return an array of solutions for further calculation.
 		 */
 		private static int[] solverLevelOne(int fieldNum, int[] possibleValues,
 											Board board) {
@@ -150,8 +149,11 @@ public abstract class Solver {
         * otherwise return 0. The field cannot be solved using solverLevelTwo.
         * 
         * @param fieldNum, the field number to solve.
-        * @param board, the specific sudoku 
-        * @return
+        * @param board, the specific sudoku board.
+        * @param prevSolutions, an array of the previous solutions from
+        * solverLevelOne.
+        * @return an array of solutions, this can either be seperated to give
+        * a single solution or to move on with a level three solver.
         */	
        private static int[] solverLevelTwo(int fieldNum, Board board, 
     		   							 int[] prevSolutions) {
@@ -206,6 +208,9 @@ public abstract class Solver {
     	   int quadStartPos = ((fieldQuadrantNum % quadDim) * quadDim) + 
     	   					  (fieldRowNum / quadDim * quadDim * boardDim);
     	   
+    	   /**
+    	    * 
+    	    */
     	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldColumnNum != i) {
     			   int[] resultsRow = 
