@@ -108,6 +108,8 @@ public class Board {
 			 * and some columns needs to be shuffled, it will be the columns
 			 * 4 and 5 - both contained in the middle "large" column.
 			 */
+			
+			// TODO: boardDimensionSSSSSS og QuadrandDimension sørg for ens spelling.
 			int dimension = settings.getQuadrantDimension();
 			int first = random.nextInt(dimension);
 			int second = random.nextInt(dimension);
@@ -141,8 +143,9 @@ public class Board {
 		 * Don't perform the switch if it's the same columns.
 		 */
 		if (first != second) {
-			first = (first < second) ? first : second;
-			second = (first < second) ? second : first;
+			int numberBackup = first;
+			first = (first < second) ? first : second ;
+			second = (first < second) ? second : numberBackup;
 			
 			// TODO: Tjek om kolonnerne er inden for samme "store" kolonne.
 			// Dvs. tjek at de skal være mellem 1-3, 4-6 eller 7-9.
@@ -152,7 +155,9 @@ public class Board {
 			
 			// TODO: Forklar hvorfor det her virker
 			for (int i = 0; i < length; i += dimension) {
+				System.out.println("i = " + i + " first = " + first + " second = " + second);
 				int temp = board[i + first];
+				System.out.println((i + first));
 				board[i + first] = board[i + second];
 				board[i + second] = temp;
 			}
