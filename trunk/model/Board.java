@@ -60,6 +60,7 @@ public class Board {
 	 */
 	public int getValue(int fieldId) throws IllegalArgumentException {
 		if (fieldId < 0 || fieldId >= settings.getBoardLength()) {
+			System.out.println("LOLOLOL KLAES OG/ELLER STEEN HAR FUCKED UP: " + fieldId + " settings: " + settings.getBoardLength());
 			throw new IllegalArgumentException(
 					"fieldId is not in range of the boardlength."
 					);

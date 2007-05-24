@@ -2,9 +2,7 @@
  * 
  */
 package view;
-import javax.swing.*;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -43,8 +41,9 @@ public class MainWindow extends JFrame {
 	}
 	
 	private void createBoard(Container container) {
+		model.Game game = new model.Game();
 		FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
-		Dimension boardDimension = Calculator.getBoardDimensions(new model.Board());
+		Dimension boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
 		JPanel panel = new JPanel();
 			panel.setLayout(layout);
 			panel.setSize(boardDimension);

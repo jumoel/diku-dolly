@@ -24,10 +24,15 @@ public class Board extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 7704761091317274700L;
+	
+	private model.Board board;
+	private int count;
 		
 	public Board(model.Board board, Dimension dimension) {
 		super();
 		this.setPreferredSize(dimension);
+		this.board = board;
+		this.count = 0;
 		createPanels(board.getSettings());
 	}
 	
@@ -50,7 +55,8 @@ public class Board extends JPanel {
 	
 	private void createButtons(model.GameSettings settings, JPanel panel) {
 		for (int i = 0; i < settings.getBoardDimensions(); i = i + 1) {
-			JButton button = new JButton(Integer.toString(i));
+			JButton button = new JButton(Integer.toString(board.getValue(count)));
+			count = count + 1;
 			button.setPreferredSize(ViewSettings.getButtonDimension());
 			button.setMargin(new Insets(0, 0, 0, 0));
 			button.setFocusable(false);

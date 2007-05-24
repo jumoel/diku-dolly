@@ -13,7 +13,7 @@ import java.awt.Font;
 public abstract class ViewSettings {
 	private static int mainWidth = 700;
 	private static int mainHeight = 500;
-	private static int boardSpacing = 5;
+	private static int boardSpacing = 10;
 	private static int buttonSize = 30;
 	private static Font buttonFont = new Font("SansSerif", Font.PLAIN, 11);
 	
