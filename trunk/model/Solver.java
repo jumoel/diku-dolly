@@ -70,9 +70,9 @@ public abstract class Solver {
          * output form that in same manner.
          */
 		if (count == 1) {
-			//System.out.println(result);
+			System.out.println(result);
 			return result;
-		} else return 0;/*{ 
+		} else { 
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			
@@ -80,7 +80,7 @@ public abstract class Solver {
 	         * Reset count, then save the last possible value for the field in
 	         * 'result' while counting the number of possible values.
 	         */
-		/*	count = 0;
+			count = 0;
 	        for (int i = 0; i < boardDim; i++) {
 	                if (levelTwoResult[i] > 0) {
 	                        result = possibleValues[i];
@@ -90,7 +90,7 @@ public abstract class Solver {
 			if (count == 1) {
 				return result;
 			} else return 0;
-		}*/
+		}
 	}
 	
 		/**
@@ -144,16 +144,16 @@ public abstract class Solver {
 			 * remove that number from the array of possible values.
 			 */
 			for (int i = 0, j = -1; i < boardDim; i++) {
-				if ((j = row[i] - 1) > 0) {
-					possibleValues[j] = 0;
+				if ((j = row[i]) > 0) {
+					possibleValues[j - 1] = 0;
 				}
 				
-				if ((j = column[i] - 1) > 0) { 
-					possibleValues[j] = 0;
+				if ((j = column[i]) > 0) { 
+					possibleValues[j - 1] = 0;
 				}
                        
-				if ((j = quadrant[i] - 1) > 0) {
-					possibleValues[j] = 0;
+				if ((j = quadrant[i]) > 0) {
+					possibleValues[j - 1] = 0;
 				}
 			}
 			/**
