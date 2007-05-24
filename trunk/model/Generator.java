@@ -54,6 +54,8 @@ public abstract class Generator {
 		 */
 		while (board.getValue(fieldId) == 0) {
 			count = count + 1;
+			if (count >= settings.getBoardLength())
+				return;
 			fieldId = (fieldId + 1) % settings.getBoardLength();
 		}
 		
@@ -79,6 +81,8 @@ public abstract class Generator {
 			while (board.getValue(fieldId) == 0) {
 				fieldId = (fieldId + 1) % settings.getBoardLength();
 				count = count + 1;
+				if (count >= settings.getBoardLength())
+					return;
 			}
 			currentValue = board.getValue(fieldId);
 			board.setValue(fieldId, 0);
