@@ -63,7 +63,7 @@ public abstract class Solver {
          */
 		if (count == 1) {
 			return result;
-		} else {
+		} else { 
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			

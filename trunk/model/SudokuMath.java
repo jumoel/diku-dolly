@@ -110,9 +110,6 @@ public abstract class SudokuMath {
 		int quadrantNum = getQuadrantNumber(position, board.getSettings());
 		int[] quadrantResult = new int[boardDim];
 		
-		//int quadStartPos = ((quadrantNum % quadDim) * quadDim) + 
-		//	  (fieldRowNum / quadDim * quadDim * boardDim);
-		
 		int quadStartPos = ((quadrantNum % quadDim) * quadDim) + 
 		  ((quadrantNum / quadDim) * (boardDim * quadDim));
 		
