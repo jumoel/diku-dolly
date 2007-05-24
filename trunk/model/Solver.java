@@ -37,6 +37,8 @@ public abstract class Solver {
         
 		int[] levelOneResult = solverLevelOne(fieldNum, possibleValues, board);
 		
+		
+		
         /**
          * 	'result' is a unique solution of the field
          *  'count' is the number of final possible solutions for the 
@@ -51,10 +53,16 @@ public abstract class Solver {
          */
         for (int i = 0; i < boardDim; i++) {
                 if (levelOneResult[i] > 0) {
-                        result = possibleValues[i];
-                        count++;
+                        result = levelOneResult[i];
+                        count = count + 1;
                 }
         }
+        
+        
+		//for (int i = 0; i< levelOneResult.length; i++) {
+			//System.out.print(levelOneResult[i] + ", ");
+		//	}
+        
 		
         /**
          * If there is only one possible solution using solverLevelOne,
@@ -62,8 +70,9 @@ public abstract class Solver {
          * output form that in same manner.
          */
 		if (count == 1) {
+			//System.out.println(result);
 			return result;
-		} else { 
+		} else return 0;/*{ 
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			
@@ -71,7 +80,7 @@ public abstract class Solver {
 	         * Reset count, then save the last possible value for the field in
 	         * 'result' while counting the number of possible values.
 	         */
-			count = 0;
+		/*	count = 0;
 	        for (int i = 0; i < boardDim; i++) {
 	                if (levelTwoResult[i] > 0) {
 	                        result = possibleValues[i];
@@ -81,7 +90,7 @@ public abstract class Solver {
 			if (count == 1) {
 				return result;
 			} else return 0;
-		}
+		}*/
 	}
 	
 		/**
@@ -111,6 +120,21 @@ public abstract class Solver {
 			int[] column = SudokuMath.getColumnFromPos(fieldNum, board);
 			int[] quadrant = SudokuMath.getQuadrantFromPos(fieldNum, board);
 			
+			/*for (int i = 0; i< quadrant.length; i++) {
+			System.out.print(row[i] + ", ");
+			}
+			System.out.println();
+			for (int i = 0; i< quadrant.length; i++) {
+				System.out.print(column[i] + ", ");
+				}
+			System.out.println();
+			for (int i = 0; i< quadrant.length; i++) {
+				System.out.print(quadrant[i] + ", ");
+				}
+			System.out.print("\n" + quadrant.length + "\n");
+			if (true) {
+			throw new Error("lololol");
+			}
 			/**
 			 * Here we filter out the values which cannot be the result, 
 			 * subtract them from the possible values.

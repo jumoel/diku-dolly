@@ -106,7 +106,6 @@ public abstract class SudokuMath {
 	public static int[] getQuadrantFromPos(int position, Board board) {
 		int boardDim = board.getSettings().getBoardDimensions();
 		int quadDim = board.getSettings().getQuadrantDimension();
-		int fieldRowNum = getRowNumber(position, board.getSettings());
 		int quadrantNum = getQuadrantNumber(position, board.getSettings());
 		int[] quadrantResult = new int[boardDim];
 		
@@ -115,9 +114,9 @@ public abstract class SudokuMath {
 		
 		for (int iter = 0; iter < boardDim; iter = iter + 1) {
 			quadrantResult[iter] = board.getValue(quadStartPos + 
-					(iter % quadDim) * (fieldRowNum % quadDim));
-			
-		}			
+					(iter % quadDim) + (iter / quadDim) * (boardDim));
+		 	
+		}
 		return quadrantResult;
 	}
 }
