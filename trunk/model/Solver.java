@@ -33,11 +33,8 @@ public abstract class Solver {
          * Then, if this set consists of only one value, that value must be the
          * answer.
          */
-        int[] possibleValues = board.getSettings().getValidValues();
-        
-		int[] levelOneResult = solverLevelOne(fieldNum, possibleValues, board);
-		
-		
+		int[] levelOneResult = solverLevelOne(fieldNum, 
+				board.getSettings().getValidValues(), board);
 		
         /**
          * 	'result' is a unique solution of the field
@@ -51,18 +48,16 @@ public abstract class Solver {
          * Save the last possible value for the field in 'result' while
          * counting the number of possible values.
          */
-        for (int i = 0; i < boardDim; i++) {
-                if (levelOneResult[i] > 0) {
+        for (int i = 0; i < boardDim; i++) { 
+        	//System.out.println("jeg kom næsten ind" + i);
+        	if (levelOneResult[i] > 0) {
+        		System.out.println("jeg kom ind");
                         result = levelOneResult[i];
                         count = count + 1;
                 }
         }
         
-        
-		//for (int i = 0; i< levelOneResult.length; i++) {
-			//System.out.print(levelOneResult[i] + ", ");
-		//	}
-        
+        //System.out.println("count = " + count);
 		
         /**
          * If there is only one possible solution using solverLevelOne,
@@ -70,9 +65,9 @@ public abstract class Solver {
          * output form that in same manner.
          */
 		if (count == 1) {
-			System.out.println(result);
+			System.out.println("result = "+result);
 			return result;
-		} else { 
+		} else return 0;/*{ 
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			
@@ -80,7 +75,7 @@ public abstract class Solver {
 	         * Reset count, then save the last possible value for the field in
 	         * 'result' while counting the number of possible values.
 	         */
-			count = 0;
+		/*	count = 0;
 	        for (int i = 0; i < boardDim; i++) {
 	                if (levelTwoResult[i] > 0) {
 	                        result = possibleValues[i];
@@ -90,7 +85,7 @@ public abstract class Solver {
 			if (count == 1) {
 				return result;
 			} else return 0;
-		}
+		}*/
 	}
 	
 		/**
@@ -104,7 +99,7 @@ public abstract class Solver {
 		 * @param board The board in which the field is located.
 		 * @return an array of solutions for further calculation.
 		 */
-		private static int[] solverLevelOne(int fieldNum, int[] possibleValues,
+		private static int[] solverLevelOne(int fieldNum, int[] possibleVals,
 											Board board) {
 			/**
 			 * Find the given board dimensions for many uses.
@@ -120,6 +115,10 @@ public abstract class Solver {
 			int[] column = SudokuMath.getColumnFromPos(fieldNum, board);
 			int[] quadrant = SudokuMath.getQuadrantFromPos(fieldNum, board);
 			
+			int[] values = new int[boardDim];
+			for (int iter = 0; iter < boardDim; iter = iter + 1) {
+				values[iter] = possibleVals[iter];
+			}
 			/*for (int i = 0; i< quadrant.length; i++) {
 			System.out.print(row[i] + ", ");
 			}
@@ -145,22 +144,22 @@ public abstract class Solver {
 			 */
 			for (int i = 0, j = -1; i < boardDim; i++) {
 				if ((j = row[i]) > 0) {
-					possibleValues[j - 1] = 0;
+					values[j - 1] = 0;
 				}
 				
 				if ((j = column[i]) > 0) { 
-					possibleValues[j - 1] = 0;
+					values[j - 1] = 0;
 				}
                        
 				if ((j = quadrant[i]) > 0) {
-					possibleValues[j - 1] = 0;
+					values[j - 1] = 0;
 				}
 			}
 			/**
 			 * Return the set of possibleValues so they can be reused in
 			 * the next levels of solvers.
 			 */
-			return possibleValues;
+			return values;
 		}
 
        /**
