@@ -62,7 +62,7 @@ public abstract class Solver {
          */
 		if (count == 1) {
 			return result;
-		} else return 0;/*{ 
+		} else { 
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			
@@ -70,17 +70,18 @@ public abstract class Solver {
 	         * Reset count, then save the last possible value for the field in
 	         * 'result' while counting the number of possible values.
 	         */
-		/*	count = 0;
+			count = 0;
 	        for (int i = 0; i < boardDim; i++) {
 	                if (levelTwoResult[i] > 0) {
-	                        result = possibleValues[i];
+	                        result = levelTwoResult[i];
 	                        count++;
 	                }
 	        }
 			if (count == 1) {
+				//System.out.println("result = "+result);
 				return result;
 			} else return 0;
-		}*/
+		}
 	}
 	
 		/**
@@ -114,21 +115,7 @@ public abstract class Solver {
 			for (int iter = 0; iter < boardDim; iter = iter + 1) {
 				values[iter] = possibleVals[iter];
 			}
-			/*for (int i = 0; i< quadrant.length; i++) {
-			System.out.print(row[i] + ", ");
-			}
-			System.out.println();
-			for (int i = 0; i< quadrant.length; i++) {
-				System.out.print(column[i] + ", ");
-				}
-			System.out.println();
-			for (int i = 0; i< quadrant.length; i++) {
-				System.out.print(quadrant[i] + ", ");
-				}
-			System.out.print("\n" + quadrant.length + "\n");
-			if (true) {
-			throw new Error("lololol");
-			}
+			
 			/**
 			 * Here we filter out the values which cannot be the result, 
 			 * subtract them from the possible values.
@@ -179,6 +166,11 @@ public abstract class Solver {
     	    * Find the given board dimensions for many uses.
     	    */
     	   int boardDim = board.getSettings().getBoardDimensions();
+    	   
+    	   int[] values = new int[boardDim];
+			for (int iter = 0; iter < boardDim; iter = iter + 1) {
+				values[iter] = prevSolutions[iter];
+			}
     	   
     	   /**
     	    * fieldRowNum, fieldColumnNum, fieldQuadrantNum are merely
@@ -231,31 +223,37 @@ public abstract class Solver {
     	    */
     	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldColumnNum != i) {
-    			   int[] resultsRow = 
-    				   solverLevelOne(fieldNum - fieldColumnNum + i,
-    						   prevSolutions, board);  
-    			   for (int j = 0; resultsRow[j] != 0; j++) {
-    				   prevSolutions[resultsRow[j] - 1] = 0;
+    			   int position = fieldNum - fieldColumnNum + i;
+    			   if (board.getValue(position) == 0) {
+	    			   int[] resultsRow = 
+	    				   solverLevelOne(position, values, board);  
+	    			   for (int j = 0; resultsRow[j] != 0; j++) {
+	    				   values[resultsRow[j] - 1] = 0;
+	    			   }
     			   }
     		   }
     		   if (fieldRowNum != i) {
-    			   int[] resultsColumn =
-    				   solverLevelOne(fieldColumnNum + (fieldRowNum * i), 
-    						   prevSolutions, board);
-    			   for (int j = 0; resultsColumn[j] != 0; j++) {
-    				   prevSolutions[resultsColumn[j] - 1] = 0;
+    			   int position = fieldColumnNum + (fieldRowNum * i);
+	    			   if (board.getValue(position) == 0) {
+	    			   int[] resultsColumn = 
+	    				   solverLevelOne(position, values, board);
+	    			   for (int j = 0; resultsColumn[j] != 0; j++) {
+	    				   values[resultsColumn[j] - 1] = 0;
+	    			   }
     			   }
     		   }
     		   if (fieldColumnNum != i && fieldRowNum != i) {
-    			   int[] resultsQuadrant = 
-    				   solverLevelOne(quadStartPos + 
-    						   (i % quadDim) * (fieldRowNum % quadDim), 
-    					   	   prevSolutions, board);
-    			   for (int j = 0; resultsQuadrant[j] != 0; j++) {
-    				   prevSolutions[resultsQuadrant[j] - 1] = 0;
+    			   int position = quadStartPos + 
+    			   				  (i % quadDim) + (i / quadDim) * (boardDim);
+    			   if (board.getValue(position) == 0) {
+    				   int[] resultsQuadrant = 
+    					   solverLevelOne(position, values, board);
+    				   for (int j = 0; resultsQuadrant[j] != 0; j++) {
+    					   values[resultsQuadrant[j] - 1] = 0;
+    				   }
     			   }
     		   }
     	   }
-    	   return prevSolutions;
+    	   return values;
        }
 }
