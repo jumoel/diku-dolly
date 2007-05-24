@@ -20,7 +20,7 @@ public abstract class Helper {
  * @return fieldId A field that is solveable and suggested to the player.
  */
 
-	public int findSolveable(Board board, GameSettings settings) {
+	public static int findSolveable(Board board, GameSettings settings) {
 		
 		/*
 		 * creates a random to be used to select a random field.
@@ -42,5 +42,8 @@ public abstract class Helper {
 		}
 		
 		return fieldId;
+	}
+	public static int findSolveable(Game game) {
+		return findSolveable(game.getCurrentBoard(), game.getCurrentBoard().getSettings());
 	}
 }

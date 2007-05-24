@@ -3,7 +3,7 @@
  */
 package view;
 
-import java.awt.Container;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -19,27 +19,22 @@ public class MainWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 3172688540921699213L;
-	JFrame mainFrame = new JFrame("Sudoku");
+	private JPanel panel;
 	
 	public MainWindow() {
 		super("Sudoku");
-		Container container = this.getContentPane();
-
+		
 		Background background = new Background();
-		container.add(background);
+		this.getContentPane().add(background);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setOpaque(false);
-		this.createBoard(panel);
-		
-		this.setGlassPane(panel);
-		panel.setVisible(true);
-		
-		this.setup();
 	}
 	
-	private void createBoard(Container container) {
-		model.Game game = new model.Game();
+	public Component add(Component component) {
+		return panel.add(component);
+	}
+	public Board createBoard(model.Game game) {
 		FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
 		Dimension boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
 		JPanel panel = new JPanel();
@@ -47,17 +42,26 @@ public class MainWindow extends JFrame {
 			panel.setSize(boardDimension);
 			panel.setPreferredSize(boardDimension);
 			panel.setOpaque(true);
+			
+			Board board = new Board(game, boardDimension);
+			
+			board.setLayout(layout);
+			board.setSize(boardDimension);
+			board.setPreferredSize(boardDimension);
+			board.setOpaque(true);
+			
+			//panel.add(board);
 		
-			Board board = new Board(game.getCurrentBoard(), boardDimension);
-			panel.add(board);
-		
-		container.add(panel);
+		return (Board)this.add(board);
 	}
 	
 	/**
 	 * Performs some standard operations on the window.
 	 */
-	private void setup() {
+	public void setup() {
+		this.setGlassPane(panel);
+		panel.setVisible(true);
+		
 		/*
 		 * Make sure the application exits when the close button is pressed.
 		 */
@@ -69,7 +73,7 @@ public class MainWindow extends JFrame {
 		/*
 		 * Disable resize of the window.
 		 */
-		//this.setResizable(false);
+		this.setResizable(false);
 		
 		this.setSize(700, 500);
 

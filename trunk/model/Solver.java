@@ -49,15 +49,11 @@ public abstract class Solver {
          * counting the number of possible values.
          */
         for (int i = 0; i < boardDim; i++) { 
-        	//System.out.println("jeg kom næsten ind" + i);
         	if (levelOneResult[i] > 0) {
-        		System.out.println("jeg kom ind");
                         result = levelOneResult[i];
                         count = count + 1;
                 }
         }
-        
-        //System.out.println("count = " + count);
 		
         /**
          * If there is only one possible solution using solverLevelOne,
@@ -65,7 +61,6 @@ public abstract class Solver {
          * output form that in same manner.
          */
 		if (count == 1) {
-			System.out.println("result = "+result);
 			return result;
 		} else return 0;/*{ 
 			int[] levelTwoResult = 

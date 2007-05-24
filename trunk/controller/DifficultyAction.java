@@ -3,6 +3,7 @@
  */
 package controller;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -21,9 +22,17 @@ public class DifficultyAction extends AbstractAction {
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	private Component component;
+	model.Game game;
+	public DifficultyAction(Component component, model.Game game) {
+		super("DifficultyAction");
+		this.game = game;
+		this.component = component;
+	}
+	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		int result = view.DifficultySelection.show(component);
+		game.reset(result);
 	}
 
 }

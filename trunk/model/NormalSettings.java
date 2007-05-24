@@ -50,7 +50,7 @@ public class NormalSettings implements GameSettings {
 		QuadrantDimension = 3;
 		BoardDimensions = QuadrantDimension * QuadrantDimension;
 		BoardLength = BoardDimensions * BoardDimensions;
-		numbersToRemove = 81;
+		numbersToRemove = 40;
 	}
 	
 	public int getQuadrantDimension() {

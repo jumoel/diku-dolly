@@ -3,13 +3,14 @@
  */
 package model;
 
+import java.util.Observable;
 import java.util.Random;
 
 /**
  * @author Julian
  *
  */
-public class Board {
+public class Board extends Observable {
 	private int[] board;
 	private Random random;
 	private GameSettings settings;
@@ -40,10 +41,6 @@ public class Board {
 		random = new Random();
 		this.board = boardArray;
 		this.shuffle();
-	}
-	
-	public Board asBoard() throws CloneNotSupportedException {
-		return (Board)this.clone();
 	}
 	
 	/**
@@ -282,5 +279,27 @@ public class Board {
 		}
 		
 		return true;
+	}
+	
+	public void reset(int difficulty) {
+		switch (difficulty) {
+		case Difficulties.easy:
+			this.settings = new EasySettings();
+			break;
+		case Difficulties.normal:
+			this.settings = new NormalSettings();
+			break;
+		case Difficulties.hard:
+			this.settings = new HardSettings();
+			break;
+		}
+		
+		this.board = this.settings.getStdBoardArray();
+		this.shuffle();
+		
+		Generator.generate(this);
+		
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

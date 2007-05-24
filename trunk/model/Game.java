@@ -25,4 +25,8 @@ public class Game {
 	public Board getCurrentBoard() {
 		return currentBoard;
 	}
+	
+	public void reset(int difficulty) {
+		currentBoard.reset(difficulty);
+	}
 }
