@@ -19,12 +19,12 @@ public abstract class Solver {
 	 */
 	public static int solveField(int fieldNum, Board board) {
 		
-		/**
+		/*
 		 * Find the given board dimensions for many uses.
 		 */
 		int boardDim = board.getSettings().getBoardDimensions();
 		
-        /**
+        /*
          * possibleValues initialized to the set of valid values given by the
          * settings in board.
          * Then, later it is used to store the values which are still, during
@@ -36,7 +36,7 @@ public abstract class Solver {
 		int[] levelOneResult = solverLevelOne(fieldNum, 
 				board.getSettings().getValidValues(), board);
 		
-        /**
+        /*
          * 	'result' is a unique solution of the field
          *  'count' is the number of final possible solutions for the 
          *  field.
@@ -44,7 +44,7 @@ public abstract class Solver {
 		int result = 0;
         int count = 0;
         
-        /**
+        /*
          * Save the last possible value for the field in 'result' while
          * counting the number of possible values.
          */
@@ -55,7 +55,7 @@ public abstract class Solver {
                 }
         }
 		
-        /**
+        /*
          * If there is only one possible solution using solverLevelOne,
          * return this, otherwise try to solve using solverLevelTwo and return
          * output form that in same manner.
@@ -66,7 +66,7 @@ public abstract class Solver {
 			int[] levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 			
-			/**
+			/*
 	         * Reset count, then save the last possible value for the field in
 	         * 'result' while counting the number of possible values.
 	         */
@@ -80,7 +80,9 @@ public abstract class Solver {
 			if (count == 1) {
 				//System.out.println("result = "+result);
 				return result;
-			} else return 0;
+			} else {
+				return 0;
+			}
 		}
 	}
 	
@@ -97,12 +99,12 @@ public abstract class Solver {
 		 */
 		private static int[] solverLevelOne(int fieldNum, int[] possibleVals,
 											Board board) {
-			/**
+			/*
 			 * Find the given board dimensions for many uses.
 			 */
 			int boardDim = board.getSettings().getBoardDimensions();
 			
-			/**
+			/*
 			 * Functions to keep the row, column and quadrant of the specific 
 			 * field in local memory. This is including their individual array 
 			 * of values.
@@ -116,7 +118,7 @@ public abstract class Solver {
 				values[iter] = possibleVals[iter];
 			}
 			
-			/**
+			/*
 			 * Here we filter out the values which cannot be the result, 
 			 * subtract them from the possible values.
 			 * 
@@ -137,7 +139,7 @@ public abstract class Solver {
 					values[j - 1] = 0;
 				}
 			}
-			/**
+			/*
 			 * Return the set of possibleValues so they can be reused in
 			 * the next levels of solvers.
 			 */
@@ -162,7 +164,7 @@ public abstract class Solver {
         */	
        private static int[] solverLevelTwo(int fieldNum, Board board, 
     		   							 int[] prevSolutions) {
-    	   /**
+    	   /*
     	    * Find the given board dimensions for many uses.
     	    */
     	   int boardDim = board.getSettings().getBoardDimensions();
@@ -172,7 +174,7 @@ public abstract class Solver {
 				values[iter] = prevSolutions[iter];
 			}
     	   
-    	   /**
+    	   /*
     	    * fieldRowNum, fieldColumnNum, fieldQuadrantNum are merely
     	    * preliminaries to make solverLevelTwo. They set the outline for
     	    * the field to be solved.
@@ -184,13 +186,13 @@ public abstract class Solver {
     	   int fieldQuadrantNum = SudokuMath.getQuadrantNumber(fieldNum,
     			   board.getSettings());
     	   
-    	   /**
+    	   /*
     	    * quadDim denotes the quadrant dimensions, and thereby, for square
     	    * boards, also the number of quadrants in a row/column.
     	    */
     	   int quadDim = board.getSettings().getQuadrantDimension();
     	   
-    	   /**
+    	   /*
     	    * quadStartPos is the field number for the first field in the 
     	    * quadrant of the field to be solved.
     	    * 
@@ -218,7 +220,7 @@ public abstract class Solver {
     	   int quadStartPos = ((fieldQuadrantNum % quadDim) * quadDim) + 
     	   					  (fieldRowNum / quadDim * quadDim * boardDim);
     	   
-    	   /**
+    	   /*
     	    * 
     	    */
     	   for (int i = 0; i < boardDim; i++) {
