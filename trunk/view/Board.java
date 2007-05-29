@@ -15,8 +15,6 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controller.NumberAction;
-
 /**
  * @author Julian
  *
