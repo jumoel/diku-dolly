@@ -35,18 +35,7 @@ public abstract class Solver {
          */
 		int[] levelOneResult = solverLevelOne(fieldNum, 
 				board.getSettings().getValidValues(), board);
-		
-		/*System.out.println("Solver level 1 started");
-		System.out.println(levelOneResult[0]);
-		System.out.println(levelOneResult[1]);
-		System.out.println(levelOneResult[2]);
-		System.out.println(levelOneResult[3]);
-		System.out.println(levelOneResult[4]);
-		System.out.println(levelOneResult[5]);
-		System.out.println(levelOneResult[6]);
-		System.out.println(levelOneResult[7]);
-		System.out.println(levelOneResult[8]);
-		
+				
         /*
          * 	'result' is a unique solution of the field
          *  'count' is the number of final possible solutions for the 
@@ -80,8 +69,10 @@ public abstract class Solver {
 			
 			/*
 			 * stop mayb??
-			 */
+			 
+			if (levelTwoResult != 0){
 			System.out.println(levelTwoResult);
+			}*/
 			return levelTwoResult;
 		}
 	}
