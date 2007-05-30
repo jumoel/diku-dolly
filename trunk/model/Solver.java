@@ -36,6 +36,17 @@ public abstract class Solver {
 		int[] levelOneResult = solverLevelOne(fieldNum, 
 				board.getSettings().getValidValues(), board);
 		
+		/*System.out.println("Solver level 1 started");
+		System.out.println(levelOneResult[0]);
+		System.out.println(levelOneResult[1]);
+		System.out.println(levelOneResult[2]);
+		System.out.println(levelOneResult[3]);
+		System.out.println(levelOneResult[4]);
+		System.out.println(levelOneResult[5]);
+		System.out.println(levelOneResult[6]);
+		System.out.println(levelOneResult[7]);
+		System.out.println(levelOneResult[8]);
+		
         /*
          * 	'result' is a unique solution of the field
          *  'count' is the number of final possible solutions for the 
@@ -63,26 +74,15 @@ public abstract class Solver {
 		if (count == 1) {
 			return result;
 		} else { 
-			int[] levelTwoResult = 
+			int levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
+		
 			
 			/*
-	         * Reset count, then save the last possible value for the field in
-	         * 'result' while counting the number of possible values.
-	         */
-			count = 0;
-	        for (int i = 0; i < boardDim; i++) {
-	                if (levelTwoResult[i] > 0) {
-	                        result = levelTwoResult[i];
-	                        count++;
-	                }
-	        }
-			if (count == 1) {
-				//System.out.println("result = "+result);
-				return result;
-			} else {
-				return 0;
-			}
+			 * stop mayb??
+			 */
+			System.out.println(levelTwoResult);
+			return levelTwoResult;
 		}
 	}
 	
@@ -162,17 +162,17 @@ public abstract class Solver {
         * @return an array of solutions, this can either be seperated to give
         * a single solution or to move on with a level three solver.
         */	
-       private static int[] solverLevelTwo(int fieldNum, Board board, 
+       private static int solverLevelTwo(int fieldNum, Board board, 
     		   							 int[] prevSolutions) {
     	   /*
     	    * Find the given board dimensions for many uses.
     	    */
     	   int boardDim = board.getSettings().getBoardDimensions();
     	   
-    	   int[] values = new int[boardDim];
-			for (int iter = 0; iter < boardDim; iter = iter + 1) {
-				values[iter] = prevSolutions[iter];
-			}
+    	   int[] valuesRow = copyArray(prevSolutions, board);
+    	   int[] valuesColumn = copyArray(prevSolutions, board);
+    	   int[] valuesQuadrant = copyArray(prevSolutions, board);
+
     	   
     	   /*
     	    * fieldRowNum, fieldColumnNum, fieldQuadrantNum are merely
@@ -225,37 +225,102 @@ public abstract class Solver {
     	    */
     	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldColumnNum != i) {
+    			   
+    			   //Obtain start position for the row, add number of iteration
     			   int position = fieldNum - fieldColumnNum + i;
+    			   
+    			   //Check possible values only for the fields not already 
+    			   //accounted for in first step of solveField.
     			   if (board.getValue(position) == 0) {
 	    			   int[] resultsRow = 
-	    				   solverLevelOne(position, values, board);  
-	    			   for (int j = 0; resultsRow[j] != 0; j++) {
-	    				   values[resultsRow[j] - 1] = 0;
+	    				   solverLevelOne(position, valuesRow, board);  
+	    			   for (int j = 0; j < boardDim; j++) {
+	    				   if (resultsRow[j] > 0) {
+	    					   valuesRow[resultsRow[j] - 1] = 0;
+	    				   }
 	    			   }
     			   }
     		   }
+    	   }
+    	   int result = checkSingularity(valuesRow, board);
+    	   if (result > 0) {
+    		   return result; 
+    	   }
+    	   
+    	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldRowNum != i) {
     			   int position = fieldColumnNum + (fieldRowNum * i);
 	    			   if (board.getValue(position) == 0) {
 	    			   int[] resultsColumn = 
-	    				   solverLevelOne(position, values, board);
-	    			   for (int j = 0; resultsColumn[j] != 0; j++) {
-	    				   values[resultsColumn[j] - 1] = 0;
+	    				   solverLevelOne(position, valuesColumn, board);
+	    			   for (int j = 0; j < boardDim; j++) {
+	    				   if (resultsColumn[j] > 0) {
+	    					   valuesColumn[resultsColumn[j] - 1] = 0;
+	    				   }
 	    			   }
     			   }
     		   }
+    	   }
+    	   result = checkSingularity(valuesRow, board);
+    	   if (result > 0) {
+    		   return result; 
+    	   }
+    	   
+    	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldColumnNum != i && fieldRowNum != i) {
     			   int position = quadStartPos + 
     			   				  (i % quadDim) + (i / quadDim) * (boardDim);
     			   if (board.getValue(position) == 0) {
     				   int[] resultsQuadrant = 
-    					   solverLevelOne(position, values, board);
-    				   for (int j = 0; resultsQuadrant[j] != 0; j++) {
-    					   values[resultsQuadrant[j] - 1] = 0;
+    					   solverLevelOne(position, valuesQuadrant, board);
+    				   for (int j = 0; j < boardDim; j++) {
+    					   if (resultsQuadrant[j] > 0) {
+	    					   valuesQuadrant[resultsQuadrant[j] - 1] = 0;
+	    				   }
     				   }
     			   }
     		   }
     	   }
-    	   return values;
+    	   result = checkSingularity(valuesRow, board);
+    	   return result; 
+       }
+       
+       private static int checkSingularity(int[] possibilities, Board board) {
+    	   int boardDim = board.getSettings().getBoardDimensions();
+    	   
+    	   int count = 0;
+    	   int result = 0;
+    	   
+    	   /*
+	         * Reset count, then save the last possible value for the field in
+	         * 'result' while counting the number of possible values.
+	         */
+    	   	int[] values = copyArray(possibilities, board);
+    	   	
+    	   	for (int iter = 0; iter < boardDim; iter = iter + 1) {
+    	   		if (values[iter] > 0) {
+    	   			result = values[iter];
+    	   			count = count + 1;
+    	   		}
+    	   	}
+    	   	
+			if (count == 1) {
+				//System.out.println("result 2 = "+result);
+				return result;
+			} else {
+				//System.out.println("result 2 wrong count = "+result +". 
+				//count = " +count);
+				return 0;
+			}
+       }
+       
+       private static int[] copyArray(int[] input, Board board) {
+    	   int boardDim = board.getSettings().getBoardDimensions();
+    	   
+    	   int[] output = new int[boardDim];
+			for (int iter = 0; iter < boardDim; iter = iter + 1) {
+				output[iter] = input[iter];
+			}
+			return output;
        }
 }
