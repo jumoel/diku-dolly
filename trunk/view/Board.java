@@ -5,11 +5,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.io.IOException;
@@ -20,7 +17,6 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
 
 /**
  * @author Julian
@@ -62,6 +58,11 @@ public class Board extends JPanel implements Observer {
 		} catch(IOException ioe) {
 			/*
 			 * If the font is not found, use a default system font.
+			 */
+			font = new Font("SansSerif", Font.BOLD, 12);
+		} catch(UnsupportedOperationException EUEx) {
+			/*
+			 * Apparently this happens on some Linux-systems.
 			 */
 			font = new Font("SansSerif", Font.BOLD, 12);
 		}
