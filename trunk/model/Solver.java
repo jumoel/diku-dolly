@@ -17,13 +17,7 @@ public abstract class Solver {
 	 * @param board, the sudoku board used
 	 * @return the result of trying to solve the field, 0 if not solveable.
 	 */
-	public static int solveField(int fieldNum, Board board) {
-		
-		/*
-		 * Find the given board dimensions for many uses.
-		 */
-		int boardDim = board.getSettings().getBoardDimensions();
-		
+	public static int solveField(int fieldNum, Board board) {		
         /*
          * possibleValues initialized to the set of valid values given by the
          * settings in board.
