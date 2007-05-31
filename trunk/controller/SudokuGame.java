@@ -30,16 +30,15 @@ public class SudokuGame {
             	
             	game.getCurrentBoard().addObserver(board);
             	
-            	main.setup();
-            	
             	DifficultyAction difficultyAction = new DifficultyAction(main, game);
             	HelpAction helpAction = new HelpAction(main, game);
             	IngameControls ingameControls =
             		new IngameControls("EN eller anden Titel?", main, difficultyAction, helpAction);
             	
-            	main.add(ingameControls);
+            	main.add(ingameControls, 3);
+            	main.createBG();
             	
-            	main.pack();
+            	main.setup();
             }
 		});
 	}
