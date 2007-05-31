@@ -24,7 +24,9 @@ public class NumberAction extends AbstractAction {
 	private view.Board board;
 	private int fieldId;
 	private Component frame;
+	private view.MainWindow main;
 	public NumberAction(view.MainWindow main, int fieldId, Component frame) {
+		this.main = main;
 		this.game = main.getGame();
 		this.board = main.getBoard();
 		this.fieldId = fieldId;
@@ -51,6 +53,12 @@ public class NumberAction extends AbstractAction {
 			board.setValue(fieldId, value);
 			board.updateUI();
 			game.getCurrentBoard().setValue(fieldId, value);
+			
+			main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
+			
+			if (game.getCurrentBoard().isEqualTo(game.getSolutionBoard())) {
+				main.getControls().getDifficultyAction().actionPerformed(null);
+			}
 		}
 	}
 

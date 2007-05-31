@@ -41,6 +41,10 @@ public class MainWindow extends JFrame {
 		this.add(header, 50, 150, 0);
 	}
 	
+	public IngameControls getControls() {
+		return controls;
+	}
+
 	/**
 	 * Create the SheepSpeak-object.
 	 */
