@@ -36,33 +36,12 @@ public abstract class Solver {
 		int[] levelOneResult = solverLevelOne(fieldNum, 
 				board.getSettings().getValidValues(), board);
 				
-        /*
-         * 	'result' is a unique solution of the field
-         *  'count' is the number of final possible solutions for the 
-         *  field.
-         */
-		int result = 0;
-        int count = 0;
-        
-        /*
-         * Save the last possible value for the field in 'result' while
-         * counting the number of possible values.
-         */
-        for (int i = 0; i < boardDim; i++) { 
-        	if (levelOneResult[i] > 0) {
-                        result = levelOneResult[i];
-                        count = count + 1;
-                }
-        }
-		
-        /*
-         * If there is only one possible solution using solverLevelOne,
-         * return this, otherwise try to solve using solverLevelTwo and return
-         * output form that in same manner.
-         */
-		if (count == 1) {
-			return result;
-		} else { 
+        //Check if result from solverLevelOne is singular and return this if so
+		//Otherwise, try to get result using solverLevelTwo.
+		int result = checkSingularity(levelOneResult, board);
+		if (result > 0) {
+ 		   return result; 
+ 	   	} else { 
 			int levelTwoResult = 
 				solverLevelTwo(fieldNum, board, levelOneResult);
 		
@@ -272,42 +251,52 @@ public abstract class Solver {
 	    			 	}
     		   }
     	   }
-    	   result = checkSingularity(valuesRow, board);
+    	   //Check for singular result in column, return if singular.
+    	   result = checkSingularity(valuesColumn, board);
     	   if (result > 0) {
     		   return result; 
     	   }
     	   
     	   //Check in quadrant.
     	   for (int i = 0; i < boardDim; i++) {
+    		   //Dont check the field itself
     		   if (fieldColumnNum != i && fieldRowNum != i) {
+    			   //Get position for new field to check
     			   int position = quadStartPos + 
     			   				  (i % quadDim) + (i / quadDim) * (boardDim);
+    			   //Only check for possibilities if the value is not set.
     			   if (board.getValue(position) == 0) {
+    				   //Get solution values and put them in array
     				   int[] resultsQuadrant = 
     					   solverLevelOne(position, valuesQuadrant, board);
+    				   //Remove results from array of possible singular values
     				   for (int j = 0; j < boardDim; j++) {
     					   if (resultsQuadrant[j] > 0) {
 	    					   valuesQuadrant[resultsQuadrant[j] - 1] = 0;
-	    				   }
+    					   }
     				   }
     			   }
     		   }
     	   }
-    	   result = checkSingularity(valuesRow, board);
+    	   //Check for singular result and return this. If result not singular,
+    	   //still return since no result also = 0.
+    	   result = checkSingularity(valuesQuadrant, board);
     	   return result; 
        }
        
+       //Function to check for singularity in array
        private static int checkSingularity(int[] possibilities, Board board) {
+    	   //Get board dimension and save in boardDim
     	   int boardDim = board.getSettings().getBoardDimensions();
-    	   
-    	   int count = 0;
-    	   int result = 0;
+    	   //Copy values of possibilities into a new array
+    	   int[] values = copyArray(possibilities, board);
     	   
     	   /*
     	    * Reset count, then save the last possible value for the field in
     	    * 'result' while counting the number of possible values.
     	    */
-    	   int[] values = copyArray(possibilities, board);
+    	   int count = 0;
+    	   int result = 0;
     	   	
     	   for (int iter = 0; iter < boardDim; iter = iter + 1) {
     		   if (values[iter] > 0) {
@@ -316,22 +305,25 @@ public abstract class Solver {
     		   }
     	   }
     	   	
+    	   //If singular result, return this.
     	   if (count == 1) {
-    		   //System.out.println("result 2 = "+result);
     		   return result;
-    	   } else {
-    		   //Not a unique solution, return 0
+    	   } else { //Not a unique solution, return 0
     		   return 0;
     	   }
        }
        
+       //Function to copy an array
        private static int[] copyArray(int[] input, Board board) {
+    	   //Get board dimension and save in boardDim
     	   int boardDim = board.getSettings().getBoardDimensions();
     	   
+    	   //Copy an array instead of linking it back using fake pointers
     	   int[] output = new int[boardDim];
 			for (int iter = 0; iter < boardDim; iter = iter + 1) {
 				output[iter] = input[iter];
 			}
+			//Return the copied array
 			return output;
        }
 }
