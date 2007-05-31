@@ -5,17 +5,16 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JApplet;
 import javax.swing.JPanel;
 
 /**
  * @author Julian
  *
  */
-public class MainWindow extends JFrame {
+public class MainWindow extends JApplet {
 	/**
 	 * 
 	 */
@@ -23,7 +22,7 @@ public class MainWindow extends JFrame {
 	private JPanel panel;
 	
 	public MainWindow() {
-		super("Sudoku");
+		super();
 		
 		Background background = new Background();
 		this.getContentPane().add(background);
@@ -66,7 +65,7 @@ public class MainWindow extends JFrame {
 		/*
 		 * Make sure the application exits when the close button is pressed.
 		 */
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		/*
 		 * Lay out the subcomponents correctly.
 		 */
@@ -74,7 +73,7 @@ public class MainWindow extends JFrame {
 		/*
 		 * Disable resize of the window.
 		 */
-		this.setResizable(false);
+		//this.setResizable(false);
 		
 		this.setSize(700, 500);
 

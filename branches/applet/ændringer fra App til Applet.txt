@@ -1,17 +1,5 @@
-/**
- * 
- */
-package controller;
+*** SUDOKUGAME ***
 
-import javax.swing.JApplet;
-import javax.swing.SwingUtilities;
-
-import view.IngameControls;
-
-/**
- * @author Julian
- *
- */
 public class SudokuGame extends JApplet {
 
 	/**
@@ -24,11 +12,7 @@ public class SudokuGame extends JApplet {
 	private static view.MainWindow main;
 	private static model.Game game;
 	public void init() {
-		/*SwingUtilities.invokeLater(new Runnable()
-		{
-            public void run()
-            {*/
-            	game = new model.Game();
+		game = new model.Game();
             	
             	main = new view.MainWindow();
             	view.Board board = main.createBoard(game);
@@ -47,7 +31,26 @@ public class SudokuGame extends JApplet {
             	this.add(main);
             	
             	//main.pack();
-            /*}
-		});*/
 	}
 }
+
+
+*** MAINWINDOW *** 
+
+
+public class MainWindow extends JApplet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3172688540921699213L;
+	private JPanel panel;
+	
+	public MainWindow() {
+		super();
+		
+		Background background = new Background();
+		this.getContentPane().add(background);
+		
+		panel = new JPanel();
+		panel.setOpaque(false);
+	}
