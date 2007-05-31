@@ -212,9 +212,16 @@ public abstract class Solver {
     	   					  (fieldRowNum / quadDim * quadDim * boardDim);
     	   
     	   /*
+    	    * 3 coming for-loops will check if the field might be the only
+    	    * place in the row, column or quadrant where any number can be.
+    	    * Doing this is 3 for loops also makes it possible not to run
+    	    * through all the loops if a solution is found in either the first
+    	    * or the second loop.
     	    * 
+    	    * First run through the row.
     	    */
     	   for (int i = 0; i < boardDim; i++) {
+    		   //Dont check the field itself
     		   if (fieldColumnNum != i) {
     			   
     			   //Obtain start position for the row, add number of iteration
@@ -223,8 +230,11 @@ public abstract class Solver {
     			   //Check possible values only for the fields not already 
     			   //accounted for in first step of solveField.
     			   if (board.getValue(position) == 0) {
+    				   //Create an array of possible values for the
 	    			   int[] resultsRow = 
 	    				   solverLevelOne(position, valuesRow, board);  
+	    			   //Run through the array and remove the values in this
+	    			   //from the possibly singular values of the field.
 	    			   for (int j = 0; j < boardDim; j++) {
 	    				   if (resultsRow[j] > 0) {
 	    					   valuesRow[resultsRow[j] - 1] = 0;
@@ -233,23 +243,33 @@ public abstract class Solver {
     			   }
     		   }
     	   }
+    	   //Set a value result to be the singular result
     	   int result = checkSingularity(valuesRow, board);
+    	   //The result was only singular if it was greater than 0, so return
+    	   //result if that was true.
     	   if (result > 0) {
     		   return result; 
     	   }
     	   
+    	   //Check in column
     	   for (int i = 0; i < boardDim; i++) {
+    		   //Skip the actual field
     		   if (fieldRowNum != i) {
-    			   int position = fieldColumnNum + (fieldRowNum * i);
-	    			   if (board.getValue(position) == 0) {
-	    			   int[] resultsColumn = 
-	    				   solverLevelOne(position, valuesColumn, board);
-	    			   for (int j = 0; j < boardDim; j++) {
-	    				   if (resultsColumn[j] > 0) {
-	    					   valuesColumn[resultsColumn[j] - 1] = 0;
-	    				   }
-	    			   }
-    			   }
+    			   //Give position for every field one at a time.
+    			   int position = fieldColumnNum + (boardDim * i);
+    			   		//Only check the field for values if the value of the 
+    			   		//field is 0.
+	    			 	if (board.getValue(position) == 0) {
+	    			 		//Create results array for the new field
+	    			 		int[] resultsColumn = 
+	    			 			solverLevelOne(position, valuesColumn, board);
+	    			 		//Remove values from possibilities
+	    			 		for (int j = 0; j < boardDim; j++) {
+	    			 			if (resultsColumn[j] > 0) {
+	    			 				valuesColumn[resultsColumn[j] - 1] = 0;
+	    			 			}
+	    			 		}
+	    			 	}
     		   }
     	   }
     	   result = checkSingularity(valuesRow, board);
@@ -257,6 +277,7 @@ public abstract class Solver {
     		   return result; 
     	   }
     	   
+    	   //Check in quadrant.
     	   for (int i = 0; i < boardDim; i++) {
     		   if (fieldColumnNum != i && fieldRowNum != i) {
     			   int position = quadStartPos + 
@@ -283,26 +304,25 @@ public abstract class Solver {
     	   int result = 0;
     	   
     	   /*
-	         * Reset count, then save the last possible value for the field in
-	         * 'result' while counting the number of possible values.
-	         */
-    	   	int[] values = copyArray(possibilities, board);
+    	    * Reset count, then save the last possible value for the field in
+    	    * 'result' while counting the number of possible values.
+    	    */
+    	   int[] values = copyArray(possibilities, board);
     	   	
-    	   	for (int iter = 0; iter < boardDim; iter = iter + 1) {
-    	   		if (values[iter] > 0) {
-    	   			result = values[iter];
-    	   			count = count + 1;
-    	   		}
-    	   	}
+    	   for (int iter = 0; iter < boardDim; iter = iter + 1) {
+    		   if (values[iter] > 0) {
+    			   result = values[iter];
+    			   count = count + 1;
+    		   }
+    	   }
     	   	
-			if (count == 1) {
-				//System.out.println("result 2 = "+result);
-				return result;
-			} else {
-				//System.out.println("result 2 wrong count = "+result +". 
-				//count = " +count);
-				return 0;
-			}
+    	   if (count == 1) {
+    		   //System.out.println("result 2 = "+result);
+    		   return result;
+    	   } else {
+    		   //Not a unique solution, return 0
+    		   return 0;
+    	   }
        }
        
        private static int[] copyArray(int[] input, Board board) {
