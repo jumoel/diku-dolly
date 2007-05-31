@@ -267,20 +267,23 @@ public class Board extends Observable {
 	 * @return True or false depending on whether or not the boards are equal. 
 	 */
 	public boolean isEqualTo(Board compareBoard) {
+		int count = 0;
 		int[] compare = compareBoard.toArray();
 		if (this.board.length != compare.length) {
 			return false;
 		}
 		for (int i = 0; i < this.board.length; i = i + 1) {
 			if (this.board[i] != compare[i]) {
+				System.out.println("this: " + this.board[i] + " - compare: " + compare[i]);
+				System.out.println(count);
 				return false;
-			}
+			} else { count++; }
 		}
-		
+		System.out.println(count);
 		return true;
 	}
 	
-	public void reset(GameSettings settings) {
+	public void reset(GameSettings settings, Game game) {
 		if (settings == null) {
 			settings = new NormalSettings();
 		}
@@ -288,6 +291,11 @@ public class Board extends Observable {
 		
 		this.board = settings.getStdBoardArray();
 		this.shuffle();
+		
+		int solution[] = new int[settings.getBoardLength()];
+		System.arraycopy(board, 0, solution, 0, settings.getBoardLength());
+		
+		game.setSolutionBoard(new Board(solution, settings));
 		
 		Generator.generate(this);
 		

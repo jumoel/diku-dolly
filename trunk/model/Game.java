@@ -37,7 +37,11 @@ public class Game {
 		return solutionBoard;
 	}
 	
+	public void setSolutionBoard(Board solutionBoard) {
+		this.solutionBoard = solutionBoard;
+	}
+	
 	public void reset(GameSettings settings) {
-		currentBoard.reset(settings);
+		currentBoard.reset(settings, this);
 	}
 }

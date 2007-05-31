@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 
+import model.GameSettings;
+
 /**
  * @author Julian
  *
@@ -57,7 +59,8 @@ public class NumberAction extends AbstractAction {
 			main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
 			
 			if (game.getCurrentBoard().isEqualTo(game.getSolutionBoard())) {
-				main.getControls().getDifficultyAction().actionPerformed(null);
+				view.CongratulationScreen congratsScreen = new view.CongratulationScreen();
+				congratsScreen.show(main, game);
 			}
 		}
 	}
