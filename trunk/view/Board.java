@@ -34,6 +34,7 @@ public class Board extends JPanel implements Observer {
 	private JButton[] buttons;
 	private JPanel[] quadrants;
 	private Font font;
+	private int quadDim;
 	
 	public Board(model.Game game, Dimension dimension) {
 		super();
@@ -42,8 +43,8 @@ public class Board extends JPanel implements Observer {
 		this.setPreferredSize(dimension);
 		this.setSize(dimension);
 		this.setOpaque(false);
-		
-		this.setLayout(new GridLayout(3, 3, ViewSettings.getBoardSpacing(), ViewSettings.getBoardSpacing()));
+		quadDim = this.board.getSettings().getQuadrantDimension();
+		this.setLayout(new GridLayout(quadDim, quadDim, ViewSettings.getBoardSpacing(), ViewSettings.getBoardSpacing()));
 		
 		InputStream stream = this.getClass().getResourceAsStream("font/Edible_Pet.ttf");
 
@@ -77,9 +78,7 @@ public class Board extends JPanel implements Observer {
 	
 	private void addQuadrants() {
 		for (int i = 0; i < quadrants.length; i++) {
-			//constraints.gridx = i % 3;
-			//constraints.gridy = i / 3;
-			this.add(quadrants[i]); //, constraints);
+			this.add(quadrants[i]);
 		}
 	}
 	
@@ -88,13 +87,15 @@ public class Board extends JPanel implements Observer {
 		
 		for (int i = 0; i < board.getSettings().getBoardDimensions(); i++) {
 			quadrants[i] = new JPanel();
-			quadrants[i].setLayout(new GridLayout(3, 3, 1, 1));
-			int dim = ViewSettings.getButtonDimension().height * 3 - 2;
+			/*
+			 * The two '1'-values denotes a 1-pixel space between the elements.
+			 */
+			quadrants[i].setLayout(new GridLayout(quadDim, quadDim, 1, 1));
+			int dim = ViewSettings.getButtonDimension().height * quadDim;
 			quadrants[i].setSize(new Dimension(dim, dim));
 			quadrants[i].setPreferredSize(quadrants[i].getSize());
 			quadrants[i].setBackground(Color.BLACK);
 			quadrants[i].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			//quadrants[i].setOpaque(false);
 		}
 	}
 	
@@ -116,10 +117,8 @@ public class Board extends JPanel implements Observer {
 	
 	private void addButtons() {
 		for (int i = 0; i < buttons.length; i++) {
-			//constraints.gridx = i % 3;
-			//constraints.gridy = i / 3;
 			int quadrant = model.SudokuMath.getQuadrantNumber(i, board.getSettings());
-			quadrants[quadrant].add(buttons[i]); //, constraints);
+			quadrants[quadrant].add(buttons[i]);
 		}
 	}
 

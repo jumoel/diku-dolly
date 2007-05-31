@@ -5,7 +5,6 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
@@ -25,7 +24,7 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		super("Sudoku");
 		
-		Background background = new Background();
+		Background background = new Background("BG.jpg");
 		this.getContentPane().add(background);
 		
 		panel = new JPanel();

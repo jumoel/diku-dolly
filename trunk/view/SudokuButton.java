@@ -3,36 +3,44 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
- * Handles the drawing of the backgroundimage.
  * @author Julian
+ *
  */
-public class Background extends JPanel {
+public class SudokuButton extends JButton {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4031414845777706266L;
+	private static final long serialVersionUID = 2365297238606073795L;
 	
 	private Image backgroundImage;
 	
-	public Background(String imageFile) {
+	public SudokuButton(String imageFile) {
+		super();
 		ImageIcon tempImage = null;
 		tempImage = new ImageIcon(getClass().getResource("graphics/" + imageFile));
 		backgroundImage = tempImage.getImage();
-		this.setSize(700, 500);
+		this.setSize(150, 100);
 		this.setPreferredSize(this.getSize());
-		this.setOpaque(false);
+		this.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 5));
+		//this.setBackground()
+		this.setContentAreaFilled(false);
 	}
 	
 	public void paint(Graphics g) {
+		super.paintComponent(g);
 		if (backgroundImage != null) {
 			g.drawImage(backgroundImage, 0, 0, this);
 		}
-		super.paintComponent(g);
 	}
+
 }
