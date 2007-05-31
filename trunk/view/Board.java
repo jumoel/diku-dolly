@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Observable;
@@ -31,15 +32,17 @@ public class Board extends JPanel implements Observer {
 	
 	private model.Board board;
 	private model.Game game;
+	private MainWindow main;
 	private JButton[] buttons;
 	private JPanel[] quadrants;
 	private Font font;
 	private int quadDim;
 	
-	public Board(model.Game game, Dimension dimension) {
+	public Board(MainWindow main, Dimension dimension) {
 		super();
+		this.main = main;
+		this.game = main.getGame();
 		this.board = game.getCurrentBoard();
-		this.game = game;
 		this.setPreferredSize(dimension);
 		this.setSize(dimension);
 		this.setOpaque(false);
@@ -76,6 +79,28 @@ public class Board extends JPanel implements Observer {
 		populateButtons();
 	}
 	
+	public void clearNotices() {
+		for (JButton button : buttons) {
+			button.setBackground(ViewSettings.getButtonBackground());
+		}
+	}
+	
+	public void setNotice(int fieldId, Color color) {
+		int[] fieldIds = {fieldId};
+		setNotices(fieldIds, color);
+	}
+	
+	public void setNotices(int[] fieldIds, Color color) {
+		clearNotices();
+		
+		int max = board.getSettings().getBoardLength();
+		for (int index : fieldIds) {
+			if (index > 0 && index < max) {
+				buttons[index].setBackground(color);
+			}
+		}
+	}
+	
 	private void addQuadrants() {
 		for (int i = 0; i < quadrants.length; i++) {
 			this.add(quadrants[i]);
@@ -106,7 +131,7 @@ public class Board extends JPanel implements Observer {
 			
 			buttons[i].setSize(ViewSettings.getButtonDimension());
 			buttons[i].setPreferredSize(ViewSettings.getButtonDimension());
-			buttons[i].setBackground(Color.WHITE);
+			buttons[i].setBackground(ViewSettings.getButtonBackground());
 			buttons[i].setFont(font);
 			buttons[i].setText(Integer.toString(0));
 			buttons[i].setMargin(new Insets(0, 0, 0, 0));
@@ -121,8 +146,18 @@ public class Board extends JPanel implements Observer {
 			quadrants[quadrant].add(buttons[i]);
 		}
 	}
+	
+	private void removeActionListeners() {
+		for (JButton button : buttons) {
+			for (ActionListener action : button.getActionListeners()) {
+				button.removeActionListener(action);
+			}
+		}
+	}
 
 	private void populateButtons() {
+		removeActionListeners();
+		
 		int values[] = board.toArray();
 		for (int index = 0; index < board.getSettings().getBoardLength(); index++) {
 			String value = Integer.toString(values[index]);
@@ -130,7 +165,8 @@ public class Board extends JPanel implements Observer {
 			if (value.equalsIgnoreCase("0")) {
 				value = "";
 				enabled = true;
-				buttons[index].addActionListener(new controller.NumberAction(game, this, index, this));
+				buttons[index].addActionListener(
+						new controller.NumberAction(main, index, this));
 			}
 			
 			buttons[index].setEnabled(enabled);
@@ -143,7 +179,9 @@ public class Board extends JPanel implements Observer {
 	}
 	
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		this.clearNotices();
+		((MainWindow)this.getTopLevelAncestor()).getSheepSpeak().resetText();
+		this.board = (model.Board)arg0;
+		this.populateButtons();
 	}
 }

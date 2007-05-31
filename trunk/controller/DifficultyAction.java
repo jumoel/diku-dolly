@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import model.GameSettings;
+
 /**
  * @author Julian
  *
@@ -32,7 +34,7 @@ public class DifficultyAction extends AbstractAction {
 	
 	public void actionPerformed(ActionEvent e) {
 		view.DifficultySelection selection = new view.DifficultySelection();
-		int result = selection.show(component);
+		GameSettings result = selection.show(component);
 		game.reset(result);
 	}
 

@@ -5,6 +5,8 @@ package controller;
 
 import javax.swing.SwingUtilities;
 
+import model.GameSettings;
+
 /**
  * @author Julian
  *
@@ -21,25 +23,62 @@ public class SudokuGame {
 		{
             public void run()
             {
+            	/*
+            	 * Create a new game
+            	 */
             	game = new model.Game();
             	
+            	/*
+            	 * Create a new mainwindow and set it to use
+            	 * the game we created above.
+            	 */
             	main = new view.MainWindow();
+            	main.setGame(game);
             	
+            	/*
+            	 * Create the actions for the controlbuttons...
+            	 */
             	DifficultyAction difficultyAction = new DifficultyAction(main, game);
             	HelpAction helpAction = new HelpAction(main, game);
             	
-            	main.createIngameControls(main, difficultyAction, helpAction);
+            	/*
+            	 * ... and then create and add the buttons themselves.
+            	 */
+            	main.createIngameControls(difficultyAction, helpAction);
             	
-            	view.Board board = main.createBoard(game);
+            	/*
+            	 * Create and add the gameboard. It is essential that
+            	 * setGame() has been called before this gets called!
+            	 */
+            	main.createBoard();
             	
-            	game.getCurrentBoard().addObserver(board);
+            	/*
+            	 * Add an observer to the board.
+            	 */
+            	game.getCurrentBoard().addObserver(main.getBoard());
             	
-            	view.SheepSpeak speak = new view.SheepSpeak();
-            	main.add(speak, 50, 360, 210);
+            	/*
+            	 * Create and add the "SheepSpeak", which will be used
+            	 * for helping etc.
+            	 */
+            	main.createSheepSpeak();
             	
-            	main.createBG();
+            	/*
+            	 * Create and add the header.
+            	 */
+            	main.createHeader();
+            	
+            	/*
+            	 * Create and add the backgroundimage. 
+            	 */
+            	main.createBackgroundPanel("stdSudokuBG.png");
             	
             	main.setup();
+            	
+            	/*
+            	 * Show the welcomescreen.
+            	 */
+            	difficultyAction.actionPerformed(null);
             }
 		});
 	}

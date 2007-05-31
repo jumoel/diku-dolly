@@ -3,6 +3,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -17,7 +18,18 @@ public abstract class ViewSettings {
 	private static int buttonSize = 25;
 	private static Font buttonFont = new Font("SansSerif", Font.BOLD, 12);
 	private static Font buttonFontComicSans = new Font("Vrinda", Font.PLAIN, 12);
+	private static Color buttonBackground = Color.WHITE;
+	private static Color lookHereHintColor = Color.GREEN;
+	private static Color wrongNumberColor = Color.RED;
 	
+	public static Color getLookHereHintColor() {
+		return lookHereHintColor;
+	}
+
+	public static Color getWrongNumberColor() {
+		return wrongNumberColor;
+	}
+
 	public static Font getButtonFontComicSans() {
 		return buttonFontComicSans;
 	}
@@ -56,5 +68,9 @@ public abstract class ViewSettings {
 	 */
 	public static int getMainWidth() {
 		return mainWidth;
+	}
+
+	public static Color getButtonBackground() {
+		return buttonBackground;
 	}
 }

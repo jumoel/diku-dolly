@@ -14,6 +14,11 @@ import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import model.EasySettings;
+import model.GameSettings;
+import model.HardSettings;
+import model.NormalSettings;
+
 /**
  * @author Julian
  *
@@ -22,11 +27,11 @@ public class DifficultySelection {
 	/*
 	 * The value to pass on to the calling function.
 	 */
-	protected int returnvalue;
+	protected GameSettings returnvalue;
 	
 	public DifficultySelection() {
 	}
-	public int show(Component frame) {
+	public GameSettings show(Component frame) {
 		/*
 		 * Creates a new modal Dialog-frame.
 		 */
@@ -46,21 +51,21 @@ public class DifficultySelection {
 			easy.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					dialog.setVisible(false);
-					returnvalue = 0;
+					returnvalue = new EasySettings();
 				}
 			});
 			
 			medium.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					dialog.setVisible(false);
-					returnvalue = 1;
+					returnvalue = new NormalSettings();
 				}
 			});
 			
 			hard.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					dialog.setVisible(false);
-					returnvalue = 2;
+					returnvalue = new HardSettings();
 				}
 			});
 			
@@ -78,7 +83,8 @@ public class DifficultySelection {
 		background.setSize(700, 500);
 		layeredPane.add(background, 3);
 		
-		PlaceCenter.placeCenter(dialog);
+		//PlaceCenter.placeCenter(dialog);
+		dialog.setLocation(((MainWindow)frame).getBackgroundPanel().getLocationOnScreen());
 		dialog.pack();
 		dialog.setVisible(true);
 		

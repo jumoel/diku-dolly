@@ -40,7 +40,6 @@ public class Board extends Observable {
 		this.settings = settings;
 		random = new Random();
 		this.board = boardArray;
-		this.shuffle();
 	}
 	
 	/**
@@ -281,20 +280,13 @@ public class Board extends Observable {
 		return true;
 	}
 	
-	public void reset(int difficulty) {
-		switch (difficulty) {
-		case Difficulties.easy:
-			this.settings = new EasySettings();
-			break;
-		case Difficulties.normal:
-			this.settings = new NormalSettings();
-			break;
-		case Difficulties.hard:
-			this.settings = new HardSettings();
-			break;
+	public void reset(GameSettings settings) {
+		if (settings == null) {
+			settings = new NormalSettings();
 		}
+		this.settings = settings;
 		
-		this.board = this.settings.getStdBoardArray();
+		this.board = settings.getStdBoardArray();
 		this.shuffle();
 		
 		Generator.generate(this);

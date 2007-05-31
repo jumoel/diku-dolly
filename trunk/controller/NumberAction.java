@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class NumberAction extends AbstractAction {
 
 	/**
-	 * 
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = -3042742452358674456L;
 	
@@ -24,9 +24,9 @@ public class NumberAction extends AbstractAction {
 	private view.Board board;
 	private int fieldId;
 	private Component frame;
-	public NumberAction(model.Game game, view.Board board, int fieldId, Component frame) {
-		this.game = game;
-		this.board = board;
+	public NumberAction(view.MainWindow main, int fieldId, Component frame) {
+		this.game = main.getGame();
+		this.board = main.getBoard();
 		this.fieldId = fieldId;
 		this.frame = frame;
 	}
@@ -46,6 +46,8 @@ public class NumberAction extends AbstractAction {
 		                    "1");
 		if (s != null) {
 			int value = Integer.parseInt(s);
+			board.clearNotices();
+			
 			board.setValue(fieldId, value);
 			board.updateUI();
 			game.getCurrentBoard().setValue(fieldId, value);

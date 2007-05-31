@@ -9,6 +9,8 @@ package model;
  */
 public class Game {
 	private Board currentBoard;
+	private Board solutionBoard;
+	
 	/**
 	 * Stores the solved board in solutionBoard. Makes the generator
 	 * remove numbers until the desired difficulty is reached and then 
@@ -16,6 +18,11 @@ public class Game {
 	 */
 	public Game() {
 		currentBoard = new Board();
+		
+		int[] solution = new int[currentBoard.toArray().length];
+		System.arraycopy(currentBoard.toArray(), 0, solution, 0, currentBoard.toArray().length);
+		solutionBoard = new Board(solution);
+		
 		Generator.generate(currentBoard);
 	}
 	/**
@@ -26,7 +33,11 @@ public class Game {
 		return currentBoard;
 	}
 	
-	public void reset(int difficulty) {
-		currentBoard.reset(difficulty);
+	public Board getSolutionBoard() {
+		return solutionBoard;
+	}
+	
+	public void reset(GameSettings settings) {
+		currentBoard.reset(settings);
 	}
 }
