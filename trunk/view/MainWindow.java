@@ -7,7 +7,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import controller.DifficultyAction;
+import controller.HelpAction;
 
 /**
  * @author Julian
@@ -23,19 +24,25 @@ public class MainWindow extends JFrame {
 		super("Sudoku");
 	}
 	
-	public Background createBG() {
-		Background background = new Background("stdSudokuBG.png");
-		return (Background)this.add(background, 100);
-	}
-	
-	public Component add(Component component, int zindex) {
-		return this.getLayeredPane().add(component);
+	public Component add(Component component, int zindex, int x, int y) {
+		component.setLocation(x, y);
+		return this.getLayeredPane().add(component, zindex);
 	}
 	public Board createBoard(model.Game game) {
 		Dimension boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
 		Board board = new Board(game, boardDimension);
 		
-		return (Board)this.add(board, 2);
+		return (Board)this.add(board, 2, 50, 100);
+	}
+	
+	public Background createBG() {
+		Background background = new Background("stdSudokuBG.png");
+		return (Background)this.add(background, 100, 0, 0);
+	}
+	
+	public IngameControls createIngameControls(MainWindow main, DifficultyAction difficultyAction, HelpAction helpAction) {
+		IngameControls controls = new IngameControls(main, difficultyAction, helpAction);
+		return (IngameControls)this.add(controls, 10, 375, 100);
 	}
 	
 	/**

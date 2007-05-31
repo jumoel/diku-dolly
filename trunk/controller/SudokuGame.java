@@ -5,8 +5,6 @@ package controller;
 
 import javax.swing.SwingUtilities;
 
-import view.IngameControls;
-
 /**
  * @author Julian
  *
@@ -26,16 +24,19 @@ public class SudokuGame {
             	game = new model.Game();
             	
             	main = new view.MainWindow();
+            	
+            	DifficultyAction difficultyAction = new DifficultyAction(main, game);
+            	HelpAction helpAction = new HelpAction(main, game);
+            	
+            	main.createIngameControls(main, difficultyAction, helpAction);
+            	
             	view.Board board = main.createBoard(game);
             	
             	game.getCurrentBoard().addObserver(board);
             	
-            	DifficultyAction difficultyAction = new DifficultyAction(main, game);
-            	HelpAction helpAction = new HelpAction(main, game);
-            	IngameControls ingameControls =
-            		new IngameControls("EN eller anden Titel?", main, difficultyAction, helpAction);
+            	view.SheepSpeak speak = new view.SheepSpeak();
+            	main.add(speak, 50, 360, 210);
             	
-            	main.add(ingameControls, 3);
             	main.createBG();
             	
             	main.setup();
