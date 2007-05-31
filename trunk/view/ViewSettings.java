@@ -14,9 +14,14 @@ public abstract class ViewSettings {
 	private static int mainWidth = 700;
 	private static int mainHeight = 500;
 	private static int boardSpacing = 10;
-	private static int buttonSize = 30;
-	private static Font buttonFont = new Font("SansSerif", Font.PLAIN, 11);
+	private static int buttonSize = 25;
+	private static Font buttonFont = new Font("SansSerif", Font.BOLD, 12);
+	private static Font buttonFontComicSans = new Font("Vrinda", Font.PLAIN, 12);
 	
+	public static Font getButtonFontComicSans() {
+		return buttonFontComicSans;
+	}
+
 	/**
 	 * @return the buttonFont
 	 */

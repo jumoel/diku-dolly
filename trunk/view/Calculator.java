@@ -19,7 +19,7 @@ public abstract class Calculator {
 		int dimension = board.getSettings().getBoardDimensions() * 
 						ViewSettings.getButtonSize();
 		
-		int finalWidth = dimension +
+		int finalWidth = 50 + dimension +
 			(board.getSettings().getQuadrantDimension() - 1) * ViewSettings.getBoardSpacing();
 		
 		return new Dimension(finalWidth, finalWidth);

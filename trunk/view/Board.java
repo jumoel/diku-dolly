@@ -4,16 +4,23 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 
 /**
  * @author Julian
@@ -28,154 +35,115 @@ public class Board extends JPanel implements Observer {
 	
 	private model.Board board;
 	private model.Game game;
-	private final MouseListener[] defaultListeners = new JButton().getMouseListeners();
+	private JButton[] buttons;
+	private JPanel[] quadrants;
+	private Font font;
 	
 	public Board(model.Game game, Dimension dimension) {
 		super();
 		this.board = game.getCurrentBoard();
 		this.game = game;
 		this.setPreferredSize(dimension);
-		createPanels(board.getSettings());
-	}
-	
-	private void createPanels(model.GameSettings settings) {
-		GridLayout quadrantLayout = new GridLayout();
-		quadrantLayout.setColumns(settings.getQuadrantDimension());
-		quadrantLayout.setRows(settings.getQuadrantDimension());
-		quadrantLayout.setHgap(0);
-		quadrantLayout.setVgap(0);
-		for (int i = 0; i < settings.getBoardDimensions(); i = i + 1)
-		{
-			JPanel panel = new JPanel();
-			panel.setLayout(quadrantLayout);
-			
-			createButtons(settings, panel, i);
-			populateButtons();
-			
-			panel.setOpaque(false);
-			
-			this.add(panel);
-		}
-	}
-	
-	/**
-	 * Gets the fieldId from the quadrantnumber and number inside the quadrant.
-	 * Enables us to get the data from the board.
-	 */
-	private int getFieldIdFromCoords(model.GameSettings settings, int quadrantId, int fieldNum) {
+		this.setSize(dimension);
+		this.setOpaque(false);
 		
-		int fieldId = fieldNum % settings.getQuadrantDimension() + settings.getBoardDimensions() * (fieldNum / settings.getQuadrantDimension()) +
-					(quadrantId % settings.getQuadrantDimension()) * settings.getQuadrantDimension() +
-					(quadrantId / settings.getQuadrantDimension() * settings.getQuadrantDimension() * settings.getBoardDimensions());
+		this.setLayout(new GridLayout(3, 3, ViewSettings.getBoardSpacing(), ViewSettings.getBoardSpacing()));
 		
-		return fieldId;
-	}
-	
-	private void setButtonProperties(JButton button) {
-		button.setPreferredSize(ViewSettings.getButtonDimension());
-		button.setMargin(new Insets(0, 0, 0, 0));
-		button.setFocusable(false);
-		button.setFont(ViewSettings.getButtonFont());
-		button.setBackground(Color.WHITE);
-		button.setForeground(Color.BLACK);
-		button.setBorderPainted(false);
-	}
-	
-	private void removeButtonListeners(JButton button) {
-		for (int length = 0; length < button.getMouseListeners().length; length++)
-        {
-            button.removeMouseListener(button.getMouseListeners()[length]);
-        }
-	}
-	
-	private void setStdButtonListeners(JButton button) {
-		for  (int index = 0; index < defaultListeners.length; index++) {
-			MouseListener listener = defaultListeners[index];
-			if (listener != null) {
-				button.addMouseListener(listener);
-			}
-		}
-	}
-	
-	private void populateButtons() {		
-		/*
-		 * Array containing the quadrants (JPanel's)
-		 */
-		Component[] panels = this.getComponents();
-		
-		for (int quadrantId = 0; quadrantId < panels.length; quadrantId++) {
-			/*
-			 * Array containing the fields (JButton's)
-			 */
-			Component[] fields = ((JPanel)panels[quadrantId]).getComponents();
-			
-			for (int fieldNum = 0; fieldNum < fields.length; fieldNum++) {
-				JButton button = (JButton)fields[fieldNum];
-				
-				/*
-				 * Gets the fieldId
-				 */
-				int fieldId = getFieldIdFromCoords(this.board.getSettings(), quadrantId, fieldNum);
-				int value = board.getValue(fieldId);
-				String text;
-				if (value == 0) {
-					text = "";
-					setStdButtonListeners(button);
-					for (int i = 0; i < button.getActionListeners().length; i++) {
-						button.removeActionListener(button.getActionListeners()[i]);
-					}
-					button.addActionListener(new controller.NumberAction(game, this, fieldId, this));
-				} else {
-					text = Integer.toString(value);
-					for (int i = 0; i < button.getActionListeners().length; i++) {
-						button.removeActionListener(button.getActionListeners()[i]);
-					}
-					removeButtonListeners(button);
-				}
-				
-				button.setText(text);
-			}
-		}
-	}
-	
-	private void createButtons(model.GameSettings settings, JPanel panel, int quadrantId) {
-		for (int i = 0; i < settings.getBoardDimensions(); i = i + 1) {
-			int fieldId = getFieldIdFromCoords(this.board.getSettings(), quadrantId, i);
-			JButton button = new JButton();
-			button.setName(Integer.toString(fieldId));
-			setButtonProperties(button);
-			panel.add(button);
-		}
-	}
+		InputStream stream = this.getClass().getResourceAsStream("font/Edible_Pet.ttf");
 
-	public void update(Observable o) {
-		board = (model.Board)o;
+		try {
+			Font fs = Font.createFont(Font.TRUETYPE_FONT, stream);
+			font = fs.deriveFont(Font.PLAIN, 14);
+		} catch(FontFormatException fe) {
+			/*
+			 * If the font is somehow invalid, use a default system font.
+			 */
+			font = new Font("SansSerif", Font.BOLD, 12);
+		} catch(IOException ioe) {
+			/*
+			 * If the font is not found, use a default system font.
+			 */
+			font = new Font("SansSerif", Font.BOLD, 12);
+		}
+
+		createButtons();
+		createQuadrants();
+		addButtons();
+		addQuadrants();
+		
 		populateButtons();
 	}
-
-	public void update(Observable o, Object arg) {
-		this.update(o);
+	
+	private void addQuadrants() {
+		for (int i = 0; i < quadrants.length; i++) {
+			//constraints.gridx = i % 3;
+			//constraints.gridy = i / 3;
+			this.add(quadrants[i]); //, constraints);
+		}
+	}
+	
+	private void createQuadrants() {
+		quadrants = new JPanel[board.getSettings().getBoardDimensions()];
+		
+		for (int i = 0; i < board.getSettings().getBoardDimensions(); i++) {
+			quadrants[i] = new JPanel();
+			quadrants[i].setLayout(new GridLayout(3, 3, 1, 1));
+			int dim = ViewSettings.getButtonDimension().height * 3 - 2;
+			quadrants[i].setSize(new Dimension(dim, dim));
+			quadrants[i].setPreferredSize(quadrants[i].getSize());
+			quadrants[i].setBackground(Color.BLACK);
+			quadrants[i].setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			//quadrants[i].setOpaque(false);
+		}
+	}
+	
+	private void createButtons() {
+		buttons = new JButton[board.getSettings().getBoardLength()];
+		for (int i = 0; i < board.getSettings().getBoardLength(); i++) {
+			buttons[i] = new JButton();
+			
+			buttons[i].setSize(ViewSettings.getButtonDimension());
+			buttons[i].setPreferredSize(ViewSettings.getButtonDimension());
+			buttons[i].setBackground(Color.WHITE);
+			buttons[i].setFont(font);
+			buttons[i].setText(Integer.toString(0));
+			buttons[i].setMargin(new Insets(0, 0, 0, 0));
+			buttons[i].setFocusable(false);
+			buttons[i].setBorderPainted(false);
+		}
+	}
+	
+	private void addButtons() {
+		for (int i = 0; i < buttons.length; i++) {
+			//constraints.gridx = i % 3;
+			//constraints.gridy = i / 3;
+			int quadrant = model.SudokuMath.getQuadrantNumber(i, board.getSettings());
+			quadrants[quadrant].add(buttons[i]); //, constraints);
+		}
 	}
 
-	public void setValue(int fieldId, int value) {
-		/*
-		 * Array containing the quadrants (JPanel's)
-		 */
-		Component[] panels = this.getComponents();
-		
-		for (int quadrantId = 0; quadrantId < panels.length; quadrantId++) {
-			/*
-			 * Array containing the fields (JButton's)
-			 */
-			Component[] fields = ((JPanel)panels[quadrantId]).getComponents();
-			
-			for (int fieldNum = 0; fieldNum < fields.length; fieldNum++) {
-				JButton button = (JButton)fields[fieldNum];
-
-				if (button.getName().equalsIgnoreCase(Integer.toString(fieldId))) {
-					button.setText(Integer.toString(value));
-				}
+	private void populateButtons() {
+		int values[] = board.toArray();
+		for (int index = 0; index < board.getSettings().getBoardLength(); index++) {
+			String value = Integer.toString(values[index]);
+			Boolean enabled = false;
+			if (value.equalsIgnoreCase("0")) {
+				value = "";
+				enabled = true;
+				buttons[index].addActionListener(new controller.NumberAction(game, this, index, this));
 			}
+			
+			buttons[index].setEnabled(enabled);
+			buttons[index].setText(value);
 		}
+	}
+	
+	public void setValue(int fieldId, int value) {
+		buttons[fieldId].setText(Integer.toString(value));
+	}
+	
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -6,6 +6,7 @@ package view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,7 +36,7 @@ public class MainWindow extends JFrame {
 		return panel.add(component);
 	}
 	public Board createBoard(model.Game game) {
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+		GridBagLayout layout = new GridBagLayout();
 		Dimension boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
 		JPanel panel = new JPanel();
 			panel.setLayout(layout);
@@ -45,10 +46,10 @@ public class MainWindow extends JFrame {
 			
 			Board board = new Board(game, boardDimension);
 			
-			board.setLayout(layout);
+			//board.setLayout(layout);
 			board.setSize(boardDimension);
 			board.setPreferredSize(boardDimension);
-			board.setOpaque(true);
+			board.setOpaque(false);
 			
 			//panel.add(board);
 		

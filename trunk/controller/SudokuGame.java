@@ -3,6 +3,9 @@
  */
 package controller;
 
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 
 import view.IngameControls;
