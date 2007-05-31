@@ -60,7 +60,7 @@ public class Board extends JPanel implements Observer {
 			 * If the font is not found, use a default system font.
 			 */
 			font = new Font("SansSerif", Font.BOLD, 12);
-		} catch(UnsupportedOperationException EUEx) {
+		} catch(UnsupportedOperationException UOEx) {
 			/*
 			 * Apparently this happens on some Linux-systems.
 			 */
