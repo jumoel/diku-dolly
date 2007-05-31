@@ -160,7 +160,7 @@ public class MainWindow extends JFrame {
 		/*
 		 * Disable resize of the window.
 		 */
-		//this.setResizable(false);
+		this.setResizable(false);
 		
 		this.pack();
 		/*
