@@ -3,37 +3,66 @@
  */
 package view;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  * @author Julian
  *
  */
-public abstract class DifficultySelection {
-	public static int show(Component frame) {
-		JDialog dialog = new JDialog((Frame)frame, "Vælg en sværhedsgrad", false); // Sæt til true hvis modal
+public class DifficultySelection {
+	/*
+	 * The value to pass on to the calling function.
+	 */
+	protected int returnvalue;
+	
+	public DifficultySelection() {
+	}
+	public int show(Component frame) {
+		/*
+		 * Creates a new modal Dialog-frame.
+		 */
+		final JDialog dialog = new JDialog((Frame)frame, "Vælg en sværhedsgrad", true);
 		
 		JLayeredPane layeredPane = dialog.getLayeredPane();
 		
 		dialog.setSize(new Dimension(700, 500));
 		dialog.setPreferredSize(dialog.getSize());
-		dialog.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		dialog.setUndecorated(true);
 
 		JPanel panel = new JPanel();
 			SudokuButton easy = new SudokuButton("easy.png");
 			SudokuButton medium = new SudokuButton("medium.png");
 			SudokuButton hard = new SudokuButton("hard.png");
+			
+			easy.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dialog.setVisible(false);
+					returnvalue = 0;
+				}
+			});
+			
+			medium.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dialog.setVisible(false);
+					returnvalue = 1;
+				}
+			});
+			
+			hard.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dialog.setVisible(false);
+					returnvalue = 2;
+				}
+			});
 			
 			panel.setLayout(new GridLayout(3, 1, 5, 5));
 			panel.add(easy);
@@ -53,19 +82,6 @@ public abstract class DifficultySelection {
 		dialog.pack();
 		dialog.setVisible(true);
 		
-		Object[] options = {"I'm too young to die",
-	            					"Lol im avaarage",
-	            					"SUPER DUPER GODLIKE LOLKEK-MODE!!!111ELEVEN"};
-		
-		int n = 0; /*JOptionPane.showOptionDialog(frame,
-				"Vælg en sværhedsgrad, din goddamn newbie!",
-				"^_^",
-				JOptionPane.YES_NO_CANCEL_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				null,
-				options,
-				options[2]); */
-		
-		return n;
+		return returnvalue;
 	}
 }

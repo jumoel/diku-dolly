@@ -3,6 +3,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -24,33 +25,21 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		super("Sudoku");
 		
-		Background background = new Background("BG.jpg");
+		Background background = new Background("stdSudokuBG.png");
 		this.getContentPane().add(background);
 		
 		panel = new JPanel();
 		panel.setOpaque(false);
+		panel.setSize(700, 500);
+		panel.setPreferredSize(panel.getSize());
 	}
 	
 	public Component add(Component component) {
 		return panel.add(component);
 	}
 	public Board createBoard(model.Game game) {
-		GridBagLayout layout = new GridBagLayout();
 		Dimension boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
-		JPanel panel = new JPanel();
-			panel.setLayout(layout);
-			panel.setSize(boardDimension);
-			panel.setPreferredSize(boardDimension);
-			panel.setOpaque(true);
-			
-			Board board = new Board(game, boardDimension);
-			
-			//board.setLayout(layout);
-			board.setSize(boardDimension);
-			board.setPreferredSize(boardDimension);
-			board.setOpaque(false);
-			
-			//panel.add(board);
+		Board board = new Board(game, boardDimension);
 		
 		return (Board)this.add(board);
 	}

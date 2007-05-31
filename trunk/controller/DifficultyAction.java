@@ -31,7 +31,8 @@ public class DifficultyAction extends AbstractAction {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		int result = view.DifficultySelection.show(component);
+		view.DifficultySelection selection = new view.DifficultySelection();
+		int result = selection.show(component);
 		game.reset(result);
 	}
 
