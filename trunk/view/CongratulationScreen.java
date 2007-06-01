@@ -29,7 +29,7 @@ public class CongratulationScreen {
 		/*
 		 * Creates a new modal Dialog-frame.
 		 */
-		final JDialog dialog = new JDialog((Frame)frame, "Tillykke", false);
+		final JDialog dialog = new JDialog((Frame)frame, "Tillykke", true);
 		
 		JLayeredPane layeredPane = dialog.getLayeredPane();
 		

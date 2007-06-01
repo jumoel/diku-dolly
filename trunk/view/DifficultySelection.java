@@ -35,7 +35,7 @@ public class DifficultySelection {
 		/*
 		 * Creates a new modal Dialog-frame.
 		 */
-		final JDialog dialog = new JDialog((Frame)frame, "Vælg en sværhedsgrad", false);
+		final JDialog dialog = new JDialog((Frame)frame, "Vælg en sværhedsgrad", true);
 		
 		JLayeredPane layeredPane = dialog.getLayeredPane();
 		
