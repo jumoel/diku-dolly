@@ -71,10 +71,10 @@ public class NumberAction extends AbstractAction {
 				 * Sets the fieldcolor to white to ensure that the field gets
 				 * the correct white color when the correct value is inserted.
 				 */
-				((view.MainWindow)frame).getBoard().setNotice(fieldId, ViewSettings.getButtonBackground());
+				board.setNotice(fieldId, ViewSettings.getButtonBackground());
 			} else {
 				main.getSheepSpeak().setText("Hov, det var vidst et forkert tal.");
-				((view.MainWindow)frame).getBoard().setNotice(fieldId, ViewSettings.getWrongNumberColor());
+				board.setNotice(fieldId, ViewSettings.getWrongNumberColor());
 				game.getStatistics().increaseMistakes();		
 			}
 			// End of Statistics-part
