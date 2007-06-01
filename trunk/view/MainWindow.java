@@ -157,6 +157,11 @@ public class MainWindow extends JFrame {
 		 * Lay out the subcomponents correctly.
 		 */
 		this.validate();
+		
+		/*
+		 * Make sure Java cleans up.
+		 */
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		/*
 		 * Disable resize of the window.
 		 */
