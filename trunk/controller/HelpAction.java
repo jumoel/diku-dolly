@@ -34,6 +34,10 @@ public class HelpAction extends AbstractAction {
 		int hint = model.Helper.findSolveable(game);
 		((view.MainWindow)frame).getBoard().setNotice(hint, ViewSettings.getLookHereHintColor());
 		((view.MainWindow)frame).getSheepSpeak().setText("Se på den grønne firkant.<br><br>Den kan du nok løse.");
+		/*
+		 * The amount of hints used is increased in the statistics.
+		 */
+		this.game.getStatistics().increaseHints();
 	}
 
 }

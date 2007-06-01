@@ -10,6 +10,7 @@ package model;
 public class Game {
 	private Board currentBoard;
 	private Board solutionBoard;
+	private Statistics statistics;
 	
 	/**
 	 * Stores the solved board in solutionBoard. Makes the generator
@@ -24,6 +25,8 @@ public class Game {
 		solutionBoard = new Board(solution);
 		
 		Generator.generate(currentBoard);
+		
+		statistics = new Statistics();
 	}
 	/**
 	 * returns the current board
@@ -43,5 +46,9 @@ public class Game {
 	
 	public void reset(GameSettings settings) {
 		currentBoard.reset(settings, this);
+	}
+	
+	public Statistics getStatistics() {
+		return this.statistics;
 	}
 }

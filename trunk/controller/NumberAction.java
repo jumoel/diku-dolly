@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 
-import model.GameSettings;
+import view.ViewSettings;
 
 /**
  * @author Julian
@@ -56,7 +56,28 @@ public class NumberAction extends AbstractAction {
 			board.updateUI();
 			game.getCurrentBoard().setValue(fieldId, value);
 			
-			main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
+			/* 
+			 * The following if-statement ensures that a field is colored
+			 * red if wrong, white if correct. Furthermore, the SheepSpeak
+			 * is updated to tell the user that there has been a mistake.
+			 * 
+			 * Before the statistics were added:
+			 * main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
+			 */
+			if (game.getCurrentBoard().getValue(fieldId) == 
+				game.getSolutionBoard().getValue(fieldId)) {
+				main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
+				/* 
+				 * Sets the fieldcolor to white to ensure that the field gets
+				 * the correct white color when the correct value is inserted.
+				 */
+				((view.MainWindow)frame).getBoard().setNotice(fieldId, ViewSettings.getButtonBackground());
+			} else {
+				main.getSheepSpeak().setText("Hov, det var vidst et forkert tal.");
+				((view.MainWindow)frame).getBoard().setNotice(fieldId, ViewSettings.getWrongNumberColor());
+				game.getStatistics().increaseMistakes();		
+			}
+			// End of Statistics-part
 			
 			if (game.getCurrentBoard().isEqualTo(game.getSolutionBoard())) {
 				view.CongratulationScreen congratsScreen = new view.CongratulationScreen();
