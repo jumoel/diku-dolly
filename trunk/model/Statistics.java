@@ -33,7 +33,7 @@ public class Statistics {
 	 * 
 	 * @return The amount of hints.
 	 */
-	public int amountOfHints() {
+	public int getHints() {
 		return hints;
 	}
 	
@@ -49,7 +49,7 @@ public class Statistics {
 	 * 
 	 * @return The amount of mistakes
 	 */
-	public int amountOfMistakes() {
+	public int getMistakes() {
 		return mistakes;
 	}
 }
