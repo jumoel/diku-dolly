@@ -80,6 +80,7 @@ public class NumberAction extends AbstractAction {
 			// End of Statistics-part
 			
 			if (game.getCurrentBoard().isEqualTo(game.getSolutionBoard())) {
+				game.getStatistics().setStopTime();
 				view.CongratulationScreen congratsScreen = new view.CongratulationScreen();
 				congratsScreen.show(main, game);
 			}
