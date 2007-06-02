@@ -5,12 +5,10 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -23,29 +21,24 @@ import model.Game;
  *
  */
 public class CongratulationScreen {
+	private JLayeredPane layeredPane;
 	public CongratulationScreen() {
+		layeredPane = new JLayeredPane();
 	}
-	public void show(Component frame, Game game) {
-		/*
-		 * Creates a new modal Dialog-frame.
-		 */
-		final JDialog dialog = new JDialog((Frame)frame, "Tillykke", true);
-		
-		JLayeredPane layeredPane = dialog.getLayeredPane();
-		
-		dialog.setSize(new Dimension(700, 500));
-		dialog.setPreferredSize(dialog.getSize());
-		dialog.setUndecorated(true);
+	
+	public void show(Component frame, Game game) {		
+		layeredPane.setSize(new Dimension(700, 500));
+		layeredPane.setPreferredSize(layeredPane.getSize());
 
 		JPanel panel = new JPanel();
 			SudokuButton newGame = new SudokuButton("newGame.png");
 			
 			newGame.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					dialog.setVisible(false);
-					dialog.dispose();
+					layeredPane.setVisible(false);
 				}
 			});
+			
 			newGame.addActionListener(new DifficultyAction(frame, game));
 			
 			panel.setLayout(new GridLayout(1, 1, 5, 5));
@@ -60,8 +53,7 @@ public class CongratulationScreen {
 		background.setSize(700, 500);
 		layeredPane.add(background, 3);
 
-		dialog.setLocation(((MainWindow)frame).getBackgroundPanel().getLocationOnScreen());
-		dialog.pack();
-		dialog.setVisible(true);
+		((MainWindow)frame).setGlassPane(layeredPane);
+		layeredPane.setVisible(true);
 	}
 }

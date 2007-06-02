@@ -5,12 +5,10 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -28,20 +26,15 @@ public class DifficultySelection {
 	 * The value to pass on to the calling function.
 	 */
 	protected GameSettings returnvalue;
+	private JLayeredPane layeredPane;
 	
 	public DifficultySelection() {
+		layeredPane = new JLayeredPane();
 	}
-	public GameSettings show(Component frame) {
-		/*
-		 * Creates a new modal Dialog-frame.
-		 */
-		final JDialog dialog = new JDialog((Frame)frame, "Vælg en sværhedsgrad", true);
-		
-		JLayeredPane layeredPane = dialog.getLayeredPane();
-		
-		dialog.setSize(new Dimension(700, 500));
-		dialog.setPreferredSize(dialog.getSize());
-		dialog.setUndecorated(true);
+	
+	public GameSettings show(Component frame) {		
+		layeredPane.setSize(new Dimension(700, 500));
+		layeredPane.setPreferredSize(layeredPane.getSize());
 
 		JPanel panel = new JPanel();
 			SudokuButton easy = new SudokuButton("easy.png");
@@ -50,21 +43,21 @@ public class DifficultySelection {
 			
 			easy.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					dialog.setVisible(false);
+					layeredPane.setVisible(false);
 					returnvalue = new EasySettings();
 				}
 			});
 			
 			medium.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					dialog.setVisible(false);
+					layeredPane.setVisible(false);
 					returnvalue = new NormalSettings();
 				}
 			});
 			
 			hard.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					dialog.setVisible(false);
+					layeredPane.setVisible(false);
 					returnvalue = new HardSettings();
 				}
 			});
@@ -83,10 +76,9 @@ public class DifficultySelection {
 		background.setSize(700, 500);
 		layeredPane.add(background, 3);
 		
-		//PlaceCenter.placeCenter(dialog);
-		dialog.setLocation(((MainWindow)frame).getBackgroundPanel().getLocationOnScreen());
-		dialog.pack();
-		dialog.setVisible(true);
+		((MainWindow)frame).setGlassPane(layeredPane);
+		
+		layeredPane.setVisible(true);
 		
 		return returnvalue;
 	}
