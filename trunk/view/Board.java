@@ -175,7 +175,13 @@ public class Board extends JPanel implements Observer {
 	}
 	
 	public void setValue(int fieldId, int value) {
-		buttons[fieldId].setText(Integer.toString(value));
+		String valueStr;
+		if (value == 0) {
+			valueStr = "";
+		} else {
+			valueStr = Integer.toString(value);
+		}
+		buttons[fieldId].setText(valueStr);
 	}
 	
 	public void update(Observable arg0, Object arg1) {

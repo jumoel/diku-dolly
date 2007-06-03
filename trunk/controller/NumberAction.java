@@ -56,7 +56,9 @@ public class NumberAction extends AbstractAction {
 			 * Before the statistics were added:
 			 * main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
 			 */
-			if (game.getCurrentBoard().getValue(fieldId) == 
+			if (value == 0) {
+				main.getSheepSpeak().setText("Du ombestemte dig?");
+			} else if (game.getCurrentBoard().getValue(fieldId) == 
 				game.getSolutionBoard().getValue(fieldId)) {
 				main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
 				/* 
