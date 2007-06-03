@@ -27,12 +27,12 @@ public class SudokuMenu extends JMenuBar {
 		JMenu menuHelp = new JMenu("Hjælp");
 		
 		JMenuItem itemNewGame = new JMenuItem("Nyt spil");
-			itemNewGame.addActionListener(new controller.DifficultyAction(main, main.getGame()));
+			itemNewGame.addActionListener(new controller.DifficultyAction(this.main, this.main.getGame()));
 		JMenuItem itemExit = new JMenuItem("Afslut spil");
 		
 		JMenuItem itemRules = new JMenuItem("Vis Sudoku-reglerne");
 		JMenuItem itemHint = new JMenuItem("Få vist hint til løsning");
-			itemHint.addActionListener(new controller.HelpAction(main, main.getGame()));
+			itemHint.addActionListener(new controller.HelpAction(this.main, this.main.getGame()));
 		
 		menuGame.add(itemNewGame);
 		menuGame.add(itemExit);

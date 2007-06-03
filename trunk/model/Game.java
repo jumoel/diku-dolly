@@ -45,6 +45,8 @@ public class Game {
 	}
 	
 	public void reset(GameSettings settings) {
+		this.statistics = null;
+		this.statistics = new Statistics();
 		currentBoard.reset(settings, this);
 	}
 	
