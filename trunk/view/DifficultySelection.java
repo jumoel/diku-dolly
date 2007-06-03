@@ -38,17 +38,21 @@ public class DifficultySelection {
 			
 			easy.setActionCommand(Integer.toString(model.EasySettings.IDENTIFIER));
 			easy.addActionListener(diffSelAction);
+			easy.setVisible(true);
 			
 			normal.setActionCommand(Integer.toString(model.NormalSettings.IDENTIFIER));
 			normal.addActionListener(diffSelAction);
+			normal.setVisible(true);
 			
 			hard.setActionCommand(Integer.toString(model.HardSettings.IDENTIFIER));
 			hard.addActionListener(diffSelAction);
+			hard.setVisible(true);
 			
 			panel.setLayout(new GridLayout(3, 1, 5, 5));
 			panel.add(easy);
 			panel.add(normal);
 			panel.add(hard);
+			System.out.println("Added buttons");
 			panel.setSize(150, 300);
 			panel.setOpaque(false);
 			
@@ -60,6 +64,11 @@ public class DifficultySelection {
 		layeredPane.add(background, 3);
 		
 		((MainWindow)frame).setGlassPane(layeredPane);
+		
+		/* 
+		 * Force the buttons to show.
+		 */ 
+		panel.updateUI();
 		
 		layeredPane.setVisible(true);
 	}
