@@ -14,6 +14,7 @@ public class HardSettings extends General9x9Settings implements GameSettings {
 	
 	public HardSettings()
 	{
+		super();
 		numbersToRemove = 60;
 	}
 

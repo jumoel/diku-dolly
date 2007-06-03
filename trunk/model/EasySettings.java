@@ -14,6 +14,7 @@ public class EasySettings extends General9x9Settings implements GameSettings {
 	
 	public EasySettings()
 	{
+		super();
 		numbersToRemove = 20;
 	}
 

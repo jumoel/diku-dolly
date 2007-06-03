@@ -14,7 +14,8 @@ public class NormalSettings extends General9x9Settings implements GameSettings {
 	
 	public NormalSettings()
 	{
-		numbersToRemove = 1;
+		super();
+		numbersToRemove = 40;
 	}
 
 	public int getNumbersToRemove() {

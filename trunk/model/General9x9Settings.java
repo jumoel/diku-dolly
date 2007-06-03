@@ -9,7 +9,7 @@ package model;
  */
 public abstract class General9x9Settings implements GameSettings {
 	private int[] stdBoardArray;
-	private int[] validValues;
+	private static int[] validValues = {1,2,3,4,5,6,7,8,9};
 	private int QuadrantDimension;
 	private int BoardDimensions;
 	private int BoardLength;
@@ -46,8 +46,6 @@ public abstract class General9x9Settings implements GameSettings {
 					4, 9, 2, 5, 7, 1, 6, 3, 8,
 					3, 1, 7, 2, 6, 8, 9, 4, 5
 					};
-		
-		validValues = new int[] {1,2,3,4,5,6,7,8,9};
 		
 		QuadrantDimension = 3;
 		BoardDimensions = QuadrantDimension * QuadrantDimension;
