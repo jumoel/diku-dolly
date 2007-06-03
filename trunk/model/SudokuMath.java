@@ -42,7 +42,7 @@ public abstract class SudokuMath {
 	 * @return The number of the quadrant.
 	 */
 	public static int getQuadrantNumber(int position, GameSettings settings) {
-		int quadrantDim = settings.getQuadrantDimension();
+		int quadrantDim = settings.getQuadrantDimensions();
 		return ((getRowNumber(position, settings) / quadrantDim) * quadrantDim + 
 				(getColumnNumber(position, settings) / quadrantDim));
 	}
@@ -105,7 +105,7 @@ public abstract class SudokuMath {
 	 */
 	public static int[] getQuadrantFromPos(int position, Board board) {
 		int boardDim = board.getSettings().getBoardDimensions();
-		int quadDim = board.getSettings().getQuadrantDimension();
+		int quadDim = board.getSettings().getQuadrantDimensions();
 		int quadrantNum = getQuadrantNumber(position, board.getSettings());
 		int[] quadrantResult = new int[boardDim];
 		

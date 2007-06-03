@@ -114,8 +114,7 @@ public class Board extends Observable {
 			 * 4 and 5 - both contained in the middle "large" column.
 			 */
 			
-			// TODO: boardDimensionSSSSSS og QuadrandDimension sørg for ens spelling.
-			int dimension = settings.getQuadrantDimension();
+			int dimension = settings.getQuadrantDimensions();
 			int first = random.nextInt(dimension);
 			int second = random.nextInt(dimension);
 			int adder = random.nextInt(dimension) * 
@@ -209,7 +208,7 @@ public class Board extends Observable {
 		 * Don't perform the switch if it's the same columns.
 		 */
 		if (first != second) {
-			int width = settings.getQuadrantDimension();
+			int width = settings.getQuadrantDimensions();
 			
 			int firstQC = first * width;
 			int secondQC = second * width;
@@ -231,7 +230,7 @@ public class Board extends Observable {
 		 * Don't perform the switch if it's the same row.
 		 */
 		if (first != second) {
-			int width = settings.getQuadrantDimension();
+			int width = settings.getQuadrantDimensions();
 			
 			int firstQR = first * width;
 			int secondQR = second * width;
@@ -285,8 +284,10 @@ public class Board extends Observable {
 	
 	public void reset(GameSettings settings, Game game) {
 		if (settings == null) {
+			System.out.println("Defaulted");
 			settings = new NormalSettings();
 		}
+		System.out.println("Active settings: " + settings.getClass().getName());
 		this.settings = settings;
 		
 		this.board = settings.getStdBoardArray();

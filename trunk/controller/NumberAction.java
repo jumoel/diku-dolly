@@ -56,6 +56,7 @@ public class NumberAction extends AbstractAction {
 			board.updateUI();
 			game.getCurrentBoard().setValue(fieldId, value);
 			
+			// TODO: Fjern farvning herfra og sæt det til hjælperen.
 			/* 
 			 * The following if-statement ensures that a field is colored
 			 * red if wrong, white if correct. Furthermore, the SheepSpeak

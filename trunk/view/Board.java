@@ -46,7 +46,7 @@ public class Board extends JPanel implements Observer {
 		this.setPreferredSize(dimension);
 		this.setSize(dimension);
 		this.setOpaque(false);
-		quadDim = this.board.getSettings().getQuadrantDimension();
+		quadDim = this.board.getSettings().getQuadrantDimensions();
 		this.setLayout(new GridLayout(quadDim, quadDim, ViewSettings.getBoardSpacing(), ViewSettings.getBoardSpacing()));
 		
 		InputStream stream = this.getClass().getResourceAsStream("font/Edible_Pet.ttf");

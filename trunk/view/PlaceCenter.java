@@ -19,17 +19,26 @@ public abstract class PlaceCenter {
 	 */
 	public static void placeCenter(Component component)
 	{
-		// Get the default toolkit
+		/*
+		 * Get the default toolkit
+		 */
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		// Get the current screen size and the current windowsize
+		/*
+		 * Get the current screen size and the current windowsize
+		 */
 		Dimension screensize = toolkit.getScreenSize();
 		Dimension windowsize = component.getSize();
 		int xpos = (screensize.width - windowsize.width) / 2;
 		int ypos = (screensize.height - windowsize.height) / 2;
-		// Set's the location to the middle of the screen
+
+		/*
+		 * Set's the location to the middle of the screen
+		 */
 		component.setLocation(xpos, ypos);
 		
-		// Clean up
+		/*
+		 * Clean up
+		 */
 		toolkit = null; screensize = null; windowsize = null;
 	}
 }

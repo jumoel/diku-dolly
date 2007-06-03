@@ -8,7 +8,7 @@ package model;
  *
  */
 public interface GameSettings {
-	public int getQuadrantDimension();
+	public int getQuadrantDimensions();
 	public int getBoardDimensions();
 	public int getBoardLength();
 	public int getNumbersToRemove();

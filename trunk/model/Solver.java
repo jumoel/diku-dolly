@@ -30,8 +30,10 @@ public abstract class Solver {
 		int[] levelOneResult = solverLevelOne(fieldNum, 
 				board.getSettings().getValidValues(), board);
 				
-        //Check if result from solverLevelOne is singular and return this if so
-		//Otherwise, try to get result using solverLevelTwo.
+        /*
+         * Check if result from solverLevelOne is singular and return this if so
+         * Otherwise, try to get result using solverLevelTwo.
+         */
 		int result = checkSingularity(levelOneResult, board);
 		if (result > 0) {
  		   return result; 
@@ -154,7 +156,7 @@ public abstract class Solver {
     	    * quadDim denotes the quadrant dimensions, and thereby, for square
     	    * boards, also the number of quadrants in a row/column.
     	    */
-    	   int quadDim = board.getSettings().getQuadrantDimension();
+    	   int quadDim = board.getSettings().getQuadrantDimensions();
     	   
     	   /*
     	    * quadStartPos is the field number for the first field in the 

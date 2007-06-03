@@ -6,16 +6,8 @@ package view;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
-import model.EasySettings;
-import model.GameSettings;
-import model.HardSettings;
-import model.NormalSettings;
 
 /**
  * @author Julian
@@ -25,46 +17,37 @@ public class DifficultySelection {
 	/*
 	 * The value to pass on to the calling function.
 	 */
-	protected GameSettings returnvalue;
+	protected model.Game game;
 	private JLayeredPane layeredPane;
 	
-	public DifficultySelection() {
+	public DifficultySelection(model.Game game) {
+		this.game = game;
 		layeredPane = new JLayeredPane();
 	}
 	
-	public GameSettings show(Component frame) {		
+	public void show(Component frame) {		
 		layeredPane.setSize(new Dimension(700, 500));
 		layeredPane.setPreferredSize(layeredPane.getSize());
+		
+		controller.DifficultySelectionAction diffSelAction = new controller.DifficultySelectionAction(game, layeredPane);
 
 		JPanel panel = new JPanel();
 			SudokuButton easy = new SudokuButton("easy.png");
-			SudokuButton medium = new SudokuButton("medium.png");
+			SudokuButton normal = new SudokuButton("medium.png");
 			SudokuButton hard = new SudokuButton("hard.png");
 			
-			easy.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					layeredPane.setVisible(false);
-					returnvalue = new EasySettings();
-				}
-			});
+			easy.setActionCommand(Integer.toString(model.EasySettings.IDENTIFIER));
+			easy.addActionListener(diffSelAction);
 			
-			medium.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					layeredPane.setVisible(false);
-					returnvalue = new NormalSettings();
-				}
-			});
+			normal.setActionCommand(Integer.toString(model.NormalSettings.IDENTIFIER));
+			normal.addActionListener(diffSelAction);
 			
-			hard.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					layeredPane.setVisible(false);
-					returnvalue = new HardSettings();
-				}
-			});
+			hard.setActionCommand(Integer.toString(model.HardSettings.IDENTIFIER));
+			hard.addActionListener(diffSelAction);
 			
 			panel.setLayout(new GridLayout(3, 1, 5, 5));
 			panel.add(easy);
-			panel.add(medium);
+			panel.add(normal);
 			panel.add(hard);
 			panel.setSize(150, 300);
 			panel.setOpaque(false);
@@ -79,7 +62,5 @@ public class DifficultySelection {
 		((MainWindow)frame).setGlassPane(layeredPane);
 		
 		layeredPane.setVisible(true);
-		
-		return returnvalue;
 	}
 }
