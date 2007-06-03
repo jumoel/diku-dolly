@@ -284,10 +284,8 @@ public class Board extends Observable {
 	
 	public void reset(GameSettings settings, Game game) {
 		if (settings == null) {
-			System.out.println("Defaulted");
 			settings = new NormalSettings();
 		}
-		System.out.println("Active settings: " + settings.getClass().getName());
 		this.settings = settings;
 		
 		this.board = settings.getStdBoardArray();
