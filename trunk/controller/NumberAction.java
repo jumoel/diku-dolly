@@ -7,8 +7,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
-
 import view.ViewSettings;
 
 /**
@@ -39,17 +37,10 @@ public class NumberAction extends AbstractAction {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		Object[] possibilities = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		String s = (String)JOptionPane.showInputDialog(
-		                    frame,
-		                    "Vælg et tal:\n",
-		                    "Vælg et tal",
-		                    JOptionPane.PLAIN_MESSAGE,
-		                    null,
-		                    possibilities,
-		                    "1");
-		if (s != null) {
-			int value = Integer.parseInt(s);
+		view.NumberDialog dialog = new view.NumberDialog(game);
+		
+		int value = dialog.getValue();
+		if (value != -1) {
 			board.clearNotices();
 			
 			board.setValue(fieldId, value);
@@ -74,7 +65,7 @@ public class NumberAction extends AbstractAction {
 				 */
 				board.setNotice(fieldId, ViewSettings.getButtonBackground());
 			} else {
-				main.getSheepSpeak().setText("Hov, det var vidst et forkert tal.");
+				main.getSheepSpeak().setText("Hov, det var vist et forkert tal.");
 				board.setNotice(fieldId, ViewSettings.getWrongNumberColor());
 				game.getStatistics().increaseMistakes();		
 			}
