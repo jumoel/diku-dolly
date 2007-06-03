@@ -23,14 +23,12 @@ public class NumberAction extends AbstractAction {
 	private model.Game game;
 	private view.Board board;
 	private int fieldId;
-	private Component frame;
 	private view.MainWindow main;
 	public NumberAction(view.MainWindow main, int fieldId, Component frame) {
 		this.main = main;
 		this.game = main.getGame();
 		this.board = main.getBoard();
 		this.fieldId = fieldId;
-		this.frame = frame;
 	}
 
 	/* (non-Javadoc)

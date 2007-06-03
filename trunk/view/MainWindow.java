@@ -7,6 +7,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+
 import controller.DifficultyAction;
 import controller.HelpAction;
 
@@ -27,13 +29,27 @@ public class MainWindow extends JFrame {
 	private IngameControls controls;
 	private SheepSpeak sheepSpeak;
 	private Header header;
+	private JLayeredPane layeredPane;
 	
 	public MainWindow() {
 		super("Sudoku");
-		this.getLayeredPane().setSize(700, 500);
-		this.getLayeredPane().setPreferredSize(this.getLayeredPane().getSize());
-		this.getRootPane().setSize(this.getLayeredPane().getSize());
-		this.getRootPane().setPreferredSize(this.getLayeredPane().getSize());
+		
+		this.layeredPane = new JLayeredPane();
+		this.getContentPane().add(layeredPane);
+		
+		this.setSizes();
+		
+	}
+	
+	public void setMenu() {
+		this.setJMenuBar(new SudokuMenu(this));
+	}
+	
+	private void setSizes() {
+		this.getContentPane().setSize(700, 500);
+		this.getContentPane().setPreferredSize(this.getContentPane().getSize());
+		//this.getRootPane().setSize(this.getLayeredPane().getSize());
+		//this.getRootPane().setPreferredSize(this.getLayeredPane().getSize());
 	}
 	
 	public void createHeader() {
@@ -136,7 +152,7 @@ public class MainWindow extends JFrame {
 	 */
 	public Component add(Component component, int zindex, int x, int y) {
 		component.setLocation(x, y);
-		return this.getLayeredPane().add(component, zindex);
+		return this.layeredPane.add(component, zindex);
 	}
 
 	/**
