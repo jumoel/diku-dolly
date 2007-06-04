@@ -3,6 +3,9 @@
  */
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,20 +28,41 @@ public class SudokuMenu extends JMenuBar {
 	
 	public SudokuMenu(MainInterface main) {
 		this.mainWindow = main;
+		this.game = main.getGame();
 		
 		menuGame = new JMenu("Spil");
 		menuHelp = new JMenu("Hjælp");
 		
 		itemNewGame = new JMenuItem("Nyt spil");
 			itemNewGame.addActionListener(new controller.DifficultyAction(this.mainWindow, game));
-		itemExit = new JMenuItem("Afslut spil");
 		
+		/*
+		 * Only create the "exit" menuitem if the game is
+		 * run as an application and not as an applet.
+		 */
+		if (main instanceof MainWindow) {
+			itemExit = new JMenuItem("Afslut spil");
+			itemExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					((view.MainWindow)mainWindow).dispose();
+					System.exit(0);
+				}
+			});
+		}
+
 		itemRules = new JMenuItem("Vis Sudoku-reglerne");
 		itemHint = new JMenuItem("Få vist hint til løsning");
 			itemHint.addActionListener(new controller.HelpAction(this.mainWindow, game));
 		
 		menuGame.add(itemNewGame);
-		menuGame.add(itemExit);
+		
+		/*
+		 * Obviously only add the menuitem
+		 * if it's been created.
+		 */
+		if (main instanceof MainWindow) {
+			menuGame.add(itemExit);
+		}
 		
 		menuHelp.add(itemRules);
 		menuHelp.add(itemHint);
