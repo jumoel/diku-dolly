@@ -4,6 +4,7 @@
 package view;
 
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,11 +27,11 @@ public class NumberDialog extends JDialog {
 	private JButton[] buttons;
 	private model.Game game;
 	
-	public NumberDialog(model.Game game) {
+	public NumberDialog(view.MainInterface main) {
 		super();
 		this.value = -1;
 		
-		this.game = game;
+		this.game = main.getGame();
 		model.GameSettings settings = this.game.getCurrentBoard().getSettings();
 		
 		int[] validValues = settings.getValidValues();
@@ -80,7 +81,10 @@ public class NumberDialog extends JDialog {
 		this.setSize(200, 200);
 		this.setPreferredSize(this.getSize());
 		
-		PlaceCenter.placeCenter(this);
+		//PlaceCenter.placeCenter(this);
+		//TODO: Unmagicify numbers
+		Point bgLoc = main.getBackgroundPanel().getLocationOnScreen();
+		this.setLocation(bgLoc.x + 375, bgLoc.y + 100);
 		
 		this.setVisible(true);
 	}
