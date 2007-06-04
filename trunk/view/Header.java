@@ -28,7 +28,7 @@ public class Header extends JPanel {
 		backgroundImage = tempImage.getImage();
 		
 		this.setOpaque(false);
-		this.setSize(400, 75);
+		this.setSize(400, 100);
 		this.setPreferredSize(this.getSize());
 	}
 	
