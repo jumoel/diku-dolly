@@ -110,7 +110,7 @@ public abstract class Solver {
 			 * the next levels of solvers.
 			 */
 			return values;
-		}
+		}	
 
        /**
         * Check for fields in rows, columns and quadrant of the field,
@@ -284,7 +284,9 @@ public abstract class Solver {
        private static int checkSingularity(int[] possibilities, Board board) {
     	   //Get board dimension and save in boardDim
     	   int boardDim = board.getSettings().getBoardDimensions();
-    	   //Copy values of possibilities into a new array
+    	   //Copy values of possibilities into a new array. This is copied
+    	   //instead of being pointed to, to ensure easier upgrades of the
+    	   //solver should this ever be needed.
     	   int[] values = copyArray(possibilities, board);
     	   
     	   /*
