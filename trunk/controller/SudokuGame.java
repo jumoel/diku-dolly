@@ -75,8 +75,6 @@ public class SudokuGame {
             	
             	main.setup();
             	
-            	game.getCurrentBoard().print();
-            	
             	/*
             	 * Show the welcomescreen.
             	 */
