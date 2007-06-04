@@ -22,6 +22,8 @@ public abstract class Helper {
 
 	public static int findSolveable(Board board, GameSettings settings) {
 		
+		int count = 0;
+		
 		/*
 		 * creates a random to be used to select a random field.
 		 */
@@ -38,6 +40,9 @@ public abstract class Helper {
 		 */
 		while (Solver.solveField(fieldId, board) == 0 || 
 				board.getValue(fieldId) != 0) {
+			count = count + 1;
+			if (count >= settings.getBoardLength())
+				break;
 			fieldId = (fieldId + 1) % settings.getBoardLength();
 		}
 		
