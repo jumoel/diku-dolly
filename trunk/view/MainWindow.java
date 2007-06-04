@@ -48,8 +48,6 @@ public class MainWindow extends JFrame implements MainInterface {
 	private void setSizes() {
 		this.getContentPane().setSize(700, 500);
 		this.getContentPane().setPreferredSize(this.getContentPane().getSize());
-		//this.getRootPane().setSize(this.getLayeredPane().getSize());
-		//this.getRootPane().setPreferredSize(this.getLayeredPane().getSize());
 	}
 	
 	public void createHeader() {
