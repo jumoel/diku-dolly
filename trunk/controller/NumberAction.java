@@ -34,7 +34,7 @@ public class NumberAction extends AbstractAction {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		view.NumberDialog dialog = new view.NumberDialog(game);
+		view.NumberDialog dialog = new view.NumberDialog(main);
 		
 		int value = dialog.getValue();
 		if (value != -1) {
@@ -54,13 +54,13 @@ public class NumberAction extends AbstractAction {
 			 */
 			if (value == 0) {
 				main.getSheepSpeak().setText("Du ombestemte dig?");
-			} else if (game.getCurrentBoard().getValue(fieldId) == 
+			}/* else if (game.getCurrentBoard().getValue(fieldId) == 
 				game.getSolutionBoard().getValue(fieldId)) {
 				// TODO: Find på flere forskellige kommentarer.
 				main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
-			} else {
+			}*/ else {
 				// TODO: Find på flere forskellige kommentarer.
-				main.getSheepSpeak().setText("Hov, er du sikker på det?");
+				main.getSheepSpeak().setText("Du kan trykke på hjæ-æ-ælp, hvis du sidder fa-a-ast.");
 			}
 			// End of Statistics-part
 			
