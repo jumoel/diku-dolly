@@ -24,7 +24,7 @@ public class CongratulationScreen {
 	}
 	
 	public void show(Component frame, Game game) {		
-		layeredPane.setSize(new Dimension(700, 500));
+		layeredPane.setSize(new Dimension(700, 525));
 		layeredPane.setPreferredSize(layeredPane.getSize());
 
 		SudokuButton newGame = new SudokuButton("newGame.png");
@@ -44,7 +44,7 @@ public class CongratulationScreen {
 		layeredPane.add(statistics, 3);
 		
 		Background background = new Background("congratulations.png");
-		background.setSize(700, 500);
+		background.setSize(700, 525);
 		layeredPane.add(background, 100);
 
 		((MainWindow)frame).setGlassPane(layeredPane);

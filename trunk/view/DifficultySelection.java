@@ -26,7 +26,7 @@ public class DifficultySelection {
 	}
 	
 	public void show(Component frame) {		
-		layeredPane.setSize(new Dimension(700, 500));
+		layeredPane.setSize(new Dimension(700, 525));
 		layeredPane.setPreferredSize(layeredPane.getSize());
 		
 		controller.DifficultySelectionAction diffSelAction = new controller.DifficultySelectionAction(game, layeredPane);
@@ -60,7 +60,7 @@ public class DifficultySelection {
 		
 		layeredPane.add(panel, 2);
 		Background background = new Background("startScreen.png");
-		background.setSize(700, 500);
+		background.setSize(700, 525);
 		layeredPane.add(background, 3);
 		
 		((MainWindow)frame).setGlassPane(layeredPane);
