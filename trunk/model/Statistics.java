@@ -89,8 +89,8 @@ public class Statistics {
 	/**
 	 * Increases the amount of mistakes used by 1.
 	 */
-	public void increaseMistakes() {
-		mistakes = mistakes + 1;
+	public void increaseMistakesBy(int amount) {
+		mistakes = mistakes + amount;
 	}
 	
 	/**

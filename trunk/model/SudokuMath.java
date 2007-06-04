@@ -96,8 +96,8 @@ public abstract class SudokuMath {
 	
 	/**
 	 * Gets the contents of the quadrant based on the position in the board.
-	 * TODO: Elaborate on how this works (as there is no mathematic solution yet
-	 * this is pending - it works though!).
+	 * It calculates the fieldId of the top left corner of the quadrant, and 
+	 * then adds the fieldIds based on the size of the board.
 	 * 
 	 * @param position The position to get the quadrant from.
 	 * @param board The board to get the cquadrant from.
@@ -109,6 +109,10 @@ public abstract class SudokuMath {
 		int quadrantNum = getQuadrantNumber(position, board.getSettings());
 		int[] quadrantResult = new int[boardDim];
 		
+		/*
+		 * QuadrantStartPosition is the topleft corner
+		 * of the quadrant in question.
+		 */
 		int quadStartPos = ((quadrantNum % quadDim) * quadDim) + 
 		  ((quadrantNum / quadDim) * (boardDim * quadDim));
 		

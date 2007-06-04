@@ -33,8 +33,22 @@ public class HelpAction extends AbstractAction {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		int hint = model.Helper.findSolveable(game);
-		((view.MainWindow)frame).getBoard().setNotice(hint, ViewSettings.getLookHereHintColor());
-		((view.MainWindow)frame).getSheepSpeak().setText("Se på den grønne firkant.<br><br>Den kan du nok løse.");
+		int amountOfMistakes = model.Helper.getAmountOfMistakes(game); 
+		if (amountOfMistakes > 0) {
+			((view.MainInterface)frame).getBoard().clearHintNotices();
+			((view.MainInterface)frame).getBoard().setNotices(
+					model.Helper.getFieldsWithMistakes(game, amountOfMistakes), 
+					ViewSettings.getWrongNumberColor());
+			game.getStatistics().increaseMistakesBy(amountOfMistakes);
+			((view.MainInterface)frame).getSheepSpeak().setText(
+				"Ups, du har vist lavet fejl.");
+		} else {
+			((view.MainInterface)frame).getBoard().clearNotices();
+			((view.MainInterface)frame).getBoard().setNotice(
+					hint, ViewSettings.getLookHereHintColor());
+			((view.MainInterface)frame).getSheepSpeak().setText(
+				"Se på den grønne firkant.<br><br>Den kan du nok løse.");
+		}
 		/*
 		 * The amount of hints used is increased in the statistics.
 		 */

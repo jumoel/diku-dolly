@@ -72,9 +72,10 @@ public class SudokuGame {
             	main.createBackgroundPanel("stdSudokuBG.png");
             	
             	main.setMenu();
-            	System.out.println(main.getJMenuBar().getComponents().length);
             	
             	main.setup();
+            	
+            	game.getCurrentBoard().print();
             	
             	/*
             	 * Show the welcomescreen.

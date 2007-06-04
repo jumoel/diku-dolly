@@ -7,7 +7,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import view.ViewSettings;
 
 /**
  * @author Julian
@@ -39,13 +38,12 @@ public class NumberAction extends AbstractAction {
 		
 		int value = dialog.getValue();
 		if (value != -1) {
-			board.clearNotices();
+			board.clearNotice(fieldId);
 			
 			board.setValue(fieldId, value);
 			board.updateUI();
 			game.getCurrentBoard().setValue(fieldId, value);
 			
-			// TODO: Fjern farvning herfra og sæt det til hjælperen.
 			/* 
 			 * The following if-statement ensures that a field is colored
 			 * red if wrong, white if correct. Furthermore, the SheepSpeak
@@ -58,16 +56,11 @@ public class NumberAction extends AbstractAction {
 				main.getSheepSpeak().setText("Du ombestemte dig?");
 			} else if (game.getCurrentBoard().getValue(fieldId) == 
 				game.getSolutionBoard().getValue(fieldId)) {
+				// TODO: Find på flere forskellige kommentarer.
 				main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
-				/* 
-				 * Sets the fieldcolor to white to ensure that the field gets
-				 * the correct white color when the correct value is inserted.
-				 */
-				board.setNotice(fieldId, ViewSettings.getButtonBackground());
 			} else {
-				main.getSheepSpeak().setText("Hov, det var vist et forkert tal.");
-				board.setNotice(fieldId, ViewSettings.getWrongNumberColor());
-				game.getStatistics().increaseMistakes();		
+				// TODO: Find på flere forskellige kommentarer.
+				main.getSheepSpeak().setText("Hov, er du sikker på det?");
 			}
 			// End of Statistics-part
 			
@@ -78,5 +71,4 @@ public class NumberAction extends AbstractAction {
 			}
 		}
 	}
-
 }

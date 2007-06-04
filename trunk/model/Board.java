@@ -242,10 +242,12 @@ public class Board extends Observable {
 	}
 	
 	public void print() {
-		for (int i = 0; i < 81; i++) {
+		for (int i = 0; i < settings.getBoardLength(); i++) {
 			System.out.print(Integer.toString(board[i]) + " ");
-			if ((i+1) % 9 == 0)
+			
+			if ((i+1) % settings.getBoardDimensions() == 0) {
 				System.out.print("\n");
+			}
 		}
 	}
 	
@@ -276,7 +278,6 @@ public class Board extends Observable {
 				return false;
 			} else { count++; }
 		}
-		System.out.println(count);
 		return true;
 	}
 	

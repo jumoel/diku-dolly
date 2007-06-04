@@ -71,7 +71,6 @@ public class SudokuApplet extends JApplet {
     	main.createBackgroundPanel("stdSudokuBG.png");
     	
     	main.setMenu();
-    	System.out.println(main.getJMenuBar().getComponents().length);
     	
     	main.setup();
     	

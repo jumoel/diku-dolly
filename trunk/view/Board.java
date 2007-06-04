@@ -80,9 +80,19 @@ public class Board extends JPanel implements Observer {
 	}
 	
 	public void clearNotices() {
-		for (JButton button : buttons) {
-			button.setBackground(ViewSettings.getButtonBackground());
+		for (int i = 0; i < buttons.length; i++) {
+			clearNotice(i);
 		}
+	}
+	public void clearHintNotices() {
+		for (int i = 0; i < buttons.length; i++) {
+			if (buttons[i].getBackground() == ViewSettings.getLookHereHintColor()) {
+				clearNotice(i);
+			}
+		}
+	}
+	public void clearNotice(int fieldId) {
+		buttons[fieldId].setBackground(ViewSettings.getButtonBackground());
 	}
 	
 	public void setNotice(int fieldId, Color color) {
@@ -91,8 +101,6 @@ public class Board extends JPanel implements Observer {
 	}
 	
 	public void setNotices(int[] fieldIds, Color color) {
-		clearNotices();
-		
 		int max = board.getSettings().getBoardLength();
 		for (int index : fieldIds) {
 			if (index >= 0 && index < max) {
