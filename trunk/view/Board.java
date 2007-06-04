@@ -95,7 +95,7 @@ public class Board extends JPanel implements Observer {
 		
 		int max = board.getSettings().getBoardLength();
 		for (int index : fieldIds) {
-			if (index > 0 && index < max) {
+			if (index >= 0 && index < max) {
 				buttons[index].setBackground(color);
 			}
 		}
