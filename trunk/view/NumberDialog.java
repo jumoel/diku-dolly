@@ -77,7 +77,7 @@ public class NumberDialog extends JDialog {
 		
 		this.setModal(true);
 		
-		this.setSize(300, 300);
+		this.setSize(200, 200);
 		this.setPreferredSize(this.getSize());
 		
 		PlaceCenter.placeCenter(this);
