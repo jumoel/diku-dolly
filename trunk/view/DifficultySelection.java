@@ -3,7 +3,6 @@
  */
 package view;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLayeredPane;
@@ -25,7 +24,7 @@ public class DifficultySelection {
 		layeredPane = new JLayeredPane();
 	}
 	
-	public void show(Component frame) {		
+	public void show(MainInterface frame) {		
 		layeredPane.setSize(new Dimension(700, 525));
 		layeredPane.setPreferredSize(layeredPane.getSize());
 		
@@ -52,18 +51,17 @@ public class DifficultySelection {
 			panel.add(easy);
 			panel.add(normal);
 			panel.add(hard);
-			System.out.println("Added buttons");
 			panel.setSize(150, 300);
 			panel.setOpaque(false);
 			
-			panel.setLocation(300, 110);
+			panel.setLocation(300, 130);
 		
 		layeredPane.add(panel, 2);
 		Background background = new Background("startScreen.png");
 		background.setSize(700, 525);
 		layeredPane.add(background, 3);
 		
-		((MainWindow)frame).setGlassPane(layeredPane);
+		((MainInterface)frame).setGlassPane(layeredPane);
 		
 		/* 
 		 * Force the buttons to show.

@@ -18,21 +18,24 @@ public class SudokuMenu extends JMenuBar {
 	 */
 	private static final long serialVersionUID = -2863544055026997282L;
 	
-	private MainWindow main;
+	private MainInterface mainWindow;
+	private JMenu menuGame, menuHelp;
+	private JMenuItem itemNewGame, itemExit, itemRules, itemHint;
+	private model.Game game;
 	
-	public SudokuMenu(MainWindow main) {
-		this.main = main;
+	public SudokuMenu(MainInterface main) {
+		this.mainWindow = main;
 		
-		JMenu menuGame = new JMenu("Spil");
-		JMenu menuHelp = new JMenu("Hjælp");
+		menuGame = new JMenu("Spil");
+		menuHelp = new JMenu("Hjælp");
 		
-		JMenuItem itemNewGame = new JMenuItem("Nyt spil");
-			itemNewGame.addActionListener(new controller.DifficultyAction(this.main, this.main.getGame()));
-		JMenuItem itemExit = new JMenuItem("Afslut spil");
+		itemNewGame = new JMenuItem("Nyt spil");
+			itemNewGame.addActionListener(new controller.DifficultyAction(this.mainWindow, game));
+		itemExit = new JMenuItem("Afslut spil");
 		
-		JMenuItem itemRules = new JMenuItem("Vis Sudoku-reglerne");
-		JMenuItem itemHint = new JMenuItem("Få vist hint til løsning");
-			itemHint.addActionListener(new controller.HelpAction(this.main, this.main.getGame()));
+		itemRules = new JMenuItem("Vis Sudoku-reglerne");
+		itemHint = new JMenuItem("Få vist hint til løsning");
+			itemHint.addActionListener(new controller.HelpAction(this.mainWindow, game));
 		
 		menuGame.add(itemNewGame);
 		menuGame.add(itemExit);
@@ -48,5 +51,4 @@ public class SudokuMenu extends JMenuBar {
 		
 		this.setVisible(true);
 	}
-	
 }

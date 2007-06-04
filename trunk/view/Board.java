@@ -32,13 +32,13 @@ public class Board extends JPanel implements Observer {
 	
 	private model.Board board;
 	private model.Game game;
-	private MainWindow main;
+	private MainInterface main;
 	private JButton[] buttons;
 	private JPanel[] quadrants;
 	private Font font;
 	private int quadDim;
 	
-	public Board(MainWindow main, Dimension dimension) {
+	public Board(MainInterface main, Dimension dimension) {
 		super();
 		this.main = main;
 		this.game = main.getGame();
@@ -186,7 +186,7 @@ public class Board extends JPanel implements Observer {
 	
 	public void update(Observable arg0, Object arg1) {
 		this.clearNotices();
-		((MainWindow)this.getTopLevelAncestor()).getSheepSpeak().resetText();
+		((MainInterface)this.getTopLevelAncestor()).getSheepSpeak().resetText();
 		this.board = (model.Board)arg0;
 		this.populateButtons();
 	}

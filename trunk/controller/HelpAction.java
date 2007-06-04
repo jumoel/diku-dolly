@@ -3,10 +3,11 @@
  */
 package controller;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+
+import view.MainInterface;
 import view.ViewSettings;
 
 /**
@@ -19,10 +20,10 @@ public class HelpAction extends AbstractAction {
 	 */
 	private static final long serialVersionUID = -8116137103326969261L;
 	
-	private Component frame;
+	private MainInterface frame;
 	private model.Game game;
 	
-	public HelpAction(Component frame, model.Game game) {
+	public HelpAction(MainInterface frame, model.Game game) {
 		this.frame = frame;
 		this.game = game;
 	}

@@ -6,7 +6,7 @@ package view;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.JApplet;
 import javax.swing.JLayeredPane;
 
 import controller.DifficultyAction;
@@ -16,7 +16,7 @@ import controller.HelpAction;
  * @author Julian
  *
  */
-public class MainWindow extends JFrame implements MainInterface {
+public class MainApplet extends JApplet implements MainInterface {
 	/**
 	 * @see java.io.Serializable
 	 */
@@ -31,8 +31,8 @@ public class MainWindow extends JFrame implements MainInterface {
 	private Header header;
 	private JLayeredPane layeredPane;
 	
-	public MainWindow() {
-		super("Sudoku");
+	public MainApplet() {
+		super();
 		
 		this.layeredPane = new JLayeredPane();
 		this.getContentPane().add(layeredPane);
@@ -48,8 +48,6 @@ public class MainWindow extends JFrame implements MainInterface {
 	private void setSizes() {
 		this.getContentPane().setSize(700, 500);
 		this.getContentPane().setPreferredSize(this.getContentPane().getSize());
-		//this.getRootPane().setSize(this.getLayeredPane().getSize());
-		//this.getRootPane().setPreferredSize(this.getLayeredPane().getSize());
 	}
 	
 	public void createHeader() {
@@ -174,16 +172,6 @@ public class MainWindow extends JFrame implements MainInterface {
 		 */
 		this.validate();
 		
-		/*
-		 * Make sure Java cleans up.
-		 */
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*
-		 * Disable resize of the window.
-		 */
-		this.setResizable(false);
-		
-		this.pack();
 		/*
 		 * Place on the center of the screen.
 		 */

@@ -273,8 +273,6 @@ public class Board extends Observable {
 		}
 		for (int i = 0; i < this.board.length; i = i + 1) {
 			if (this.board[i] != compare[i]) {
-				System.out.println("this: " + this.board[i] + " - compare: " + compare[i]);
-				System.out.println(count);
 				return false;
 			} else { count++; }
 		}
