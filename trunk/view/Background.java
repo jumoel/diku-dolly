@@ -52,7 +52,7 @@ public class Background extends JPanel {
 	 * @param imageFile The image to load
 	 */
 	public Background(String imageFile) {
-		this(imageFile, new Dimension(500, 700));
+		this(imageFile, new Dimension(700, 500));
 	}
 	
 	/**
