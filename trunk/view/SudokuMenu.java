@@ -3,9 +3,6 @@
  */
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -34,7 +31,7 @@ public class SudokuMenu extends JMenuBar {
 		menuHelp = new JMenu("Hjælp");
 		
 		itemNewGame = new JMenuItem("Nyt spil");
-			itemNewGame.addActionListener(new controller.DifficultyAction(this.mainWindow, game));
+			itemNewGame.addActionListener(new controller.DifficultyAction(this.mainWindow, game, false));
 		
 		/*
 		 * Only create the "exit" menuitem if the game is

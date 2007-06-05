@@ -36,7 +36,7 @@ public class SudokuGame {
             	/*
             	 * Create the actions for the controlbuttons...
             	 */
-            	DifficultyAction difficultyAction = new DifficultyAction(main, game);
+            	DifficultyAction difficultyAction = new DifficultyAction(main, game, false);
             	HelpAction helpAction = new HelpAction(main, game);
             	
             	/*
@@ -78,7 +78,8 @@ public class SudokuGame {
             	/*
             	 * Show the welcomescreen.
             	 */
-            	difficultyAction.actionPerformed(null);
+            	DifficultyAction diffAction = new DifficultyAction(main, game, true);
+            	diffAction.actionPerformed(null);
             }
 		});
 	}

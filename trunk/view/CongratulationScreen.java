@@ -34,7 +34,7 @@ public class CongratulationScreen {
 			}
 		});
 		
-		newGame.addActionListener(new DifficultyAction(frame, game));
+		newGame.addActionListener(new DifficultyAction(frame, game, false));
 		newGame.setLocation(100, 350);
 		layeredPane.add(newGame, 2);
 		

@@ -35,7 +35,7 @@ public class SudokuApplet extends JApplet {
     	/*
     	 * Create the actions for the controlbuttons...
     	 */
-    	DifficultyAction difficultyAction = new DifficultyAction(main, game);
+    	DifficultyAction difficultyAction = new DifficultyAction(main, game, false);
     	HelpAction helpAction = new HelpAction(main, game);
     	
     	/*
