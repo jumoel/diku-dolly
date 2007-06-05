@@ -23,7 +23,6 @@ public class MainWindow extends JFrame implements MainInterface {
 	
 	private Background backgroundPanel;
 	private Board board;
-	private Dimension boardDimension;
 	private model.Game game;
 	private IngameControls controls;
 	private SheepSpeak sheepSpeak;
@@ -109,7 +108,7 @@ public class MainWindow extends JFrame implements MainInterface {
 	 * setGame() must have been called before.
 	 */
 	public void createBoard() {
-		this.board = new Board(this, boardDimension);
+		this.board = new Board(this);
 		this.add(board, 2, 50, 100);
 	}
 
@@ -128,7 +127,6 @@ public class MainWindow extends JFrame implements MainInterface {
 	 */
 	public void setGame(model.Game game) {
 		this.game = game;
-		this.boardDimension = Calculator.getBoardDimensions(game.getCurrentBoard());
 	}
 
 	/**
@@ -136,7 +134,7 @@ public class MainWindow extends JFrame implements MainInterface {
 	 * @return The dimensions of the board.
 	 */
 	public Dimension getBoardDimension() {
-		return boardDimension;
+		return this.game.getCurrentBoard().getViewBoardDimensions();
 	}
 	
 	/**

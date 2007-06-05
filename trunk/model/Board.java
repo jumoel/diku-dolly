@@ -3,8 +3,11 @@
  */
 package model;
 
+import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Random;
+
+import view.ViewSettings;
 
 /**
  * @author Julian
@@ -323,5 +326,19 @@ public class Board extends Observable {
 		
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	/**
+	 * Calculates the visual width of the gameboard.
+	 * @return The width of the board.
+	 */
+	public Dimension getViewBoardDimensions() {
+		int dimension = this.getSettings().getBoardDimensions() * 
+						ViewSettings.getButtonSize();
+		
+		int finalWidth = 50 + dimension +
+			(this.getSettings().getQuadrantDimensions() - 1) * ViewSettings.getBoardSpacing();
+		
+		return new Dimension(finalWidth, finalWidth);
 	}
 }

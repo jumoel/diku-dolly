@@ -38,6 +38,9 @@ public class Board extends JPanel implements Observer {
 	private Font font;
 	private int quadDim;
 	
+	public Board(MainInterface main) {
+		this(main, main.getGame().getCurrentBoard().getViewBoardDimensions());
+	}
 	public Board(MainInterface main, Dimension dimension) {
 		super();
 		this.main = main;
