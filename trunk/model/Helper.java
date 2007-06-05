@@ -18,8 +18,9 @@ public abstract class Helper {
 	 * @param board The board from which the help is needed.
 	 * @param settings The game settings from which the board is created under.
 	 * @return A fieldId that is solveable and suggested to the player.
+	 * @throws NoSuchFieldException 
 	 */
-	public static int findSolveable(Board board, GameSettings settings) {
+	public static int findSolveable(Board board, GameSettings settings) throws NoSuchFieldException {
 		
 		int count = 0;
 		
@@ -40,8 +41,10 @@ public abstract class Helper {
 		while (Solver.solveField(fieldId, board) == 0 || 
 				board.getValue(fieldId) != 0) {
 			count = count + 1;
-			if (count >= settings.getBoardLength())
-				break;
+			if (count >= settings.getBoardLength()) {
+				throw new NoSuchFieldException("Der er ingen felter der kan løses.");
+			}
+				
 			fieldId = (fieldId + 1) % settings.getBoardLength();
 		}
 		
@@ -55,8 +58,9 @@ public abstract class Helper {
 	 * 
 	 * @param game The current game.
 	 * @return A fieldId that is solveable and suggested to the player.
+	 * @throws NoSuchFieldException 
 	 */
-	public static int findSolveable(Game game) {
+	public static int findSolveable(Game game) throws NoSuchFieldException {
 		return findSolveable(game.getCurrentBoard(), game.getCurrentBoard().getSettings());
 	}
 	

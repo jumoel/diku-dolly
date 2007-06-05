@@ -32,7 +32,13 @@ public class HelpAction extends AbstractAction {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		int hint = model.Helper.findSolveable(game);
+		int hint = 0;
+		try {
+			hint = model.Helper.findSolveable(game);
+		} catch (NoSuchFieldException exception) {
+			((view.MainInterface)frame).getSheepSpeak().setText(exception.getMessage()
+					+ "<br><br>Start en ny sudoku.");
+		}
 		int amountOfMistakes = model.Helper.getAmountOfMistakes(game); 
 		if (amountOfMistakes > 0) {
 			((view.MainInterface)frame).getBoard().clearHintNotices();
