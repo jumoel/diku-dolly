@@ -42,8 +42,7 @@ public class CongratulationScreen {
 		statistics.setLocation(50, 225);
 		layeredPane.add(statistics, 3);
 		
-		Background background = new Background("congratulations.png");
-		background.setSize(700, 525);
+		Background background = new Background("congratulations.png", new Dimension(700, 525));
 		layeredPane.add(background, 100);
 
 		((MainInterface)frame).setGlassPane(layeredPane);
