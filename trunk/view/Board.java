@@ -20,8 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * @author Julian
- *
+ * The graphical representation of our Sudokuboard.
  */
 public class Board extends JPanel implements Observer {
 
