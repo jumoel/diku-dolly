@@ -56,14 +56,14 @@ public class Statistics extends JPanel {
 			mistakesValue.setSize(25, 30);
 			mistakesValue.setFont(font);
 		
-		helpLabel = new JLabel("Antal hints brugt:");
+		helpLabel = new JLabel("Antal 'Hjælp' brugt:");
 			helpLabel.setSize(250, 30);
 			helpLabel.setFont(font);
 		helpValue = new JLabel(Integer.toString(statistics.getHints()));
 			helpValue.setSize(25, 30);
 			helpValue.setFont(font);
 			
-		timeLabel = new JLabel("Tidsforbrug:");
+		timeLabel = new JLabel("Tid brugt:");
 			timeLabel.setSize(250, 30);
 			timeLabel.setFont(font);
 		timeValue = new JLabel(this.statistics.getElapsedTime());
