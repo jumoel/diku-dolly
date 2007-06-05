@@ -173,11 +173,6 @@ public class MainApplet extends JApplet implements MainInterface {
 		this.validate();
 		
 		/*
-		 * Place on the center of the screen.
-		 */
-		PlaceCenter.placeCenter(this);
-		
-		/*
 		 * Show the window.
 		 */
 		this.setVisible(true);

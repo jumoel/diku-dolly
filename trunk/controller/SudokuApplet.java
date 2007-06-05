@@ -6,8 +6,8 @@ package controller;
 import javax.swing.JApplet;
 
 /**
- * @author Julian
- *
+ * The main initiation point for the Applet-version
+ * of our game.
  */
 public class SudokuApplet extends JApplet {
 
@@ -70,8 +70,15 @@ public class SudokuApplet extends JApplet {
     	 */
     	main.createBackgroundPanel("stdSudokuBG.png");
     	
+    	/*
+    	 * Create and set the menu
+    	 */
     	main.setMenu();
     	
+    	/*
+    	 * Lay out the subcomponents correctly
+    	 * and show them.
+    	 */
     	main.setup();
     	
     	this.add(main);
@@ -79,6 +86,7 @@ public class SudokuApplet extends JApplet {
     	/*
     	 * Show the welcomescreen.
     	 */
-    	difficultyAction.actionPerformed(null);
+    	DifficultyAction diffAction = new DifficultyAction(main, game, true);
+    	diffAction.actionPerformed(null);
     }
 }
