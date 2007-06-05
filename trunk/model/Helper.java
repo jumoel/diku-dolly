@@ -35,8 +35,10 @@ public abstract class Helper {
 		int fieldId = random.nextInt(settings.getBoardLength());	
 		
 		/*
-		 * If the solver cannont solve the targeted field or the field
-		 * is already removed it will move on and try the following field.
+		 * The solver is used to try to solve a target field.
+		 * If the target field isn't solvable the solver tries the next field.
+		 * If there are no fields on the board which are solveable an exception 
+		 * will be thrown
 		 */
 		while (Solver.solveField(fieldId, board) == 0 || 
 				board.getValue(fieldId) != 0) {
