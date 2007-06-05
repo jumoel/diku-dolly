@@ -21,7 +21,8 @@ public class Statistics extends JPanel {
 	private static final long serialVersionUID = 2010781905015455017L;
 	
 	private model.Statistics statistics;
-	private JLabel difficultyLabel, difficultyValue, 
+	private JLabel difficultyLabel, difficultyValue,
+		numbersRemovedLabel, numbersRemovedValue,
 		mistakesLabel, mistakesValue, 
 		helpLabel, helpValue, 
 		timeLabel, timeValue;
@@ -34,13 +35,20 @@ public class Statistics extends JPanel {
 		
 		this.setSize(275, 120);
 		this.setOpaque(false);
-		difficultyLabel = new JLabel("Antal felter:");
+		difficultyLabel = new JLabel("Sværhedsgrad:");
 			difficultyLabel.setSize(250, 30);
 			difficultyLabel.setFont(font);
-		difficultyValue = new JLabel(Integer.toString(game.getCurrentBoard().getSettings().getNumbersToRemove()));
+		difficultyValue = new JLabel(game.getCurrentBoard().getSettings().getDifficulty());
 			difficultyValue.setSize(25, 30);
 			difficultyValue.setFont(font);
-		
+
+		numbersRemovedLabel = new JLabel("Antal felter fjernet:");
+			numbersRemovedLabel.setSize(250, 30);
+			numbersRemovedLabel.setFont(font);
+		numbersRemovedValue = new JLabel(Integer.toString(game.getCurrentBoard().getSettings().getNumbersToRemove()));
+			numbersRemovedValue.setSize(25, 30);
+			numbersRemovedValue.setFont(font);
+			
 		mistakesLabel = new JLabel("Antal fejl:");
 			mistakesLabel.setSize(250, 30);
 			mistakesLabel.setFont(font);
