@@ -11,13 +11,12 @@ import java.util.Random;
  */
 public abstract class Generator {
 	
-/**
- * Generates a playable gameboard removing one field at a time untill the 
- * desired difficulty is achieved.
- * @param board The board to remove fields from.
- * @param settings The board settings (board size)
- */
-	
+	/**
+	 * Generates a playable gameboard removing one field at a time untill the 
+	 * desired difficulty is achieved.
+	 * @param board The board to remove fields from.
+	 * @param settings The board settings (board size)
+	 */
 	public static void generate(Board board, GameSettings settings) {
 		
 		/*
