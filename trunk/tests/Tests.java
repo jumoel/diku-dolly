@@ -54,8 +54,7 @@ public class Tests extends TestCase {
 		 * and the board has no numbers placed at all.
 		 */		
 		try {
-			@SuppressWarnings("unused") // Eclipse whines too much.
-			int solvedFieldId = Helper.findSolveable(testBoard, testBoard.getSettings());
+			Helper.findSolveable(testBoard, testBoard.getSettings());
 		} catch (NoSuchFieldException e) {
 			exception = e.getMessage();
 		}
