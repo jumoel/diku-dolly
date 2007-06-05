@@ -42,12 +42,7 @@ public class SudokuMenu extends JMenuBar {
 		 */
 		if (main instanceof MainWindow) {
 			itemExit = new JMenuItem("Afslut spil");
-			itemExit.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					((view.MainWindow)mainWindow).dispose();
-					System.exit(0);
-				}
-			});
+			itemExit.addActionListener(new controller.CloseListener());
 		}
 
 		itemRules = new JMenuItem("Vis Sudoku-reglerne");

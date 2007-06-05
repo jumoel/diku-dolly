@@ -5,7 +5,6 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
@@ -173,13 +172,16 @@ public class MainWindow extends JFrame implements MainInterface {
 		this.validate();
 		
 		/*
-		 * Make sure Java cleans up.
-		 */
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*
 		 * Disable resize of the window.
 		 */
 		this.setResizable(false);
+		
+		/*
+		 * Makes sure that the application doesn't exit
+		 * unless the user is sure.
+		 */
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new controller.CloseListener());
 		
 		this.pack();
 		/*
