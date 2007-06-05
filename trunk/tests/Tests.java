@@ -3,8 +3,8 @@
  */
 package tests;
 
+import java.util.Arrays;
 import model.*;
-
 import junit.framework.TestCase;
 
 
@@ -120,22 +120,63 @@ public class Tests extends TestCase {
 	}
 	
 	/**
-	 * TODO: Lav flere tests!
+	 * This is a test of SudokuMath.
+	 * 
+	 * It tests the methods used with getting rows, columns and quadrants
+	 * and the numbers of these.
 	 */
-	public void testWhichResultIsTrue() {
-		
+	public void testSudokuMath() {
+		/*
+		 * A board is created, that contains a full row, column and quadrant.
+		 */
 		Board testBoard = new Board(new int[] {
-				1, 2, 3, 0, 0, 0, 0, 0, 0,
-				4, 0, 6, 0, 0, 0, 0, 0, 0,
+				1, 2, 3, 4, 5, 6, 7, 8, 9,
+				4, 5, 6, 0, 0, 0, 0, 0, 0,
 				7, 8, 9, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0}
+				2, 0, 0, 0, 0, 0, 0, 0, 0,
+				3, 0, 0, 0, 0, 0, 0, 0, 0,
+				5, 0, 0, 0, 0, 0, 0, 0, 0,
+				6, 0, 0, 0, 0, 0, 0, 0, 0,
+				8, 0, 0, 0, 0, 0, 0, 0, 0,
+				9, 0, 0, 0, 0, 0, 0, 0, 0}
 		);
+
+		/*
+		 * The fieldId which we will be gaining the info from.
+		 */
+		int getFromThisFieldId = 0;
 		
-		assertTrue(true);
+		/*
+		 * The results we expect from the row, column and quadrant numbers.
+		 * It has to be reminded that the system is using zero-indexing.
+		 */
+		int expectedRowNumber = 0; 
+		int expectedColumnNumber = 0;
+		int expectedQuadrantNumber = 0;
+
+		/*
+		 * The tests of whether of not the expected ones are true.
+		 */
+		assertTrue(expectedRowNumber == SudokuMath.getRowNumber(getFromThisFieldId, testBoard.getSettings()));
+		assertTrue(expectedColumnNumber == SudokuMath.getColumnNumber(getFromThisFieldId, testBoard.getSettings()));
+		assertTrue(expectedQuadrantNumber == SudokuMath.getQuadrantNumber(getFromThisFieldId, testBoard.getSettings()));
+		
+		/*
+		 * The results we expect when getting the whole row, column and quadrant
+		 * from the fieldId.
+		 */
+		int[] expectedRow = 
+			new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int[] expectedColumn = 
+			new int[] {1, 4, 7, 2, 3, 5, 6, 8, 9};
+		int[] expectedQuadrant = 
+			new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		
+		/*
+		 * The tests of whether or not the expected arrays fits.
+		 */
+		assertTrue(Arrays.equals(expectedRow, SudokuMath.getRowFromPos(getFromThisFieldId, testBoard)));
+		assertTrue(Arrays.equals(expectedColumn, SudokuMath.getColumnFromPos(getFromThisFieldId, testBoard)));
+		assertTrue(Arrays.equals(expectedQuadrant, SudokuMath.getQuadrantFromPos(getFromThisFieldId, testBoard)));
 	}
 }
