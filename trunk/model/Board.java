@@ -243,11 +243,35 @@ public class Board extends Observable {
 	
 	public void print() {
 		for (int i = 0; i < settings.getBoardLength(); i++) {
-			System.out.print(Integer.toString(board[i]) + " ");
-			
-			if ((i+1) % settings.getBoardDimensions() == 0) {
-				System.out.print("\n");
+			if (i == 0) {
+				System.out.print(" ");
 			}
+			if (i % (3 * 9) == 0 && i != 0) {
+				System.out.print("\n");
+				for (int j = 0; j < 3; j++) {
+					for (int h = 0; h < 3; h++) {
+						System.out.print("--");
+					}
+					if (j != 2) {
+						System.out.print("-+");
+					} else {
+						System.out.print(" ");
+					}
+				}
+			}
+			if (i % 3 == 0 && i != 0 && i % 9 != 0) {
+				System.out.print("| ");
+			}
+			if(i % 9 == 0 && i != 0) {
+				System.out.print("\n ");
+			}
+			if (this.getValue(i) == 0) {
+				System.out.print(".");
+			} else {
+				System.out.print(this.getValue(i));
+			}
+			System.out.print(" ");
+			
 		}
 	}
 	
