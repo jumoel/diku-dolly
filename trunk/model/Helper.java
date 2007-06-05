@@ -12,14 +12,13 @@ import java.util.Random;
 	
 public abstract class Helper {
 
-/**
- * Finds a field on the current board which is solveable and returns that 
- * field id. 
- * @param board The board from which the help is needed.
- * @param settings The game settings from which the board is created under.
- * @return fieldId A field that is solveable and suggested to the player.
- */
-
+	/**
+	 * Finds a field on the current board which is solveable and returns that 
+	 * field id. 
+	 * @param board The board from which the help is needed.
+	 * @param settings The game settings from which the board is created under.
+	 * @return A fieldId that is solveable and suggested to the player.
+	 */
 	public static int findSolveable(Board board, GameSettings settings) {
 		
 		int count = 0;
@@ -49,10 +48,25 @@ public abstract class Helper {
 		return fieldId;
 	}
 	
+	/**
+	 * Finds a field on the current board which is solveable and returns that 
+	 * fieldId.
+	 * Calls findSolveable(game.getCurrentBoard(), game.getCurrentBoard().getSettings()); 
+	 * 
+	 * @param game The current game.
+	 * @return A fieldId that is solveable and suggested to the player.
+	 */
 	public static int findSolveable(Game game) {
 		return findSolveable(game.getCurrentBoard(), game.getCurrentBoard().getSettings());
 	}
 	
+	/**
+	 * This function scans the board for mistakes and returns how many
+	 * mistakes there currently is.
+	 * 
+	 * @param game The current game that's being played.
+	 * @return The number of mistakes currently on the board.
+	 */
 	public static int getAmountOfMistakes(Game game) {
 		Board currentBoard = game.getCurrentBoard();
 		Board solutionBoard = game.getSolutionBoard();
@@ -69,22 +83,37 @@ public abstract class Helper {
 		return numberOfMistakes;
 	}
 	
+	/**
+	 * Gets an int-array with the fieldIds containing mistakes. 
+	 * 
+	 * @param game The current game.
+	 * @param amountOfMistakes Used to the size of the result array.
+	 * @return An int[] containing the fieldIds with mistakes.
+	 */
 	public static int[] getFieldsWithMistakes(Game game, int amountOfMistakes) {
 		Board currentBoard = game.getCurrentBoard();
 		Board solutionBoard = game.getSolutionBoard();
-		int[] wrongFields = new int[amountOfMistakes];
+		int[] fieldsWithMistakes = new int[amountOfMistakes];
 		
 		for (int fieldId = 0, iter = 0; 
 			 fieldId < currentBoard.getSettings().getBoardLength();
 			 fieldId = fieldId + 1) {
 				if (currentBoard.getValue(fieldId) != solutionBoard.getValue(fieldId) &&
 					currentBoard.getValue(fieldId) != 0) {
-						wrongFields[iter] = fieldId;
+						fieldsWithMistakes[iter] = fieldId;
 						iter = iter + 1;
 				}
 		}
-		return wrongFields;
+		return fieldsWithMistakes;
 	}
+	
+	/**
+	 * Gets an int-array with the fieldIds containing mistakes. 
+	 * Calls getFieldsWithMistakes (game, getAmountOfMistakes(game));
+	 * 
+	 * @param game The current game.
+	 * @return An int[] containing the fieldIds with mistakes.
+	 */
 	public static int[] getFieldsWithMistakes(Game game) {
 		return getFieldsWithMistakes(game, getAmountOfMistakes(game));
 	}
