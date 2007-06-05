@@ -60,7 +60,7 @@ public class NumberAction extends AbstractAction {
 				main.getSheepSpeak().setText("Det ser jo ud til at gå fint.");
 			}*/ else {
 				// TODO: Find på flere forskellige kommentarer.
-				main.getSheepSpeak().setText("Du kan trykke på hjæ-æ-ælp, hvis du sidder fa-a-ast.");
+				main.getSheepSpeak().setText("Du kan trykke på hjælp, hvis du sidder fast.");
 			}
 			// End of Statistics-part
 			
