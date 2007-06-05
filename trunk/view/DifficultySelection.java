@@ -57,8 +57,7 @@ public class DifficultySelection {
 			panel.setLocation(300, 130);
 		
 		layeredPane.add(panel, 2);
-		Background background = new Background("startScreen.png");
-		background.setSize(700, 525);
+		Background background = new Background("startScreen.png", new Dimension(700, 525));
 		layeredPane.add(background, 3);
 		
 		((MainInterface)frame).setGlassPane(layeredPane);
