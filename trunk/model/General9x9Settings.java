@@ -17,7 +17,7 @@ public abstract class General9x9Settings implements GameSettings {
 	public General9x9Settings()
 	{
 		/*
-		 * Board for easier bugfinding.
+		 * (Legal) board for easier bugfinding.
 		 */
 		/*
 		board = new int[] {
