@@ -11,6 +11,10 @@ import controller.HelpAction;
  * The ingamecontrols (Help- and New Game-button)
  */
 public class IngameControls extends JPanel {
+	/**
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
+	 */
 	private static final long serialVersionUID = -1310963790966866671L;
 	
 	private DifficultyAction difficultyAction;

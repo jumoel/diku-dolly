@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.GridLayout;
@@ -17,9 +14,9 @@ import javax.swing.JPanel;
  *
  */
 public class NumberDialog extends JDialog {
-
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = -824283720921024119L;
 	
@@ -27,6 +24,11 @@ public class NumberDialog extends JDialog {
 	private JButton[] buttons;
 	private model.Game game;
 	
+	/**
+	 * Creates a numberdialog with using the settings of
+	 * the supplied MainInterface and also using it as parent.
+	 * @param main
+	 */
 	public NumberDialog(view.MainInterface main) {
 		super();
 		this.value = -1;
@@ -34,36 +36,50 @@ public class NumberDialog extends JDialog {
 		this.game = main.getGame();
 		model.GameSettings settings = this.game.getCurrentBoard().getSettings();
 		
+		/*
+		 * Get the valid numbervalues from the settings.
+		 */
 		int[] validValues = settings.getValidValues();
 		int length = validValues.length;
 		 
+		/*
+		 * Create a JButton-array of the right length.
+		 */
 		buttons = new JButton[length];
 		
 		JPanel outerPanel = new JPanel(new GridLayout(2, 1, 2, 2));
 		
-		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new GridLayout(settings.getQuadrantDimensions(),
+		JPanel upperPanel = new JPanel();
+		upperPanel.setLayout(new GridLayout(settings.getQuadrantDimensions(),
 										settings.getQuadrantDimensions(),
 										2, 2));
 		
-		for (int i = 0; i < length; i++)
+		/*
+		 * Create a button for each valid numbervalue.
+		 */
+		for (int index = 0; index < length; index++)
 		{
-			final int buttonVal = validValues[i];
-			buttons[i] = new JButton(Integer.toString(buttonVal));
+			final int buttonVal = validValues[index];
+			buttons[index] = new JButton(Integer.toString(buttonVal));
 			
-			buttons[i].setSize(ViewSettings.getButtonDimension());
-			buttons[i].setPreferredSize(buttons[i].getSize());
-			buttons[i].setDefaultCapable(false);
+			buttons[index].setSize(ViewSettings.getButtonDimension());
+			buttons[index].setPreferredSize(buttons[index].getSize());
+			buttons[index].setDefaultCapable(false);
 			
-			buttons[i].addActionListener(new ActionListener() {
+			buttons[index].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					value = buttonVal;
 					close();
 				}
 			});
-			innerPanel.add(buttons[i]);
+			upperPanel.add(buttons[index]);
 		}
 		
+		JPanel lowerPanel = new JPanel(new GridLayout(1, 2, 2, 2));
+		
+		/*
+		 * Create a button capable of removing the numbers from the board.
+		 */
 		JButton noVal = new JButton("Fjern tal");
 		noVal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -72,8 +88,21 @@ public class NumberDialog extends JDialog {
 			}
 		});
 		
-		outerPanel.add(innerPanel);
-		outerPanel.add(noVal);
+		/*
+		 * A cancel-button that closes the dialog.
+		 */
+		JButton cancel = new JButton("Luk");
+		cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				close();
+			}
+		});
+		
+		lowerPanel.add(noVal);
+		lowerPanel.add(cancel);
+		
+		outerPanel.add(upperPanel);
+		outerPanel.add(lowerPanel);
 		
 		this.add(outerPanel);
 		
@@ -82,19 +111,30 @@ public class NumberDialog extends JDialog {
 		this.setSize(200, 200);
 		this.setPreferredSize(this.getSize());
 		
-		//PlaceCenter.placeCenter(this);
-		//TODO: Unmagicify numbers
+		/*
+		 * Places the numberdialog next to the gameboard.
+		 * (On top of the IngameControls and the sheep)
+		 */
 		Point bgLoc = main.getBackgroundPanel().getLocationOnScreen();
 		this.setLocation(bgLoc.x + 375, bgLoc.y + 100);
 		
+		/*
+		 * Show the dialog
+		 */
 		this.setVisible(true);
 	}
 	
+	/*
+	 * Handles closing of the dialog.
+	 */
 	private void close() {
 		this.setVisible(false);
 		this.dispose();
 	}
 	
+	/*
+	 * Gets the value from the dialog.
+	 */
 	public int getValue() {
 		return value;
 	}

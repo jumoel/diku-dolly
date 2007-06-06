@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Font;
@@ -12,11 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author Julian
- *
+ * The SheepSpeak, which is our main method to
+ * communicate with the users.
  */
 public class SheepSpeak extends JPanel {
 	/**
+	 * Classes that implement <code>Serializable</code> needs this.
 	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = -8067997091581424848L;

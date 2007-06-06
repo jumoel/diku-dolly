@@ -10,6 +10,10 @@ import javax.swing.JPanel;
  * The headerimage (the "title").
  */
 public class Header extends JPanel {
+	/**
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
+	 */
 	private static final long serialVersionUID = 8743662851484656254L;
 	
 	private Image backgroundImage;

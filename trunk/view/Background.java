@@ -11,7 +11,8 @@ import javax.swing.JPanel;
  */
 public class Background extends JPanel {
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 4031414845777706266L;
 	

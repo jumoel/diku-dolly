@@ -10,18 +10,28 @@ import controller.DifficultyAction;
 import controller.HelpAction;
 
 /**
- * @author Julian
- *
+ * Interface for the two different kinds of windows our
+ * program containts.
  */
 public interface MainInterface {
+	/**
+	 * Creates and adds the menu to the frame.
+	 */
 	public void setMenu();
 	
+	/**
+	 * Creates and adds the header to the frame.
+	 */
 	public void createHeader();
 	
+	/**
+	 * Gets the IngameControls contained in the frame.
+	 * @return The IngameControls
+	 */
 	public IngameControls getControls();
 
 	/**
-	 * Create the SheepSpeak-object.
+	 * Creates and adds the SheepSpeak-object.
 	 */
 	public void createSheepSpeak();
 	
@@ -34,7 +44,7 @@ public interface MainInterface {
 	public SheepSpeak getSheepSpeak();
 	
 	/**
-	 * Gets the background.
+	 * Gets the background contained in the frame.
 	 * @return The background.
 	 */
 	public Background getBackgroundPanel();
@@ -98,5 +108,9 @@ public interface MainInterface {
 	 */
 	public void setup();
 	
+	/**
+	 * Set the glasspane of the frame to the specified glasspane.
+	 * @param glassPane The glassPane to set as glasspane.
+	 */
 	public void setGlassPane(Component glassPane);
 }

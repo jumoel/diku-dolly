@@ -13,11 +13,11 @@ import controller.DifficultyAction;
 import controller.HelpAction;
 
 /**
- * @author Julian
- *
+ * Our program in Applet-form.
  */
 public class MainApplet extends JApplet implements MainInterface {
 	/**
+	 * Classes that implement <code>Serializable</code> needs this.
 	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 3172688540921699213L;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Component;
@@ -8,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 /**
- * Class containg function to center a component.
+ * Class containg a function to center a component.
  */
 public abstract class PlaceCenter {
 	/**

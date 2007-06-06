@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Container;
@@ -21,13 +18,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 /**
- * @author Julian
- *
+ * A menubar containing the proper menuitems.
  */
 public class SudokuMenu extends JMenuBar {
-
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = -2863544055026997282L;
 	
@@ -36,6 +32,10 @@ public class SudokuMenu extends JMenuBar {
 	private JMenuItem itemNewGame, itemExit, itemRules, itemHint;
 	private model.Game game;
 	
+	/**
+	 * Create the menubar and add it to the supplied MainInterface
+	 * @param main The MainInterface which should get the menubar.
+	 */
 	public SudokuMenu(MainInterface main) {
 		this.mainWindow = main;
 		this.game = main.getGame();
@@ -155,7 +155,7 @@ public class SudokuMenu extends JMenuBar {
 				}
 				
 				/*
-				 * 
+				 * Add the menuitems to the menu.
 				 */
 				menuHelp.add(itemRules);
 				menuHelp.add(itemHint);

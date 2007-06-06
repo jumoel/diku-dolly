@@ -20,9 +20,9 @@ import javax.swing.JPanel;
  * The graphical representation of our Sudokuboard.
  */
 public class Board extends JPanel implements Observer {
-
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 7704761091317274700L;
 	
@@ -122,7 +122,7 @@ public class Board extends JPanel implements Observer {
 	 */
 	public void clearHintNotices() {
 		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i].getBackground() == ViewSettings.getLookHereHintColor()) {
+			if (buttons[i].getBackground() == ViewSettings.getHintColor()) {
 				clearNotice(i);
 			}
 		}

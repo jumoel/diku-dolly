@@ -17,6 +17,7 @@ import controller.HelpAction;
  */
 public class MainWindow extends JFrame implements MainInterface {
 	/**
+	 * Classes that implement <code>Serializable</code> needs this.
 	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 3172688540921699213L;
