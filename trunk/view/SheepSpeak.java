@@ -35,7 +35,7 @@ public class SheepSpeak extends JPanel {
 		label.setSize(160, 128);
 		label.setPreferredSize(label.getSize());
 		label.setVerticalAlignment(JLabel.TOP);
-		label.setFont(new Font("SansSerif", Font.BOLD, 20));
+		label.setFont(new Font("SansSerif", Font.BOLD, 18));
 		
 		this.add(label);
 		
