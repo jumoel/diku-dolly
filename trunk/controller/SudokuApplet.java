@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import javax.swing.JApplet;
@@ -10,15 +7,18 @@ import javax.swing.JApplet;
  * of our game.
  */
 public class SudokuApplet extends JApplet {
-
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 2727669396940884498L;
 	
 	private static view.MainApplet main;
 	private static model.Game game;
 	
+	/**
+	 * Gets run when the applet gets loaded into the browser.
+	 */
 	public void init() {
 		/*
     	 * Create a new game

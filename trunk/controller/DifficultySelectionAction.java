@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import java.awt.Component;
@@ -9,13 +6,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 /**
- * @author Julian
- *
+ * Starts a new game based on the user's selection
  */
 public class DifficultySelectionAction extends AbstractAction {
-	
 	/**
-	 * 
+	 * Classes that implement <code>Serializable</code> needs this.
+	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = 4675487524964772531L;
 	
@@ -27,8 +23,9 @@ public class DifficultySelectionAction extends AbstractAction {
 		this.frame = frame;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/**
+	 * Starts a new game based on the ActionCommand
+	 * sent when the user clicked one of the difficultybuttons.
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		frame.setVisible(false);

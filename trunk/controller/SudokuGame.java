@@ -1,22 +1,20 @@
-/**
- * 
- */
 package controller;
 
 import javax.swing.SwingUtilities;
 
 /**
- * @author Julian
- *
+ * The main initiation point for the Application-version
+ * of our game.
  */
 public class SudokuGame {
 
-	/**
-	 * @param args
-	 */
 	private static view.MainWindow main;
 	private static model.Game game;
 	public static void main(String[] args) {
+		/*
+		 * Starts a new thread to avoid problems
+		 * with the user interface not getting updated.
+		 */
 		SwingUtilities.invokeLater(new Runnable()
 		{
             public void run()
