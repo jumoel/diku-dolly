@@ -15,11 +15,17 @@ public class EasySettings extends General9x9Settings implements GameSettings {
 		numbersToRemove = 20;
 		difficulty = "Let";
 	}
-
+	/**
+	 * returns the numbers to remove
+	 * @return The numbers to remove
+	 */
 	public int getNumbersToRemove() {
 		return numbersToRemove;
 	}
-
+	/**
+	 * returns the difficulty
+	 * @return The difficulty
+	 */
 	public String getDifficulty() {
 		return difficulty;
 	}

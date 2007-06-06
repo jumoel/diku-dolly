@@ -15,11 +15,17 @@ public class HardSettings extends General9x9Settings implements GameSettings {
 		numbersToRemove = 60;
 		difficulty = "Svær";
 	}
-
+	/**
+	 * returns the numbers to remove
+	 * @return The numbers to remove
+	 */
 	public int getNumbersToRemove() {
 		return numbersToRemove;
 	}
-
+	/**
+	 * returns the difficulty
+	 * @return The difficulty
+	 */
 	public String getDifficulty() {
 		return difficulty;
 	}

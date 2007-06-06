@@ -6,8 +6,6 @@ import java.util.Calendar;
  * The statistics of the current game.
  * 
  * Keeps track of the amount of Hints and Mistakes made.
- *
- * @author emil
  */
 public class Statistics {
 	
@@ -26,7 +24,10 @@ public class Statistics {
 		startTime = Calendar.getInstance();
 		stopTime = null;
 	}
-	
+	/**
+	 * returns the time elapsed durring play
+	 * @return The time elapsed durring play
+	 */
 	public String getElapsedTime() {
 		if (stopTime != null) {
 			int startSeconds =
