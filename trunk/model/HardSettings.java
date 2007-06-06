@@ -1,11 +1,7 @@
-/**
- * 
- */
 package model;
 
 /**
- * @author Julian
- *
+ * The hard gamesettings for a 9x9 Sudoku.
  */
 public class HardSettings extends General9x9Settings implements GameSettings {
 	public static final int IDENTIFIER = 3;

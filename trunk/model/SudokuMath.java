@@ -1,14 +1,9 @@
-/**
- * 
- */
 package model;
 
 /**
  * Performs various mathematical operations on SudokuBoards.
- * Everything is 0-index'ed. 
+ * Everything is 0-index'ed, and works on boards of all sizes. 
  * Fx. a row from a 3x3x9 Sudoku has the numbers 0 to 8.
- * 
- * @author Emil
  */
 public abstract class SudokuMath {
 	

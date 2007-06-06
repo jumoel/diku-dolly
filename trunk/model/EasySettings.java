@@ -1,11 +1,7 @@
-/**
- * 
- */
 package model;
 
 /**
- * @author Julian
- *
+ * The normal gamesettings for a 9x9 Sudoku.
  */
 public class EasySettings extends General9x9Settings implements GameSettings {
 	public static final int IDENTIFIER = 1;
