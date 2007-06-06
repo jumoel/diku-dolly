@@ -78,6 +78,19 @@ public class SudokuGame {
             	 */
             	DifficultyAction diffAction = new DifficultyAction(main, game, true);
             	diffAction.actionPerformed(null);
+            	
+            	for (int i = 0; i < 20; i++) {
+            		model.Board board = new model.Board(new model.HardSettings());
+            		model.Generator.generate(board);
+            		
+            		board.print();
+            		
+            		System.out.println();
+            		System.out.println();
+            		System.out.println("------------");
+            		System.out.println();
+            		System.out.println();
+            	}
             }
 		});
 	}
