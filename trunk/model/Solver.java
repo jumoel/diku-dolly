@@ -4,7 +4,6 @@
 package model;
 
 /**
- * @author Klaes
  * Solver class used to solve a Sudoku-puzzle.
  */
 public abstract class Solver {
