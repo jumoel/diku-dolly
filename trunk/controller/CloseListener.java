@@ -8,7 +8,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 /**
- * Shows an "Are you sure?"-dialog before exiting.
+ * Shows an "Are you sure?" dialog before exiting.
  */
 public class CloseListener implements WindowListener, ActionListener {
 	private int getReallyExit() {
