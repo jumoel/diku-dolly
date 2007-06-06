@@ -53,6 +53,7 @@ public class NumberDialog extends JDialog {
 			
 			buttons[i].setSize(ViewSettings.getButtonDimension());
 			buttons[i].setPreferredSize(buttons[i].getSize());
+			buttons[i].setDefaultCapable(false);
 			
 			buttons[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
