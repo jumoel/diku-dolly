@@ -5,6 +5,9 @@ package view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
@@ -29,9 +32,18 @@ public class MainWindow extends JFrame implements MainInterface {
 	private SheepSpeak sheepSpeak;
 	private Header header;
 	private JLayeredPane layeredPane;
+	private Image icon;
 	
 	public MainWindow() {
 		super("Sudoku");
+		
+		/*
+		 * Create a ImageIcon from the specified imageFile
+		 * and save the Image from the ImageIcon in backgroundImage.
+		 */
+		ImageIcon tempImage = null;
+		tempImage = new ImageIcon(getClass().getResource("graphics/icons/64.png"));
+		icon = tempImage.getImage();
 		
 		this.layeredPane = new JLayeredPane();
 		this.getContentPane().add(layeredPane);
@@ -174,6 +186,8 @@ public class MainWindow extends JFrame implements MainInterface {
 		 * Disable resize of the window.
 		 */
 		this.setResizable(false);
+		
+		this.setIconImage(icon);
 		
 		/*
 		 * Makes sure that the application doesn't exit
