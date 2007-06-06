@@ -11,11 +11,11 @@ import view.MainInterface;
 import view.ViewSettings;
 
 /**
- * @author Julian
- *
+ * Takes care of finding and showing help to the user.
  */
 public class HelpAction extends AbstractAction {
 	/**
+	 * Classes that implement <code>Serializable</code> needs this.
 	 * @see java.io.Serializable
 	 */
 	private static final long serialVersionUID = -8116137103326969261L;
@@ -28,8 +28,10 @@ public class HelpAction extends AbstractAction {
 		this.game = game;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	/**
+	 * If there are mistakes on the board, these gets marked.
+	 * Otherwise it finds a solvable field (if any) and marks
+	 * it on the board.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		int hint = 0;
