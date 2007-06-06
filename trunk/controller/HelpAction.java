@@ -51,9 +51,9 @@ public class HelpAction extends AbstractAction {
 		} else {
 			((view.MainInterface)frame).getBoard().clearNotices();
 			((view.MainInterface)frame).getBoard().setNotice(
-					hint, ViewSettings.getLookHereHintColor());
+					hint, ViewSettings.getHintColor());
 			((view.MainInterface)frame).getSheepSpeak().setText(
-				"Se på den grønne firkant.<br><br>Den kan du nok løse.");
+				"Prøv at løse den grønne firkant.<br><br>Den kan kun være ét tal.");
 		}
 		/*
 		 * The amount of hints used is increased in the statistics.
