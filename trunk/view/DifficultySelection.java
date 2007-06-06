@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Dimension;
@@ -9,13 +6,10 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
- * @author Julian
- *
+ * A screen used to let the user select between
+ * the different difficulties.
  */
 public class DifficultySelection {
-	/*
-	 * The value to pass on to the calling function.
-	 */
 	protected model.Game game;
 	private JLayeredPane layeredPane;
 	
@@ -24,12 +18,26 @@ public class DifficultySelection {
 		layeredPane = new JLayeredPane();
 	}
 	
-	public void show(MainInterface frame) {		
+	/**
+	 * Shows the screen.
+	 * @param frame The frame to show the screen on.
+	 */
+	public void show(MainInterface frame) {
+		/*
+		 * Set the size
+		 */
 		layeredPane.setSize(new Dimension(700, 525));
 		layeredPane.setPreferredSize(layeredPane.getSize());
 		
+		/*
+		 * Create a DifficultySelectionAction to add to the buttons.
+		 */
 		controller.DifficultySelectionAction diffSelAction = new controller.DifficultySelectionAction(game, layeredPane);
 
+		/*
+		 * Create the three buttons, set their actioncommands and add the
+		 * DifficultySelectionAction as their actioncommand.
+		 */
 		JPanel panel = new JPanel();
 			SudokuButton easy = new SudokuButton("easy.png");
 			SudokuButton normal = new SudokuButton("medium.png");
@@ -56,6 +64,11 @@ public class DifficultySelection {
 			
 			panel.setLocation(300, 130);
 		
+		/*
+		 * Add the buttons and the background to the window
+		 * and set it as the glasspane (which is on top of all
+		 * other layers) of the mainframe.
+		 */
 		layeredPane.add(panel, 2);
 		Background background = new Background("startScreen.png", new Dimension(700, 525));
 		layeredPane.add(background, 3);
@@ -67,6 +80,9 @@ public class DifficultySelection {
 		 */ 
 		panel.updateUI();
 		
+		/*
+		 * Show the window.
+		 */
 		layeredPane.setVisible(true);
 	}
 }
