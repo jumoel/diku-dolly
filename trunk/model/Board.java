@@ -152,13 +152,9 @@ public class Board extends Observable {
 			first = (first < second) ? first : second ;
 			second = (first < second) ? second : numberBackup;
 			
-			// TODO: Tjek om kolonnerne er inden for samme "store" kolonne.
-			// Dvs. tjek at de skal være mellem 1-3, 4-6 eller 7-9.
-			
 			int length = settings.getBoardLength();
 			int dimension = settings.getBoardDimensions();
 			
-			// TODO: Forklar hvorfor det her virker
 			for (int i = 0; i < length; i += dimension) {
 				int temp = board[i + first];
 				board[i + first] = board[i + second];
@@ -177,9 +173,6 @@ public class Board extends Observable {
 		 * Don't perform the switch if it's the same columns.
 		 */
 		if (first != second) {
-			// TODO: Tjek om rækkerne er inden for samme "store" række.
-			// Dvs. tjek at de skal være mellem 1-3, 4-6 eller 7-9.
-			
 			int dimension = settings.getBoardDimensions();
 			
 			/*
@@ -188,8 +181,7 @@ public class Board extends Observable {
 			 */
 			first = (first < second) ? first : second;
 			second = (first < second) ? second : first;
-			
-			// TODO: Forklar hvorfor det her virker
+
 			for (int i = 0; i < dimension; i++) {
 				int temp = board[dimension * first + i];
 				board[dimension * first + i] = board[dimension * second + i];
