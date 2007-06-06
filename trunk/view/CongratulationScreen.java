@@ -29,7 +29,7 @@ public class CongratulationScreen {
 	 * @param frame The MainInterface to show the congratulationscreen on
 	 * @param game The game to get the statistics from
 	 */
-	public void show(MainInterface frame, Game game) {		
+	public void show(final MainInterface frame, Game game) {		
 		layeredPane.setSize(new Dimension(700, 525));
 		layeredPane.setPreferredSize(layeredPane.getSize());
 
@@ -42,6 +42,7 @@ public class CongratulationScreen {
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.setVisible(false);
+				((MainInterface)frame).showElements();
 			}
 		});
 		
@@ -65,6 +66,8 @@ public class CongratulationScreen {
 		Background background = new Background("congratulations.png", new Dimension(700, 525));
 		layeredPane.add(background, 100);
 
+		((MainInterface)frame).hideElements();
+		
 		/*
 		 * Set the congratulationscreen as the glasspane
 		 * (which is on top of every other layer), and

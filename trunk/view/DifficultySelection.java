@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -22,7 +25,7 @@ public class DifficultySelection {
 	 * Shows the screen.
 	 * @param frame The frame to show the screen on.
 	 */
-	public void show(MainInterface frame) {
+	public void show(final MainInterface frame) {
 		/*
 		 * Set the size
 		 */
@@ -34,6 +37,12 @@ public class DifficultySelection {
 		 */
 		controller.DifficultySelectionAction diffSelAction = new controller.DifficultySelectionAction(game, layeredPane);
 
+		ActionListener showElements = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				((MainInterface)frame).showElements();
+			}
+		};
+		
 		/*
 		 * Create the three buttons, set their actioncommands and add the
 		 * DifficultySelectionAction as their actioncommand.
@@ -45,14 +54,17 @@ public class DifficultySelection {
 			
 			easy.setActionCommand(Integer.toString(model.EasySettings.IDENTIFIER));
 			easy.addActionListener(diffSelAction);
+			easy.addActionListener(showElements);
 			easy.setVisible(true);
 			
 			normal.setActionCommand(Integer.toString(model.NormalSettings.IDENTIFIER));
 			normal.addActionListener(diffSelAction);
+			normal.addActionListener(showElements);
 			normal.setVisible(true);
 			
 			hard.setActionCommand(Integer.toString(model.HardSettings.IDENTIFIER));
 			hard.addActionListener(diffSelAction);
+			hard.addActionListener(showElements);
 			hard.setVisible(true);
 			
 			panel.setLayout(new GridLayout(3, 1, 5, 5));
@@ -73,6 +85,7 @@ public class DifficultySelection {
 		Background background = new Background("startScreen.png", new Dimension(700, 525));
 		layeredPane.add(background, 3);
 		
+		((MainInterface)frame).hideElements();
 		((MainInterface)frame).setGlassPane(layeredPane);
 		
 		/* 

@@ -207,4 +207,16 @@ public class MainWindow extends JFrame implements MainInterface {
 		 */
 		this.setVisible(true);
 	}
+	
+	public void hideElements() {
+		this.board.setVisible(false);
+		this.controls.setVisible(false);
+		this.sheepSpeak.setVisible(false);
+	}
+
+	public void showElements() {
+		this.board.setVisible(true);
+		this.controls.setVisible(true);
+		this.sheepSpeak.setVisible(true);	
+	}
 }

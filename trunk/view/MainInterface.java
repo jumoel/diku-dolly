@@ -113,4 +113,14 @@ public interface MainInterface {
 	 * @param glassPane The glassPane to set as glasspane.
 	 */
 	public void setGlassPane(Component glassPane);
+	
+	/**
+	 * Hides all interfaceelements.
+	 */
+	public void hideElements();
+	
+	/**
+	 * Shows all interfaceelements.
+	 */
+	public void showElements();
 }
