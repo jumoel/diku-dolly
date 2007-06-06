@@ -79,10 +79,7 @@ public abstract class Solver {
 			int[] column = SudokuMath.getColumnFromPos(fieldNum, board);
 			int[] quadrant = SudokuMath.getQuadrantFromPos(fieldNum, board);
 			
-			int[] values = new int[boardDim];
-			for (int iter = 0; iter < boardDim; iter = iter + 1) {
-				values[iter] = possibleVals[iter];
-			}
+			int[] values = copyArray(possibleVals, board);
 			
 			/*
 			 * Here we filter out the values which cannot be the result, 
@@ -255,11 +252,11 @@ public abstract class Solver {
     	   
     	   //Check in quadrant.
     	   for (int i = 0; i < boardDim; i++) {
+    		   //Get position for new field to check
+    		   int position = quadStartPos + 
+    		   					(i % quadDim) + (i / quadDim) * (boardDim);
     		   //Dont check the field itself
-    		   if (fieldColumnNum != i && fieldRowNum != i) {
-    			   //Get position for new field to check
-    			   int position = quadStartPos + 
-    			   				  (i % quadDim) + (i / quadDim) * (boardDim);
+    		   if (position != fieldNum) {
     			   //Only check for possibilities if the value is not set.
     			   if (board.getValue(position) == 0) {
     				   //Get solution values and put them in array
@@ -295,7 +292,7 @@ public abstract class Solver {
     	    */
     	   int count = 0;
     	   int result = 0;
-    	   	
+    	   
     	   for (int iter = 0; iter < boardDim; iter = iter + 1) {
     		   if (values[iter] > 0) {
     			   result = values[iter];
@@ -306,7 +303,7 @@ public abstract class Solver {
     	   //If singular result, return this.
     	   if (count == 1) {
     		   return result;
-    	   } else { //Not a unique solution, return 0
+    	   } else { //Not a unique solution, or no solution, return 0
     		   return 0;
     	   }
        }
