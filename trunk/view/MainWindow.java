@@ -135,7 +135,7 @@ public class MainWindow extends JFrame implements MainInterface {
 	 * @return The dimensions of the board.
 	 */
 	public Dimension getBoardDimension() {
-		return this.game.getCurrentBoard().getViewBoardDimensions();
+		return this.getBoard().getViewBoardDimensions();
 	}
 	
 	/**

@@ -40,7 +40,7 @@ public class Board extends JPanel implements Observer {
 	 * @param main The object containing the board to base the view on.
 	 */
 	public Board(MainInterface main) {
-		this(main, main.getGame().getCurrentBoard().getViewBoardDimensions());
+		this(main, getViewBoardDimensions(main.getGame().getCurrentBoard()));
 	}
 	
 	/**
@@ -304,5 +304,28 @@ public class Board extends JPanel implements Observer {
 		((MainInterface)this.getTopLevelAncestor()).getSheepSpeak().resetText();
 		this.board = (model.Board)arg0;
 		this.populateButtons();
+	}
+	
+	/**
+	 * Calculates the visual width of the current gameboard.
+	 * @return The width of the board.
+	 */
+	public Dimension getViewBoardDimensions() {
+		return getViewBoardDimensions(this.board);
+	}
+	
+	/**
+	 * Calculates the visual width of the supplied gameboard.
+	 * @param board The board to calculate the width of
+	 * @return The width of the board.
+	 */
+	public static Dimension getViewBoardDimensions(model.Board board) {
+		int dimension = board.getSettings().getBoardDimensions() * 
+						ViewSettings.getButtonSize();
+		
+		int finalWidth = 50 + dimension +
+			(board.getSettings().getQuadrantDimensions() - 1) * ViewSettings.getBoardSpacing();
+		
+		return new Dimension(finalWidth, finalWidth);
 	}
 }

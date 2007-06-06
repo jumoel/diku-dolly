@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @author Julian
+ * Contains the general settings for a 9x9 sudoku
  *
  */
 public abstract class General9x9Settings implements GameSettings {
@@ -48,21 +48,44 @@ public abstract class General9x9Settings implements GameSettings {
 		BoardDimensions = QuadrantDimension * QuadrantDimension;
 		BoardLength = BoardDimensions * BoardDimensions;
 	}
-	
+	/** 
+	 * returns the quadrant dimension
+	 * @return The quadrant dimension
+	 */
 	public int getQuadrantDimensions() {
 		return QuadrantDimension;
 	}
+	/**
+	 * returns the board dimension
+	 * @return The board dimension
+	 */
 	public int getBoardDimensions() {
 			return BoardDimensions;
 	}
+	/**
+	 * returns the board length
+	 * @return The board length
+	 */
 	public int getBoardLength() {
 		return BoardLength;
 	}
+	/**
+	 * returns the number of fields to remove
+	 * @return The number of fields to remove
+	 */
 	public abstract int getNumbersToRemove();
-
+	
+	/**
+	 * returns the standard board array for the current settings
+	 * @return The standard board array for the current settings
+	 */
 	public int[] getStdBoardArray() {
 		return stdBoardArray;
 	}
+	/**
+	 * returns the valid values
+	 * @return The valid values
+	 */
 	public int[] getValidValues() {
 		return validValues;
 	}

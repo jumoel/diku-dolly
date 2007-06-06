@@ -4,7 +4,7 @@
 package model;
 
 /**
- * @author Julian
+ * Interface to retrieve GameSettings
  *
  */
 public interface GameSettings {
