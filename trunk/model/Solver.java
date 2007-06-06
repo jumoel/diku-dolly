@@ -13,8 +13,8 @@ public abstract class Solver {
 	 * In calling the solver, first solverLevelOne is used, then if this is 
 	 * unable to produce a unique result, call solverLevelTwo. 
 	 * 
-	 * @param fieldNum, the integer value the specific field has on the board
-	 * @param board, the sudoku board used
+	 * @param fieldNum the integer value the specific field has on the board
+	 * @param board the sudoku board used
 	 * @return the result of trying to solve the field, 0 if not solveable.
 	 */
 	public static int solveField(int fieldNum, Board board) {		

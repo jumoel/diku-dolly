@@ -64,7 +64,6 @@ public class Statistics {
 	
 	/**
 	 * Sets the time at which the Sudoku was solved.
-	 * @author Julian
 	 */
 	public void setStopTime() {
 		this.stopTime = Calendar.getInstance();
