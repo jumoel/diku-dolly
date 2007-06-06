@@ -6,8 +6,8 @@ package model;
 import java.util.Random;
 
 /**
- * @author Steen
- *
+ * Helper.java is able to find a field thats solveable, find fields that are
+ * incorrectly filled in and how many mistakes present on the board.
  */	
 	
 public abstract class Helper {

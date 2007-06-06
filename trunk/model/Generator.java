@@ -6,7 +6,7 @@ package model;
 import java.util.Random;
 
 /**
- * @author Steen
+ * The sudoku generator.
  *
  */
 public abstract class Generator {
