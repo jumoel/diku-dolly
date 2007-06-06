@@ -49,7 +49,7 @@ public class CongratulationScreen {
 		/*
 		 * ... and also show the difficultyselection.
 		 */
-		newGame.addActionListener(new DifficultyAction(frame, game, false));
+		newGame.addActionListener(new DifficultyAction(frame, game, true));
 		newGame.setLocation(100, 350);
 		layeredPane.add(newGame, 2);
 		
