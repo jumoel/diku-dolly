@@ -1,14 +1,12 @@
 package tests;
 
-import java.util.Arrays;
 import model.*;
 import junit.framework.TestCase;
 
 /**
- * The JUnit TestCase Class.
- * Tests Helper.findSolveable() and the methods in SudokuMath.
+ * The JUnit TestCase Class for Helper.findSolveable().
  */
-public class Tests extends TestCase {
+public class TestFindSolveable extends TestCase {
 	
 	/**
 	 * First test of findSolveable():
@@ -113,94 +111,5 @@ public class Tests extends TestCase {
 		 */
 		assertTrue(solvedFieldId == 10);
 		assertFalse(exceptionCaught);
-	}
-	
-	/**
-	 * This is the first test of SudokuMath.
-	 * 
-	 * It tests the getRowNumber(), getColumnNumber() and getQuadrantNumber() methods. 
-	 */
-	public void testSudokuMath01() {
-		/*
-		 * A board is created with the fieldId marked that we will be gaining the info from.
-		 * We've given it the value 37 to correspond to with it's fieldId. 
-		 */
-		Board testBoard = new Board(new int[] {
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 37, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0}		
-		);
-		
-		/*
-		 * The fieldId which we will be gaining the info from.
-		 */
-		int getFromThisFieldId = 37;
-		
-		/*
-		 * The results we expect from the row, column and quadrant numbers.
-		 * It has to be reminded that the system is using zero-indexing,
-		 * thus everything in this case is numbered from 0 to 8.
-		 */
-		int expectedRowNumber = 4; 
-		int expectedColumnNumber = 1;
-		int expectedQuadrantNumber = 3;
-
-		/*
-		 * The tests of whether of not the expected ones are true.
-		 */
-		assertTrue(expectedRowNumber == SudokuMath.getRowNumber(getFromThisFieldId, testBoard.getSettings()));
-		assertTrue(expectedColumnNumber == SudokuMath.getColumnNumber(getFromThisFieldId, testBoard.getSettings()));
-		assertTrue(expectedQuadrantNumber == SudokuMath.getQuadrantNumber(getFromThisFieldId, testBoard.getSettings()));
-	}
-	
-	/**
-	 * This is a second test of SudokuMath.
-	 * 
-	 * It tests the methods used with getting whole rows, columns and quadrants.
-	 */
-	public void testSudokuMath02() {
-		/*
-		 * A board is created, that contains a full row, column and quadrant.
-		 */
-		Board testBoard = new Board(new int[] {
-				1, 2, 3, 4, 5, 6, 7, 8, 9,
-				4, 5, 6, 0, 0, 0, 0, 0, 0,
-				7, 8, 9, 0, 0, 0, 0, 0, 0,
-				2, 0, 0, 0, 0, 0, 0, 0, 0,
-				3, 0, 0, 0, 0, 0, 0, 0, 0,
-				5, 0, 0, 0, 0, 0, 0, 0, 0,
-				6, 0, 0, 0, 0, 0, 0, 0, 0,
-				8, 0, 0, 0, 0, 0, 0, 0, 0,
-				9, 0, 0, 0, 0, 0, 0, 0, 0}
-		);
-
-		/*
-		 * The fieldId which we will be gaining the info from.
-		 */
-		int getFromThisFieldId = 0;
-		
-		/*
-		 * The results we expect when getting the whole row, column and quadrant
-		 * from the fieldId.
-		 */
-		int[] expectedRow = 
-			new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		int[] expectedColumn = 
-			new int[] {1, 4, 7, 2, 3, 5, 6, 8, 9};
-		int[] expectedQuadrant = 
-			new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		
-		/*
-		 * The tests of whether or not the expected arrays fits.
-		 */
-		assertTrue(Arrays.equals(expectedRow, SudokuMath.getRowFromPos(getFromThisFieldId, testBoard)));
-		assertTrue(Arrays.equals(expectedColumn, SudokuMath.getColumnFromPos(getFromThisFieldId, testBoard)));
-		assertTrue(Arrays.equals(expectedQuadrant, SudokuMath.getQuadrantFromPos(getFromThisFieldId, testBoard)));
 	}
 }
