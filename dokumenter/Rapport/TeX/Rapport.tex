@@ -1,4 +1,5 @@
 \documentclass[a4paper,11pt,danish]{article}
+
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[danish]{babel}
@@ -6,11 +7,17 @@
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{longtable}
+\usepackage{sudoku}
 \usepackage{count1to}
+
 \date{11. juni 2007}
-\author{Emil Erik Hansen\and Julian Møller \and Klaes Bo Rasmussen \and Steen Nordsmark Pedersen}
+
+\author{Emil Erik Hansen \and Julian Møller \and Klaes Bo Rasmussen \and Steen Nordsmark Pedersen}
 \title{Sudoku til undervisningsbrug}
 \setlength{\headheight}{15pt}
+\setlength{\sudokusize}{4cm}
+\renewcommand*\sudokuformat[1]{\small#1}
+
 \pagestyle{fancy}
 	\lhead{Sudoku til undervisningsbrug}
 	\chead{}
@@ -18,8 +25,6 @@
 	\lfoot{}
 	\cfoot{Side \thepage \ af \ref{TotalPages}}
 	\rfoot{}
-	
-	
 
 \begin{document}
 \thispagestyle{empty}
@@ -27,6 +32,7 @@
 \pagebreak
 
 \tableofcontents
+
 \pagebreak
 
 \section{Formalia}
@@ -34,15 +40,14 @@
 \begin{tabular}{ll}
 Projekttitel & Sudoku til undervisningsbrug \\
 Gruppenr. & 4 \\
-Deltagere & Studerende: \\
-& \indent Emil Erik Hansen \\
-& \indent Julian Møller \\
-& \indent Klaes Bo Rasmussen \\
-& \indent Steen Nordsmark Pedersen \\
-& Instruktor: \\
-& \indent Dennis Franck \\
-& Underviser: \\
-& \indent Georg Strøm \\
+Studerende 
+& Emil Erik Hansen \\
+& Julian Møller \\
+& Klaes Bo Rasmussen \\
+& Steen Nordsmark Pedersen \\
+Instruktor
+& Dennis Franck \\
+Underviser & Georg Strøm \\
 \end{tabular}
 
 \section{Formål}
@@ -57,8 +62,23 @@ Sudoku bliver brugt i folkeskolen i undervisningen til at lære børnene matematik
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
-En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvardranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvardranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvardranter.
+En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvardranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvardranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvardranter. Et eksempel på en tilfældig Sudokuplade kan ses på Figur \ref{fig:Sudoku}.
 
+\begin{figure}[hp]
+	\begin{sudoku}
+	|2|5| | |3| |9| |1|.
+	| |1| | | |4| | | |.
+	|4| |7| | | |2| |8|.
+	| | |5|2| | | | | |.
+	| | | | |9|8|1| | |.
+	| |4| | | |3| | | |.
+	| | | |3|6| | |7|2|.
+	| |7| | | | | | |3|.
+	|9| |3| | | |6| |4|.
+	\end{sudoku}
+	\caption{En Sudoku spilleplade}
+	\label{fig:Sudoku}
+\end{figure}
 I hver række, kolonne og kvardrant skal der være præcis 1 af hver af de 9 tal. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
 
 En spiller skal således kunne få en sudoku plade serveret med en justerbar sværhedsgrad og have mulighed for at udfylde felterne på plade samt ændre deres egne placerede tal eller fjernelse af samme. Brugeren skal have mulighed for at få hjælp til løsningen, eller til at komme videre hvis han/hun sidder fast. Dette skyldes det basale krav om at hjælp skal være muligt at få uden at skulle spørge en udefrakommende. Man skal ligeledes kunne få af vide når spillet er færdigt, få et nyt spil på et hver tidspunkt og afslutte programmet når man har lyst. Programmet skal virke indbyddende og sjovt samt let tilgængeligt for mindst den givne brugergruppe.
@@ -191,12 +211,49 @@ Maskotten, fåret Dolly, følger brugeren hele vejen gennem spillet. Fåret er prim
 
 
 \section{Teknisk beskrivelse}
+
+\subsection{Programlogik}
+Når brugeren starter programmet aktiveres \texttt{Control}, der opretter en \texttt{JFrame} \footnote{En \texttt{JFrame} er hovedvinduet i en Java applikation.} eller en \texttt{JApplet}\footnote{En \texttt{JApplet} er ''hovedvinduet'' i en applet, der kan vises i internetbrowsere.}, alt efter hvordan programmet er blevet aktiveret. Startes programmet som applet, oprettes der en \texttt{MainApplet}-klasse, mens der oprettes en \texttt{MainWindow}-klasse hvis spillet eksekveres på normal vis.
+
+Til vinduet tilføjes der nu spilleplade, maskot, hjælpetekst, kontrolknapper og menulinje, hvorefter ''Nyt spil''-skærmen vises. Når brugeren har valgt en sværhedsgrad genereres der en Sudoku af den valgte sværhedsgrad, hvorefter spillepladen aktiveres og den primære programløkke initialiseres. Det er her, det væsentligste i Figur \ref{fig:Flowdiagram} findes.
+
+Her tjekkes der ved hver ''iteration''\footnote{Der er som sådan ikke tale om iterationer, da ''løkken'' blot genstarter hver gang brugeren har foretaget et valg og ikke fast, som i f.eks. en \texttt{for}- eller \texttt{while}-løkke.} om Sudokuen er løst. Hvis det er tilfældet, vises ''Tillykke''-skærmen, hvor brugeren får vist statistik og har mulighed for at starte et nyt spil.
+
+Hvis Sudokuen ikke er løst, har brugeren mulighed for at placere et tal eller bede om hjælp. Placeres der et tal på spillepladen starter ''løkken'' forfra, idet der igen tjekkes om Sudokuen er løst.
+
+Hvis brugeren beder om assistance i stedet for at placere et tal på pladen aktiveres hjælpefunktionen. Den starter med at tjekke om der er nogle forkert placerede tal. Hvis det er tilfældet markeres felterne med rød og maskotten fortæller brugeren at der er noget galt. Er der ingen fejl kaldes Sudokuløseren, der finder et felt, som kan løses udelukkende ved hjælp af de basale Sudokuregler om tallenes placering. Er der fejl på spillepladen vises der ikke hjælp til løsbare felter. Hvis brugeren vil have vist hjælp til løsbare felter må de fjerne de forkerte tal først. Er der i forvejen markeret et løsbart felt fjernes den forrige markering når en ny vises. Når hjælpfunktionen er færdig afventer programmet interaktion fra brugeren igen, altså uden at tjekke om Sudokuen er færdig, eftersom der ikke er ændret i spillepladen.
+
 \begin{figure}[htbp]
 	\centering
 		\includegraphics[scale=0.50]{billeder/Flowdiagram.png}
 	\caption{Flowdiagram over programforløb}
 	\label{fig:Flowdiagram}
 \end{figure}
+
+\subsection{Logik i \texttt{Control}}
+\texttt{Control} indeholder de primære indgangspunkter for programmet, hvadenten det startes som applet eller applikation.
+
+\subsection{Sudokuløser}
+Sudokuløseren består af flere dele, den del der bliver kaldt direkte, "solveField", som så også fungerer som guide til resten af løseren. En \texttt{solverLevelOne} og en \texttt{solverLevelTwo}. Hver af disse løserniveauer kan tage en løsning et niveau dybere. Den første kan kun kigge på feltet selv og finde en løsning til det ved at kigge på de felter der umiddelbart er i samme kvadrant, kolonne og række. \texttt{solverLevelTwo} vil kigge på om det givne felt er det eneste sted hvori der kan stå et tal, i forhold til rækken, kolonnen og kvardranten, hvis dette sted er det eneste bliver det returneret.
+
+\subsubsection{\texttt{solveField}}
+Kalder solverLevelOne, gemmer et resultat array af hvilke værdier der kom ud af den solver, det vil sige, de mulige værdier for en endelig løsning.
+
+Derefter, hvis der kun er en mulig løsning tilbage fra solverLevelOne bliver dette returneret til den funktion solveField blev kaldt fra. Hvis ikke denne løsning er unik vil resultat arrayet blive sendt videre til solverLevelTwo. Resultatet herfra bliver derefter returneret.
+
+\subsubsection{\texttt{solverLevelOne}}
+Denne solver får input som et array af mulige resultater for sit eget felt, positionen af feltet på boarded og boarded selv. Den vil derefter kopiere arrayet af mulige værdier til sit eget locale array og så systematisk fjerne, eller rettere sætte de pladser i arrayet til 0, som feltet ikke kan have som værdi. Det vil sige, tjekke de værdier feltet har som naboer i dets kvadrant, kolonne og række. Hver af disse værdier er ikke mulige løsninger og bliver derfor fjernet fra arrayet af mulige løsninger.
+
+Når der ikke er flere felter at tjekke slutter funktionen og sender det nye array af mulige værdier tilbage.
+
+\subsubsection{\texttt{solverLevelTwo}}
+Løseren her er noget mere advanceret end den foregående. Den får de samme inputs, men skal bearbejde dem meget forskelligt fra den foregående.
+
+Her er der allerede tjekket på den måde som solver level 1 gør det for feltet selv, og der værdier er ikke inkluderet i de mulige værdier. Der bliver lavet 3 kopier af dette array til brug for de 3 lidt forskellige algoritmer der kommer efter.
+Den første algoritme tjekker alle de andre felter igennem som findes i samme række som feltet der skal løses, finder deres position en ad gangen.  Derefter køres solverLevelOne på alle disse felter, de mulige løsninger de har bliver fjernet fra de mulige løsninger for det felt der skal løses. Hvis der efter en endt operation her kun er 1 løsning tilbage, det vil sige at det givne felt er det eneste felt i dens række som kan indeholde et bestemt tal vil det være løsningen på feltet. Dette gælder fordi der skal være præcist 1 af hver værdi i hver række, så hvis der ikke er andre muligheder for at det tal kan være der skal det være på den plads. Derfor vil dette tal blive returneret til solveField.
+Den næste algoritme vil tjekke kolonnen tilhørende til det enkelte felt, og så ellers gå efter samme princip som med den foregående.
+
+Også den tredje algoritme gør det samme, dog er algoritmen for at finde start positionerne for de andre felter i samme kvadrant noget mere avanceret end dem for at finde positioner for række og kolonne felter.
 
 \subsection{Generator}
 \label{ref:Generator}
