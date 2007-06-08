@@ -138,12 +138,15 @@ Vi valgte ligeledes at tilføje et selvstændigt krav for at det skulle være mulig
 Indeholder punkterne der omhandler at programmet skal være sjovt og underholdende. Her er det originale punkt delt op i 2 mere konsekvente punkter, da vi fandt at beskrivelsen af det originale krav var for løst. De 2 nye punkter er at der skal være en maskot der følger brugeren gennem programmet og eventuelt bruges til at videresende beskeder fra programmet til brugeren. Med denne maskot har det selvfølgelig været meningen at den skal kunne være et som børnene skal finde sødt, og passe ind i den resterende del af brugergrænsefladen.
 
 \subsubsection{Kategorien TEKNIK}
-Indeholder kravene der omhandler de tekniske krav til computeren som programmet skal køres på. Vi har her valgt at sætte version 1.5 java som et krav istedet for den nyeste version. Grunden til dette valg er at java 1.5 er en mere udbredt standard, og vi ikke vil have at programmets krav gør det svært.
+Vi valgte at basere det tekniske grundlag på en platform uafhængig af styresystem, da det dermed ikke er nogen hindring at bruge f.eks. Linux - et problem man ellers ofte kan komme ud for i mange kommercielle softwareprodukter.
 
-Foruden det, valgte vi at gøre det til et krav at programmet ligeledes skal kunne køres som en applet, således at programmet kan køres fra internettet, istedet for at programmet skal ligge på hverenkel computer der skal benytte programmet. Dette vil være en klar fordel når en hel skoleklasse skal bruge programmet. Programmet ligges simpelthen på en (intern) internetside, og brugerene åbner således bare denne.
+Foruden det, valgte vi at gøre det til et krav at programmet ligeledes skal kunne køres i en internetbrowser, istedet for at programmet skal ligge på hverenkel computer der skal benytte programmet. Dette vil være en klar fordel når en hel skoleklasse skal bruge programmet. Programmet ligges simpelthen på en (intern) internetside, og brugerene åbner således bare denne. Dette vil også kunne øge programmets udbredelse mere end en eksekverbar fil vil kunne, idet det er nemmere at åbne en internetside i en browser i stedet for at skulle finde programmet, downloade det og derefter køre det.
+
+De to ovenstående punkter fik os til at vælge at basere vores program på Java 1.5-platformen, da programmet dermed både vil kunne afvikles som eksekverbar fil men også som applet i en internetbrowser. Grunden til valget af version 1.5 er at den er mere udbredt end den i skrivende stund nyeste 1.6-udgave, og vi ikke vil have at programmets krav gør det umuligt at afvikle programmet fordi brugerne ikke står med de nyeste udgaver af deres software, hvilke grunde der end måtte ligge bag.
 
 \subsection{Begrænsninger}
-Der er mange mugligheder for at tilføje moduler til sudokuspillet. 
+Der er mange muligheder for at tilføje moduler til Sudokuspillet.
+
 Vi har blandt andet overvejet mulighederne for en highscore liste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. Listen over highscores skulle primært inkluderes for at give videre incitament til at fortsætte med at spille spillet, for - naturligvis - at kunne præge topscorerlisten.
 Selvom denne funktion ville være både sjov og god for spillet at have med går den unødvendigt uden for opgave kravene og derved er det ikke noget vi vil bruge tid på at implimentere.
 
@@ -202,6 +205,15 @@ Vores Sudokuplader er i programmet repræsenteret som et simpelt array af heltal,
 Vi har valgt denne primitive datastruktur da den simplificerer de matematiske funktioner, der er nødvendige for at kunne operere med Sudokuplader, fordi hvert element i et array har en værdi og et Id-nummer. Desuden er et array en af de hurtigste datatyper i Java, hvis man ved på hvilken plads elementerne skal hentes fra eller indsættes på, og da dette er veldefineret i et Sudokuspil fandt vi det sensibelt at gøre brug af arrays. Høj hastighed var også et vigtigt kriterie for os, i forbindelse med vores Sudokugenerator, så på dette punkt faldt det os også naturligt at bruge arrays af heltal.
 
 Naturligvis kunne vi have oprettet et array af felt-objekter, men eneste umiddelbare fordel vi så ved dette var udvidelsen af \texttt{Observer}-\texttt{Observable}-designparadigmet, som beskrevet i afsnit \ref{ref:ObserverObservable}.
+
+\subsection{Algoritmer}
+I vores indledende udviklingsfase undersøgte vi diverse muligheder for at bruge en i forvejen lavet Sudokugenerator og -løser. Vi fandt dog ingen med passende licenser, der samtidig var lette at implementere i vores eget program.
+
+Derfor endte vi med at tage beslutningen om selv at udvikle både generatoren og løseren. På denne måde var vi også sikre på at vi ville ende med singulære Sudokuer. Derudover kunne vi også selv bestemme hvordan de forskellige sværhedsgrader skulle håndteres og gradueres, så vi nemt kunne ende med sværhedsgrader der passer til vores målgruppe.
+
+Dette betød dog også at vi fik tilføjet en væsentlig arbejdsbyrde, idet vi også skulle konstruere hjælpefunktioner til at regne på Sudokuplader samt selv finde ud af hvordan sværhedsgrader kunne defineres.
+
+Alt i alt føler vi dog at alt dette har givet os en mere solid løsning, fordi vi selv har kontrol over alle aspekter af programmets bagvedliggende funktionalitet.
 
 \section{Grafisk design}
 \label{ref:GrafiskDesign}
@@ -359,19 +371,40 @@ Bruger testene er til for at sikre sig at programmet er imødekommende og behager
 \subsection{Tilgængelighed, tekst, grænseflade og motivation}
 \label{ref:BrugertestTilgaengelighed}
 Vores program er designet til undervisningsbrug i 1. - 3. klasse. Vi har derfor testet vores program på 6 elever fra 2.B på Dronninggårdsskolen i Holte. De blev præsenteret for programmet og derefter overladt til dem selv uden instruktioner. Børnene blev så observeret mens de brugte programmet. Der blev taget notater undervejs og da første omgang var afsluttet blev de diskuteret. Programmet blev rettet til efter resultaterne af første afprøvning og børnene blev præsenteret for den opdaterede udgave af programmet. Efter anden omgang som forløb som første gav børnene deres feedback.
-Et af vores hovedpunkter i feedbacken var hvor vidt børnene kunne lide det grafiske layout. Da vi selv har tegnet det hele, for ikke at bruge noget materiale beskyttet af ophavsræt, var der uvished om hvorvidt vores maskot var tiltalende for børn. Heldigvis var brugerne meget positive overfor både vores maskot, fåret Dolly, og det resterende grafiske layout.
+Et af vores hovedpunkter i feedbacken var hvor vidt børnene kunne lide det grafiske layout. Da vi selv har tegnet det hele, for ikke at bruge noget materiale beskyttet af ophavsret, var der uvished om hvorvidt vores maskot var tiltalende for børn. Heldigvis var brugerne meget positive overfor både vores maskot, fåret Dolly, og det resterende grafiske layout, som de også fandt let at bruge.
 
 \include{BrugertestBoern}
 
-\subsection{Linuxkompabilitet}
-Da vi ikke havde en ordentlig linux maskine i vores gruppe måtte vi låne en. Søren Houen fra Gruppe otte havde installeret Ubuntu 6.06 med kerne 2.18 og blev vores testcomputer til denne test.
+Tabel \ref{tab:BrugertestBoern} viser alle vores testresultater fra første omgang af brugertestene. Som det kan ses var størstedelen af vores test vellykkede, og børnene gav udtryk for at størstedelen af vores program var intuitivt at bruge.
 
-Vi testede at al væsentlig funktionalitet var til stede og fungerede på Linux-maskinen, såsom at det var muligt at placere tal på spillepladen, vælge sværhedsgrad, få hjælp og løse Sudokuer.
+Ét punkt fejlede dog: Hjælpefunktionens udformning. Mange børn gjorde slet ikke brug af hjælpefunktionen, idet vi oprindeligt havde gjort maskotten i stand til at reagere positivt eller negativt på brugernes talvalg. Dermed var der ikke behov for børnene for at bruge hjælpefunktionen, og ej heller behov for selv at løse Sudokuen, da vi var kommet til at give en genvej til hurtigt at løse Sudokuspillene. Endvidere så de få der brugte hjælpefunktionen ikke ud til at forstå de med grønt markerede felters betydning. Meningen med de røde feltmarkeringer der indikerede fejl, var dog klar nok og børnene blev med det samme opmærksomme på at der var noget galt.
+
+Efter første testsession ændrede vi maskottens opførsel, så den ikke længere reagerede positivt eller negativt på talvalg, men blot henviste til hjælpefunktionen, hvis ikke den skulle vise hjælp eller gøre brugeren opmærksom på fejl. Derudover ændrede vi teksten når hjælpen blev brugt, så det klart fremgik at feltet kun havde én mulig værdi. Under anden testsession blev børnenes handlingsmønstre ændret gevaldigt, idet de ikke længere kunne misbruge fårest reaktion på deres talvalg til at afgøre om et felt var udfyldt korrekt eller ej. Børnene begyndte i stedet at bruge hjælpefunktionen til at kontrollere om de havde lavet fejl og også til at få vink til videre fremgang, hvis de sad \emph{helt} fast i en Sudoku. Dette handlingsmønster stemte mere overens med vores oprindelige intentioner, og overdreven brug af hjælpefunktionen viste sig da også på statistikoversigten, hvormed ``Antal fejl'' og ``Antal hjælp'' også kunne indgå i børnenes individuelle opfattelse af deres præstation, samt deres naturlige sammenligning med kammeraternes løsningsstatistikker.
+
+Sværhedsgraderne viste sig også at være passende for målgruppens faglige niveau. Alle børnene kunne løse en ``Let'' Sudoku inden for 10 minutter. Størstedelen var også i stand til at løse Sudokuer på ``Mellem''-niveauet, omend det naturligvis tog lidt længere tid at løse pladerne. Den højeste sværhedsgrad udfordrede heldigvis børnene, og kun to steder blev den løst på under 20 minutter, hvormed vores intention med sværhedsgraden var indfriet.
+
+\subsection{Linuxkompabilitet}
+Da vi ikke havde en ordentlig linux maskine i vores gruppe måtte vi låne en. Søren Houen fra Gruppe otte havde installeret Ubuntu 6.06 (kernel 2.18) på sin bærbare computer og udlånte den venligst som testcomputer til denne test.
+
+Vi testede at følgende funktionalitet var mulig:
+\begin{itemize}
+	\item Placering og fjernelse af tal på spillepladen.
+	\item Start af Sudoku med alle tre sværhedsgrader.
+	\item Løsning af Sudokuer.
+	\item Visning af statistik.
+	\item Brug af menu til at starte nyt spil samt afslutte programmet.
+	\item Markering af løsbart felt vha. hjælpefunktionen.
+	\item Markering af forkert placerede felter vha. hjælpefunktionen.
+\end{itemize}
+
+I henhold til forventningerne om bevarelse af funktionalitet på tværs af platforme ved brug af Java-platformen, blev der ikke opdaget nogen problemer i de test vi udførte.
 
 \subsection{Appletkompatibilitet}
 Jævnfør vores kravspecifikation, skulle vores program fungere som en Java Applet i de to internetbrowsere Internet Explorer (version 5.5 og derover) samt Mozilla Firefox (version 1.5 og derover).
 
 Vi udførte derfor test, i stil med dem i afsnittet om Linuxkompatibilitet, der kontrollerede hvorvidt den nødvendige funktionalitet var til stede.
+
+Også i henhold til forventningerne om bevarelse af funktionalitet ved brug som Java Applet, blev der heller ikke i denne test opdaget nogen problemer.
 
 \section{Konklusion på test}
 
