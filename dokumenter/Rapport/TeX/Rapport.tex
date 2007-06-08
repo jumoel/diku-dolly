@@ -107,21 +107,34 @@ Fra interessenten fik vi stillet kravene om at skal være muligt at:
 \item \ldots programmet skal virke underholdende og sjovt.
 \end{itemize}
 
-Ovenstående krav fra interessenten, blev delt op i katorierne SUDOKU, BRUGBARHED, MOTIVATION og TEKNIK. Vi har tilføjet ydereligere krav, da vi syntes de var nødvendige for at opnå et tilfredsstillende produkt til interessenten, der kan give børnene det faglige indhold med programmet, samtidigt med at blive underholdt. Derudover er de tekniske krav for selve computeren sat lavt således at det langt fra er nødvendigt at skolerne har nye og hurtige computere.
+Ovenstående krav fra interessenten, blev delt op i katorierne \emph{SUDOKU}, \emph{BRUGBARHED}, \emph{MOTIVATION} og \emph{TEKNIK}. Vi har tilføjet ydereligere krav, da vi syntes de var nødvendige for at opnå et tilfredsstillende produkt til interessenten, der kan give børnene det faglige indhold med programmet, samtidigt med at blive underholdt. Derudover er de tekniske krav for selve computeren sat lavt således at det langt fra er nødvendigt at skolerne har nye og hurtige computere.
 
-\subsubsection{Kategorien SUDOKU}
+\subsubsection{Kategorien Sudoku}
 Kategorien indeholder de første tre af kravene, direkte konverteret ind til kravspecifikationen. Det er således her de egentlige spiltekniske krav af selve Sudoku-spillet er defineret mere præcist. 
 
 Programmet skal naturligvis kunne generere Sudokuer, således at vi sikrer os at der altid er nye udfordringer til brugeren. At have en generator fremfor en enorm mængde predefinerede Sudokuer liggende. Dels ville dette fylde en unødvendigt stor mængde plads, og ville desuden have et betydeligt mere begrænset udvalg. Med en generator er mængden af Sudokuer næsten ubegrænset, og sikrer at der - i teorien - aldrig vil opstå 2 ens Sudoku i sekvens. En dybere teknisk beskrivele af generatoren kan læses på side \pageref{ref:Generator}.
 
-Angående sværhedsgrader, valgte vi at sætte defintionen i kravspecifikationen til at der skulle kunne vælges ... der mangler tekst her... Vi valgte at sætte sværhedsgraderne som et underkrav til at der skulle kunne genereres sudoku, da det ikke ville give mening at definere sværhedsgrader på noget, der i forvejen var umuligt at løse.
+Angående sværhedsgrader, valgte vi at sætte defintionen i kravspecifikationen til at være meget åben for at give os muligheden for at kunne brug af hvad type af sværhedsgrad vi ønskede. I en Sudoku er der forskellige måder at gøre denne mere udfordrende, eksempelvis hvor mange felter der er udfyldt i forvejen, størrelsen af Sudokuen samt hvilke niveau den er genereret på. Vi valgte at sætte sværhedsgraderne som et underkrav til at der skulle kunne genereres sudoku, da det ikke ville give mening at definere sværhedsgrader på noget, der i forvejen var umuligt at løse. I sidste ende valgte.
 
-Børnene skulle derudover være i stand til at få hjælp til at løse deres Sudoku.
+Børnene skulle derudover være i stand til at få hjælp til at løse deres Sudoku. Denne funktion er utroligt åben, da typen af hjælp der kan gives er meget forskellig. Kravet valgte vi igen at sætte meget åbent, men vores eksempel med at markere felter der kunne løses udfra informationen der kunne ses, havde vi allerede på det givne tidspunkt besluttet os for at følge. Grunden til dette var at vi ikke ville have at brugeren skulle kunne løse Sudokuen udelukkende ved brug af hjælpefunktionen. En yderligere idé vi senere fik var at, i tilfælde af fejl, disse skulle markeres når hjælpefunktionen blev udført. Hjælpefunktionen er videre teknisk beskrevet på side \pageref{ref:Hjælpefunktion}.
 
-\subsubsection{Kategorien BRUGBARHED}
-Indeholder punkterne der omhandler anvendeligheden og kravene læsefærdighed. Som et krav syntes vi at der ved lettilgængelighed mentes at brugeren skulle kunne komme igang med at benytte programmet indenfor et meget kort stykke tid, hvilket sætter et stort krav til at vores grafiske brugergrænseflade er overskuelig og ligetil. 
+mentalnote:
+- programmet skal være let anvendeligt.
+- der ikke kræves for høje læsefærdigheder.
+kravspec: lettilgængelighed, tekst, styring, valg af tal
+end mentalnote:
 
-Læsefærdighedskravene valgte vi at definere som at teksten ikke bør have en LIX-værdi over 8, men ville være iorden, så længe børnene forstod den tekst der blev skrevet. Derudover valgte vi at sætte det som et krav at brugeren skulle kunne manurere sig rundt i programmet udelukkende ved brug af musen. Dette syntes vi var passende for at børnene kan holde fokus på spillet, uden at skulle kigge ned på tastaturet for at kigge efter knapper. I standard Sudoku er øjnene ligeledes antid på spillepladen. Disse 2 krav er sat som subkrav til anvendeligheden, da vi mente at de var nødvendige for at opnå en letanvendelighed for vores målgruppe. 
+\subsubsection{Kategorien Brugbarhed}
+Kategorien indeholder det fjerde og femte krav på listen fra interessenten. I denne kategori er kravene om selve brugbarheden af programmet, og hvor lettilgængeligt det er, beskrevet.
+
+Vi satte det som det primære krav at programmet skulle være let anvendeligt for brugerene, dvs. at der såvidt muligt ikke måtte være tvivl om hvordan programmet videre forløber, og hvordan de forskellige handlinger udføres. Dette krav er umildbart meget tæt opad kravet stillet af interessenten, men med den forskel at vi har begrænset vores betydeligt ved at sætte en begrænsning på, der kræver at brugeren højst må have brugt 5 minutter før vedkommende har styr på hvordan det fungerer. Grunden til at vi satte denne begrænsning, var vi syntes begrebet ''let anvendeligt'' var meget løst, og krævede en dybere definering. På baggrund af det er dette krav et superkrav til de to følgende krav i denne kategori.
+
+Naturligvis optræder der noget tekst i programmet, og denne vil vi naturligvis også gerne have skal opretholde brugbarhedskravet ved at være let at læse og ikke kræve de store sprogfærdigheder af brugerene, da disse i største tilfælde vil være børn fra vores målgruppe. For at have et nogenlunde udgangspunkt, sigtede vi efter at LIX-tallet maksimalt skulle ligge på 8, men det ville være godtaget hvis det viste sig at børnene forstod den skrevne tekst. Dette fik vi intensivt testet ved vores brugertest, hvor børnene blev overvåget mens de brugte programmet, og udspurgt om de forstod teksten. Disse er beskrevet ydereligere i afsnittet ''Tilgængelighed, tekst, grænseflade og motivation'' på side \pageref{ref:BrugertestTilgængelighed}.
+
+Vi valgte selv at tilføje et krav om styring af programmet, da vi syntes at ville hjælpe betydeligt på hvor let anvendeligt programmet var, hvis brugeren kunne nøjes med udelukkende at bruge musen. Alternativet ville være at tastaturet skulle i brug, og situationen hvor brugeren var nødt til at kigge ned på tastaturet kunne opstå, og derved miste fokus fra spillet. I almindeligt Sudoku på papir er der til sammenligning ikke brug for at personen der løser den. // Emil goes nuts
+
+Derudover valgte vi at sætte det som et krav at brugeren skulle kunne manurere sig rundt i programmet udelukkende ved brug af musen. Dette syntes vi var passende for at børnene kan holde fokus på spillet, uden at skulle kigge ned på tastaturet for at kigge efter knapper. I standard Sudoku er øjnene ligeledes antid på spillepladen. Disse 2 krav er sat som subkrav til anvendeligheden, da vi mente at de var nødvendige for at opnå en letanvendelighed for vores målgruppe. 
+
 Vi valgte ligeledes at tilføje et selvstændigt krav for at det skulle være muligt at slette de tal man sætter, i tilfælde af at disse er forkerte, ligesom man i en normal Sudoku man viske sine tal ud, hvis man har lavet en fejl.
 
 \subsubsection{Kategorien MOTIVATION}
@@ -272,6 +285,10 @@ Selvfølgelig kan det felt være for svært at løse med den givne algoritme, men hv
 \label{ref:Generator}
 Sudokugeneratoren bruger Sudokuløseren til at generere nye Sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
 
+\subsection{Hjælpefunktion}
+\label{ref:Hjælpefunktion}
+[placeholder]
+
 \section{Afprøvning}
 Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
 
@@ -288,6 +305,7 @@ Da vores Sudoku generator skulle testes var der kun en umiddel bar fremgangsmåde
 Der blev lavet to forskellige brugertest. Den ene tester tilgængelighed, tekst, grænseflade og motivation i programmet. Den anden er en test af linuxkompatibilitet. 
 
 \subsubsection{Tilgængelighed, tekst, grænseflade og motivation}
+\label{ref:BrugertestTilgængelighed}
 Vores program er designet til undervisningsbrug i 1. - 3. klasse. Vi har derfor testet vores program på 6 elever fra 2.B på Dronninggårdsskolen i Holte. De blev præsenteret for programmet og derefter overladt til dem selv uden instruktioner. Børnene blev så observeret mens de brugte programmet. Der blev taget notater undervejs og da første omgang var afsluttet blev de diskuteret. Programmet blev rettet til efter resultaterne af første afprøvning og børnene blev præsenteret for den opdaterede udgave af programmet. Efter anden omgang som forløb som første gav børnene deres feedback.
 Et af vores hovedpunkter i feedbacken var hvor vidt børnene kunne lide det grafiske layout. Da vi selv har tegnet det hele, for ikke at bruge noget materiale beskyttet af ophavsræt, var der uvished om hvorvidt vores maskot var tiltalende for børn. Heldigvis var brugerne meget positive overfor både vores maskot, fåret Dolly, og det resterende grafiske layout.
 
