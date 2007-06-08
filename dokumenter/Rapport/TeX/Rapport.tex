@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[danish]{babel}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
 \usepackage{count1to}
 \date{11. juni 2007}
 \author{Emil Erik Hansen\and Julian Møller \and Klaes Bo Rasmussen \and Steen Nordsmark Pedersen}
@@ -52,7 +53,7 @@ Sudoku bliver brugt i folkeskolen i undervisningen til at lære børnene matematik
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
-En sudoku er en slags spilleplade med "som regel" 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvardranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld "normal" spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvardranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvardranter.
+En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvardranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvardranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvardranter.
 
 I hver række, kolonne og kvardrant skal der være præcis 1 af hver af de 9 tal. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
 
@@ -103,36 +104,77 @@ Det andet hovedpunkt er vores Sudokugenerator. Den skal kunne generere korrekte 
 Endvidere skal systemet være let at udvide med ny funktionalitet, hvilket er en af grundende til at vi har valgt at skrive i et objektorienteret sprog. Vi har også gjort brug af Model-View-Control-designparadigmet, da det tillader nem udvidelse af én komponent uden at redigere nævneværdigt i andre. 
 
 \subsection{MVC}
-Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model. Den indeholder de tre moduler Model, View og Control. Dette valg giver gode muligheder for videreudvikling af programmet da MVC modellen giver muligheder for at udskifte dele af programmet uden det påvirker de andre. Det fulde design dokument uddyber designet og kan findes som bilag på side XXXXX.
+Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model. Den indeholder de tre moduler Model, View og Control. Dette valg giver gode muligheder for videreudvikling af programmet da MVC modellen giver muligheder for at udskifte dele af programmet uden det påvirker de andre. Det er desuden nemt at vedligeholde, da al programlogikken ligger i én seperat del, komplet adskilt fra programmets udseende og data. Derudover kan man nemt f.eks. skifte spillets ''motor'' - igen uden at skulle ændre hverken programlogikken eller den grafiske grænseflade. Det fulde design dokument uddyber designet og kan findes som bilag på side \pageref{bilag:design}. \ref{fig:MVC} viser det overordnede samspil mellem de tre dele.
 
-\subsubsection{Model}
-Model indeholder selve regnemaskinen i programmet. Det er i dette modul at Sudokuen bliver genereret og løst. Model indeholder oplysninger om de data der forekommer i programmet (f.eks. hvordan Sudoku-spille plader ser ud). Modulet indeholder også metoder til at ændre disse data.
+\begin{figure}[hp]
+	\centering
+		\includegraphics{billeder/MVC.png}
+	\caption{Model-View-Controller samspillet}
+	\label{fig:MVC}
+\end{figure}
 
-\subsubsection{View}
-View er den grafiske repræsentation af programmet. Det indeholder hele GUI'et og sørger for at dette bliver vist korrekt. View henter oplysninger fra model om hvordan de ting der skal vises ser ud.
+\subsubsection{\texttt{Model}}
+\texttt{Model} indeholder selve ''regnemaskinen'' i programmet. Det er i dette modul at Sudokuen bliver genereret. Det er også her vores Sudokuløser huserer. Vi bruger Sudokuløseren dels som hjælpefunktion til generatoren og dels som baggrund for hjælpefunktionen. \texttt{Model} indeholder oplysninger om de data der forekommer i programmet (f.eks. hvordan Sudoku-spille plader ser ud). Modulet indeholder også metoder til at ændre disse data. Endvidere indeholder \texttt{Model} også indstillinger for sværhedsgraderne samt en klasse der holder styr på spilstatistikker.
 
-\subsubsection{Control}
-Control er det modul der styrer programmet. Det er Control der bliver kaldt når programmet startes. Det sender besked til model om at generere en løsbar Sudoku hvorefter det kalder View modulet til at lave en grafisk repræsentation som brugeren så kan interagere med.
+\subsubsection{\texttt{View}}
+\texttt{View} er den grafiske repræsentation af programmet. Det indeholder hele den grafiske brugergrænseflade og sørger for at dette bliver vist korrekt. \texttt{View} henter oplysninger fra \texttt{Model} om hvilke data der skal være i de viste dele. \texttt{View} bliver kontrolleret af \texttt{Control}, så der skiftes mellem de forskellige skærmbilleder og så der bliver udført handlinger
 
-\subsection{Grafisk design}
-Det grafiske design er en væsentlig den af vores projekt. Da det skal appellere til børn er det meget vigtigt at brugerne kan lide det og føler det imødekommende. Dette kan dog kun afgøres i bruger test, men det er muligt at gøre tingene simple, men flotte før det er muligt at teste det. Vores brugergrænseflade består af tre skærmbilleder "Vælg Sudoku", "Sudoku" og "Tillykke.
+\subsubsection{\texttt{Control}}
+\texttt{Control} er det modul der styrer programmet. Det er \texttt{Control} der bliver kaldt når programmet startes. Det sender besked til \texttt{Model} om at generere en løsbar Sudoku hvorefter det kalder \texttt{View} modulet til at lave en grafisk repræsentation som brugeren så kan interagere med. Det er også i \texttt{Control} at handlinger der skal udføres når man trykker på knapper, menupunkter o.l., ligger. Disse bliver vedhæftet \texttt{View} når den grafiske repræsentation oprettes.
+
+\subsection{\texttt{Observer} og \texttt{Observable}}
+Udover \texttt{MVC} paradigmet, har vi også implementeret Java-mønstrene \texttt{Observer} og \texttt{Observable}. Disse gør det muligt for klasser at overvåge andre klasser. På den måde kan man i en \texttt{Observable}-klasse gøre alle \texttt{Observer}-klasser der overvåger den pågældende klasse opmærksom på at indholdet i klassen er ændret. På den måde kan \texttt{Observer}-klasserne selv sørge for at gøre hvad de nu har brug for med den nye data.
+
+Vi har implementeret det så \texttt{model.Board} implementerer \texttt{Observable} mens \texttt{view.Board} implementerer \texttt{Observer} og overvåger \texttt{model.Board}. På den måde bliver spillepladen gentegnet og fyldt med frisk data når der startes et nyt spil.
+
+På grund af tidspres var det denne lille og forholdsvis simple metode vi gjorde brug af, og ikke en større udgave hvor f.eks. hvert felt på spillepladen implementerede \texttt{Observer} og overvågede det specielle stykke data i \texttt{model.Board} som de viste.
+
+\section{Grafisk design}
+Det grafiske design er en væsentlig den af vores projekt. Da det skal appellere til børn er det meget vigtigt at brugerne kan lide det og føler det imødekommende. Dette kan dog kun afgøres i bruger test, men det er muligt at gøre tingene simple, men flotte før det er muligt at teste det. Vores brugergrænseflade består af tre skærmbilleder ''Vælg Sudoku'', ''Sudoku'' og ''Tillykke''.
 
 \subsubsection{Vælg Sudoku}
-På dette skærmbillede har brugeren valget mellem en "Let", "Mellem" og "Svær" Sudoku. Når en af disse er valgt fortsættes der til næste skærmbillede.
+På dette skærmbillede har brugeren valget mellem en ''Let'', ''Mellem'' og ''Svær'' Sudoku. Når en af disse er valgt fortsættes der til næste skærmbillede.
+
+Figur \ref{fig:Vaelg_Sudoku} viser hvordan dette skærmbillede ser ud.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=5cm]{billeder/Vaelg_Sudoku.png}
+	\caption{Skærmen hvor brugeren kan vælge en sværhedsgrad}
+	\label{fig:Vaelg_Sudoku}
+\end{figure}
 
 \subsubsection{Sudoku}
 Sudoku skærmbilledet består af en menulinje, en Sudoku spille plade og to knapper. Fra menulinjen er det muligt at starte et nyt spil, lukke spillet, få hjælp til at læse Sudokuen, og at få information om hvor de generelle Sudoku regler kan findes. 
 På Sudoku pladen kan man ved hjælp af musen indsætte og fjerne tal.
-I højre side finder man de to knapper "Hjælp" og "Nyt spil" som giver brugeren mulighed for at få hjælp til at løse Sudokuen samt at komme tilbage til det foregående skærmbillede og derved starte en ny Sudoku.
+I højre side finder man de to knapper ''Hjælp'' og ''Nyt spil'' som giver brugeren mulighed for at få hjælp til at løse Sudokuen samt at komme tilbage til det foregående skærmbillede og derved starte en ny Sudoku.
+
+Figur \ref{fig:Spilleplade} viser hvordan dette skærmbillede ser ud.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=5cm]{billeder/Spilleplade.png}
+	\caption{Sudoku spillepladen}
+	\label{fig:Spilleplade}
+\end{figure}
 
 \subsubsection{Tillykke}
-Det sidste skærmbilledet er "Tillykke" billedet. Der vises statistik for den løste Sudoku samt en knap til at starte et nyt spil.
+Det sidste skærmbilledet er ''Tillykke'' billedet. Der vises statistik for den løste Sudoku samt en knap til at starte et nyt spil.
+
+Figur \ref{fig:Tillykke} viser hvordan dette skærmbillede ser ud.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=5cm]{billeder/Tillykke.png}
+	\caption{Tillykke-skærmen der vises når en Sudoku er løst}
+	\label{fig:Tillykke}
+\end{figure}
 
 
 \section{Teknisk beskrivelse}
 
 \section{Afprøvning}
-Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag "Test specifikation" på side \pageref{bilag:testspec}.
+Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
 
 \subsection{Funktions test}
 Funktions testene er til for at teste nogle af de centrale dele i vores program. Nogle er lavet med JUnit test og andre er blackboxtest. 
@@ -152,7 +194,7 @@ Vores program er designet til undervisningsbrug i 1. - 3. klasse. Vi har derfor 
 \subsubsection{Linuxkompabilitet}
 Da vi ikke havde en ordentlig linux maskine i vores gruppe måtte vi låne en. Søren Houen fra Gruppe 8 havde installeret Ubuntu 6.06 med kerne 2.18 og blev vores testcomputer til denne test.
 
-\subsection{Konklussion på test}
+\subsection{Konklusion på test}
 
 Vi kan konkludere at bruger test i henhold til vores projekt er meget væsentlige. Da vores program kun er vellykket hvis børn i 1. - 3. klasse kan lide at bruge det er det derfor meget afgørende hvilket feedback vi får fra vores brugertest. 
 Brugertestene var også væsentlige da de fandt fejl i programmet der kunne have ledt til at en bruger havde siddet fast i en Sudoku. 
@@ -166,5 +208,11 @@ Alle vores test var vellykkede da nogle fandt fejl i programmet, andre steder de
 
 \subsection{Testspecifikation}
 \label{bilag:testspec}
+
+\subsection{Designdokument}
+\label{bilag:design}
+
+\subsection{Programkode}
+\label{bilag:programkode}
 
 \end{document}
