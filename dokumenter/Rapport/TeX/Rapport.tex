@@ -8,7 +8,10 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 \usepackage{sudoku}
-\usepackage{count1to}
+\usepackage[
+				pdftitle={Sudoku til undervisningsbrug}
+        ]{hyperref}
+\usepackage{lastpage}
 
 \date{11. juni 2007}
 
@@ -23,7 +26,7 @@
 	\chead{}
 	\rhead{Gruppe 4}
 	\lfoot{}
-	\cfoot{Side \thepage \ af \ref{TotalPages}}
+	\cfoot{Side \thepage \ af \pageref{LastPage}}
 	\rfoot{}
 
 \begin{document}
@@ -62,7 +65,7 @@ Sudoku bliver brugt i folkeskolen i undervisningen til at lære børnene matematik
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
-En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvardranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvardranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvardranter. Et eksempel på en tilfældig Sudokuplade kan ses på Figur \ref{fig:Sudoku}.
+En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvadranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvadranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvadranter. Et eksempel på en tilfældig Sudokuplade kan ses på Figur \ref{fig:Sudoku}.
 
 \begin{figure}[hp]
 	\begin{sudoku}
@@ -79,9 +82,9 @@ En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felt
 	\caption{En Sudoku spilleplade}
 	\label{fig:Sudoku}
 \end{figure}
-I hver række, kolonne og kvardrant skal der være præcis 1 af hver af de 9 tal. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
+I hver række, kolonne og kvadrant skal der være præcis 1 af hver af de 9 tal. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
 
-En spiller skal således kunne få en sudoku plade serveret med en justerbar sværhedsgrad og have mulighed for at udfylde felterne på plade samt ændre deres egne placerede tal eller fjernelse af samme. Brugeren skal have mulighed for at få hjælp til løsningen, eller til at komme videre hvis han/hun sidder fast. Dette skyldes det basale krav om at hjælp skal være muligt at få uden at skulle spørge en udefrakommende. Man skal ligeledes kunne få af vide når spillet er færdigt, få et nyt spil på et hver tidspunkt og afslutte programmet når man har lyst. Programmet skal virke indbyddende og sjovt samt let tilgængeligt for mindst den givne brugergruppe.
+En spiller skal således kunne få en sudoku plade serveret med en justerbar sværhedsgrad og have mulighed for at udfylde felterne på plade samt ændre deres egne placerede tal eller fjernelse af samme. Brugeren skal have mulighed for at få hjælp til løsningen, eller til at komme videre hvis han/hun sidder fast. Dette skyldes det basale krav om at hjælp skal være muligt at få uden at skulle spørge en udefrakommende. Man skal ligeledes kunne få af vide når spillet er færdigt, få et nyt spil på et hver tidspunkt og afslutte programmet når man har lyst. Programmet skal virke indbydende og sjovt samt let tilgængeligt for mindst den givne brugergruppe.
 
 \subsection{Problemformulering}
 Vi har valgt kun at kunne generere 1 størrelse sudoku plade. Vi har været nødt til selv at skrive algoritmerne til dette da vi ikke kunne finde nogen tilgængelige algoritmer med passende licens aftaler. Dette gør vi ved først at generere en tilfældig, fyldt sudoku plade og derefter fjerner vi et tal af gangen. Efter at fjerne et tal beder vi vores sudoku løser om at løse det givne felt, hvis den kan lader vi feltet være tomt, derefter fortsætter til vi har en tilfredsstillende sudoku plade.
@@ -107,7 +110,7 @@ Fra interessenten fik vi stillet kravene om at skal være muligt at:
 Ovenstående krav fra interessenten, blev delt op i katorierne SUDOKU, BRUGBARHED, MOTIVATION og TEKNIK. Vi har tilføjet ydereligere krav, da vi syntes de var nødvendige for at opnå et tilfredsstillende produkt til interessenten, der kan give børnene det faglige indhold med programmet, samtidigt med at blive underholdt. Derudover er de tekniske krav for selve computeren sat lavt således at det langt fra er nødvendigt at skolerne har nye og hurtige computere.
 
 \subsubsection{Kategorien SUDOKU}
-Kategorien indeholder de første tre af kravene, direkte konverteret ind til kravspecifikationen. Det er således her de egentlige spiltekniske krav af selve sudoku-spillet er defineret mere præcist. 
+Kategorien indeholder de første tre af kravene, direkte konverteret ind til kravspecifikationen. Det er således her de egentlige spiltekniske krav af selve Sudoku-spillet er defineret mere præcist. 
 
 Programmet skal naturligvis kunne generere Sudokuer, således at vi sikrer os at der altid er nye udfordringer til brugeren. At have en generator fremfor en enorm mængde predefinerede Sudokuer liggende. Dels ville dette fylde en unødvendigt stor mængde plads, og ville desuden have et betydeligt mere begrænset udvalg. Med en generator er mængden af Sudokuer næsten ubegrænset, og sikrer at der - i teorien - aldrig vil opstå 2 ens Sudoku i sekvens. En dybere teknisk beskrivele af generatoren kan læses på side \pageref{ref:Generator}.
 
@@ -156,7 +159,7 @@ Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model. 
 \texttt{View} er den grafiske repræsentation af programmet. Det indeholder hele den grafiske brugergrænseflade og sørger for at dette bliver vist korrekt. \texttt{View} henter oplysninger fra \texttt{Model} om hvilke data der skal være i de viste dele. \texttt{View} bliver kontrolleret af \texttt{Control}, så der skiftes mellem de forskellige skærmbilleder og så der bliver udført handlinger
 
 \subsubsection{\texttt{Control}}
-\texttt{Control} er det modul der styrer programmet. Det er \texttt{Control} der bliver kaldt når programmet startes. Det sender besked til \texttt{Model} om at generere en løsbar Sudoku hvorefter det kalder \texttt{View} modulet til at lave en grafisk repræsentation som brugeren så kan interagere med. Det er også i \texttt{Control} at handlinger der skal udføres når man trykker på knapper, menupunkter o.l., ligger. Disse bliver vedhæftet \texttt{View} når den grafiske repræsentation oprettes.
+\texttt{Control} er det modul der styrer programmet. Det er \texttt{Control} der bliver kaldt når programmet startes. Det sender besked til \texttt{Model} om at generere en løsbar Sudoku hvorefter det kalder \texttt{View} modulet til at lave en grafisk repræsentation som brugeren så kan interagere med. Det er også i \texttt{Control} at handlinger der skal udføres når man trykker på knapper, menupunkter o.l., ligger. Disse bliver vedhæftet \texttt{View} når den grafiske repræsentation oprettes. \texttt{Control} sørger også for at dataene i \texttt{Model} bliver ændret sammen med den grafiske repræsentation i \texttt{View} når brugeren foretager en handling i programmet.
 
 \subsection{\texttt{Observer} og \texttt{Observable}}
 Udover \texttt{MVC} paradigmet, har vi også implementeret Java-mønstrene \texttt{Observer} og \texttt{Observable}. Disse gør det muligt for klasser at overvåge andre klasser. På den måde kan man i en \texttt{Observable}-klasse gøre alle \texttt{Observer}-klasser der overvåger den pågældende klasse opmærksom på at indholdet i klassen er ændret. På den måde kan \texttt{Observer}-klasserne selv sørge for at gøre hvad de nu har brug for med den nye data.
@@ -231,10 +234,12 @@ Hvis brugeren beder om assistance i stedet for at placere et tal på pladen aktiv
 \end{figure}
 
 \subsection{Logik i \texttt{Control}}
-\texttt{Control} indeholder de primære indgangspunkter for programmet, hvadenten det startes som applet eller applikation.
+\texttt{Control} indeholder de primære indgangspunkter for programmet, hvadenten det startes som applet eller applikation. Desuden er der også forskellige \texttt{Actions}, der bliver sammenkædet med knapperne og menupunkterne i brugergrænsefladen.
+
+De vigtigste \texttt{Actions} i \texttt{Control} indbefatter: \texttt{HelpAction}, der tager sig af at vise fejl på spillepladen eller starte Sudokuløseren for at finde et løsbart felt, der efterfølgende markeres. \texttt{DifficultyAction}, der viser skærmen hvorfra der kan vælges et nyt spil. \texttt{DifficultyAction} tager sig også af at sørge for at der bliver genereret en ny Sudoku samt at spillepladen bliver gentegnet og at statistikken bliver nulstillet. \texttt{NumberAction} viser en dialog hvorfra der kan vælges et tal at placere på spillepladen. Dialogen giver også mulighed for at fjerne tal igen.
 
 \subsection{Sudokuløser}
-Sudokuløseren består af flere dele, den del der bliver kaldt direkte, "solveField", som så også fungerer som guide til resten af løseren. En \texttt{solverLevelOne} og en \texttt{solverLevelTwo}. Hver af disse løserniveauer kan tage en løsning et niveau dybere. Den første kan kun kigge på feltet selv og finde en løsning til det ved at kigge på de felter der umiddelbart er i samme kvadrant, kolonne og række. \texttt{solverLevelTwo} vil kigge på om det givne felt er det eneste sted hvori der kan stå et tal, i forhold til rækken, kolonnen og kvardranten, hvis dette sted er det eneste bliver det returneret.
+Sudokuløseren består af flere dele, den del der bliver kaldt direkte, \texttt{solveField}, som så også fungerer som guide til resten af løseren. En \texttt{solverLevelOne} og en \texttt{solverLevelTwo}. Hver af disse løserniveauer kan tage en løsning et niveau dybere. Den første kan kun kigge på feltet selv og finde en løsning til det ved at kigge på de felter der umiddelbart er i samme kvadrant, kolonne og række. \texttt{solverLevelTwo} vil kigge på om det givne felt er det eneste sted hvori der kan stå et tal, i forhold til rækken, kolonnen og kvadranten, hvis dette sted er det eneste bliver det returneret.
 
 \subsubsection{\texttt{solveField}}
 Kalder solverLevelOne, gemmer et resultat array af hvilke værdier der kom ud af den solver, det vil sige, de mulige værdier for en endelig løsning.
@@ -255,9 +260,17 @@ Den næste algoritme vil tjekke kolonnen tilhørende til det enkelte felt, og så e
 
 Også den tredje algoritme gør det samme, dog er algoritmen for at finde start positionerne for de andre felter i samme kvadrant noget mere avanceret end dem for at finde positioner for række og kolonne felter.
 
+\subsection{Hjælpefunktionen}
+Hjælpe funktionen er en funktion der alene eksisterer på grund af den givne opgave beskrivelse. Da programmet skal bruges af forholdsvis små børn og de skal have mulighed for at få hjælp og spille spillet uden en udefrakommende voksen eller ældre til at forklare eller få dem videre.
+
+Hjælp knappen er altid tilgængelig medens spillet er i gang, når brugeren trykker på den går der en funktion i gang:
+Hjælpe funktionen vil som standard se hele boarded igennem, det genererede fulde board, og så stille værdierne som brugeren har intastet op imod det board. Hvis de intastede værdier ikke stemmer overens med det endelige resultat markeres disse felter ved at farve dem røde. På den måde kan brugeren så se hvile fejl den har, eller hvor den har fejl, og så rette dem. Hvis der ikke er nogen brugerintastede fejl vil funktionen gå ind og få løseren til at finde et tilfældigt løsbart felt. Det felt bliver markeret med grøn, og hvis brugeren så bare bruger de samme algoritmer som løseren selv vil brugeren kunne finde en løsning på det felt og komme videre.
+
+Selvfølgelig kan det felt være for svært at løse med den givne algoritme, men hvis ikke vi bruger en så stærk algoritme som vi gør vil spillet heller ikke være sjovt for de smarteste hoveder. Det er også muligt at misbruge hjælperen, men så får man en dårligere statistik efter man har klaret sudoku opgaven.
+
 \subsection{Generator}
 \label{ref:Generator}
-Sudoku generateren bruger sudoku løseren til at generere nye sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
+Sudokugeneratoren bruger Sudokuløseren til at generere nye Sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
 
 \section{Afprøvning}
 Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
