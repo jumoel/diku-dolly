@@ -184,6 +184,9 @@ Figur \ref{fig:Tillykke} viser hvordan dette skærmbillede ser ud.
 	\label{fig:Flowdiagram}
 \end{figure}
 
+\subsection{Generator}
+Sudoku generateren bruger sudoku løseren til at generere nye sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
+
 
 \section{Afprøvning}
 Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
