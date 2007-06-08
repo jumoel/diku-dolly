@@ -68,7 +68,9 @@ Vi har valgt kun at kunne generere 1 størrelse sudoku plade. Vi har været nødt t
 
 Denne fremgangsmåde kræver således en algoritme til ikke bare at kunne generere, men også løse sudokuer. Til gengæld kan den samme algoritme bruges til at hjælpe brugeren med, da der altid vil være mindst 1 felt denne løser kan løse.
 
-\section{Analyse af problem}
+\section{Analyse}
+
+\subsection{Analyse af problem}
 Fra interessenten fik vi stillet kravene om at skal være muligt at:
 \begin{itemize}
 \item \ldots generere løsbare Sudokuer.
@@ -81,19 +83,19 @@ Fra interessenten fik vi stillet kravene om at skal være muligt at:
 
 Kravene fra interessenten, samt de krav vi selv har tilføjet blev delt op i katorierne SUDOKU, BRUGBARHED, MOTIVATION og TEKNIK.
 
-\subsection{Kategorien SUDOKU}
+\subsubsection{Kategorien SUDOKU}
 Indeholder de første tre af kravene, direkte konverteret ind til kravspecifikationen. Denne kategori indeholder de egentlige spiltekniske krav af selve sudoku-spillet. Vi valgte at sætte sværhedsgraderne som et underkrav til at der skulle kunne genereres sudoku, da det ikke ville give mening at definere sværhedsgrader på noget, der i forvejen var umuligt at løse.
 
-\subsection{Kategorien BRUGBARHED}
+\subsubsection{Kategorien BRUGBARHED}
 Indeholder punkterne der omhandler anvendeligheden og kravene læsefærdighed. Som et krav syntes vi at der ved lettilgængelighed mentes at brugeren skulle kunne komme igang med at benytte programmet indenfor et meget kort stykke tid, hvilket sætter et stort krav til at vores grafiske brugergrænseflade er overskuelig og ligetil. 
 
 Læsefærdighedskravene valgte vi at definere som at teksten ikke bør have en LIX-værdi over 8, men ville være iorden, så længe børnene forstod den tekst der blev skrevet. Derudover valgte vi at sætte det som et krav at brugeren skulle kunne manurere sig rundt i programmet udelukkende ved brug af musen. Dette syntes vi var passende for at børnene kan holde fokus på spillet, uden at skulle kigge ned på tastaturet for at kigge efter knapper. I standard Sudoku er øjnene ligeledes antid på spillepladen. Disse 2 krav er sat som subkrav til anvendeligheden, da vi mente at de var nødvendige for at opnå en letanvendelighed for vores målgruppe. 
 Vi valgte ligeledes at tilføje et selvstændigt krav for at det skulle være muligt at slette de tal man sætter, i tilfælde af at disse er forkerte, ligesom man i en normal Sudoku man viske sine tal ud, hvis man har lavet en fejl.
 
-\subsection{Kategorien MOTIVATION}
+\subsubsection{Kategorien MOTIVATION}
 Indeholder punkterne der omhandler at programmet skal være sjovt og underholdende. Her er det originale punkt delt op i 2 mere konsekvente punkter, da vi fandt at beskrivelsen af det originale krav var for løst. De 2 nye punkter er at der skal være en maskot der følger brugeren gennem programmet og eventuelt bruges til at videresende beskeder fra programmet til brugeren. Med denne maskot har det selvfølgelig været meningen at den skal kunne være et som børnene skal finde sødt, og passe ind i den resterende del af brugergrænsefladen.
 
-\subsection{Kategorien TEKNIK}
+\subsubsection{Kategorien TEKNIK}
 Indeholder kravene der omhandler de tekniske krav til computeren som programmet skal køres på. Vi har her valgt at sætte version 1.5 java som et krav istedet for den nyeste version. Grunden til dette valg er at java 1.5 er en mere udbredt standard, og vi ikke vil have at programmets krav gør det svært.
 
 Foruden det, valgte vi at gøre det til et krav at programmet ligeledes skal kunne køres som en applet, således at programmet kan køres fra internettet, istedet for at programmet skal ligge på hverenkel computer der skal benytte programmet. Dette vil være en klar fordel når en hel skoleklasse skal bruge programmet. Programmet ligges simpelthen på en (intern) internetside, og brugerene åbner således bare denne.
@@ -186,7 +188,6 @@ Figur \ref{fig:Tillykke} viser hvordan dette skærmbillede ser ud.
 
 \subsection{Generator}
 Sudoku generateren bruger sudoku løseren til at generere nye sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
-
 
 \section{Afprøvning}
 Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
