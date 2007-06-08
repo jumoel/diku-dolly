@@ -8,9 +8,7 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 \usepackage{sudoku}
-\usepackage[
-				pdftitle={Sudoku til undervisningsbrug}
-        ]{hyperref}
+\usepackage{bookmark}
 \usepackage{lastpage}
 
 \date{11. juni 2007}
@@ -42,7 +40,7 @@
 
 \begin{tabular}{ll}
 Projekttitel & Sudoku til undervisningsbrug \\
-Gruppenr. & 4 \\
+Gruppenummer & 4 \\
 Studerende 
 & Emil Erik Hansen \\
 & Julian Møller \\
@@ -65,7 +63,7 @@ Sudoku bliver brugt i folkeskolen i undervisningen til at lære børnene matematik
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
-En Sudoku er en slags spilleplade med ''som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvadranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ''normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvadranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvadranter. Et eksempel på en tilfældig Sudokuplade kan ses på Figur \ref{fig:Sudoku}.
+En Sudoku er en slags spilleplade med ``som regel'' 9 gange 9 felter. Disse felter er når spillet er færdigt udfyldt med tallene fra 1 til 9. Der er rækker og kolonner og kvadranter i denne spilleplade, hver af disse er alle på 9 felter, og der er 9 af hver af dem på en fuld ``normal'' spilleplade. Rækker og kolonner er ikke så svære at skælne, men kvadranterne er lidt anderledes. Disse består af små spilleplader på 3 gange 3 felter, indbygget i den store spilleplade som så består af 3 gange 3 kvadranter. Et eksempel på en tilfældig Sudokuplade kan ses på Figur \ref{fig:Sudoku}.
 
 \begin{figure}[hp]
 	\begin{sudoku}
@@ -116,7 +114,7 @@ Programmet skal naturligvis kunne generere Sudokuer, således at vi sikrer os at 
 
 Angående sværhedsgrader, valgte vi at sætte defintionen i kravspecifikationen til at være meget åben for at give os muligheden for at kunne brug af hvad type af sværhedsgrad vi ønskede. I en Sudoku er der forskellige måder at gøre denne mere udfordrende, eksempelvis hvor mange felter der er udfyldt i forvejen, størrelsen af Sudokuen samt hvilke niveau den er genereret på. Vi valgte at sætte sværhedsgraderne som et underkrav til at der skulle kunne genereres sudoku, da det ikke ville give mening at definere sværhedsgrader på noget, der i forvejen var umuligt at løse. I sidste ende valgte.
 
-Børnene skulle derudover være i stand til at få hjælp til at løse deres Sudoku. Denne funktion er utroligt åben, da typen af hjælp der kan gives er meget forskellig. Kravet valgte vi igen at sætte meget åbent, men vores eksempel med at markere felter der kunne løses udfra informationen der kunne ses, havde vi allerede på det givne tidspunkt besluttet os for at følge. Grunden til dette var at vi ikke ville have at brugeren skulle kunne løse Sudokuen udelukkende ved brug af hjælpefunktionen. En yderligere idé vi senere fik var at, i tilfælde af fejl, disse skulle markeres når hjælpefunktionen blev udført. Hjælpefunktionen er videre teknisk beskrevet på side \pageref{ref:Hjælpefunktion}.
+Børnene skulle derudover være i stand til at få hjælp til at løse deres Sudoku. Denne funktion er utroligt åben, da typen af hjælp der kan gives er meget forskellig. Kravet valgte vi igen at sætte meget åbent, men vores eksempel med at markere felter der kunne løses udfra informationen der kunne ses, havde vi allerede på det givne tidspunkt besluttet os for at følge. Grunden til dette var at vi ikke ville have at brugeren skulle kunne løse Sudokuen udelukkende ved brug af hjælpefunktionen. En yderligere idé vi senere fik var at, i tilfælde af fejl, disse skulle markeres når hjælpefunktionen blev udført. Hjælpefunktionen er videre teknisk beskrevet på side \pageref{ref:Hjaelpefunktion}.
 
 mentalnote:
 - programmet skal være let anvendeligt.
@@ -127,9 +125,9 @@ end mentalnote:
 \subsubsection{Kategorien Brugbarhed}
 Kategorien indeholder det fjerde og femte krav på listen fra interessenten. I denne kategori er kravene om selve brugbarheden af programmet, og hvor lettilgængeligt det er, beskrevet.
 
-Vi satte det som det primære krav at programmet skulle være let anvendeligt for brugerene, dvs. at der såvidt muligt ikke måtte være tvivl om hvordan programmet videre forløber, og hvordan de forskellige handlinger udføres. Dette krav er umildbart meget tæt opad kravet stillet af interessenten, men med den forskel at vi har begrænset vores betydeligt ved at sætte en begrænsning på, der kræver at brugeren højst må have brugt 5 minutter før vedkommende har styr på hvordan det fungerer. Grunden til at vi satte denne begrænsning, var vi syntes begrebet ''let anvendeligt'' var meget løst, og krævede en dybere definering. På baggrund af det er dette krav et superkrav til de to følgende krav i denne kategori.
+Vi satte det som det primære krav at programmet skulle være let anvendeligt for brugerene, dvs. at der såvidt muligt ikke måtte være tvivl om hvordan programmet videre forløber, og hvordan de forskellige handlinger udføres. Dette krav er umildbart meget tæt opad kravet stillet af interessenten, men med den forskel at vi har begrænset vores betydeligt ved at sætte en begrænsning på, der kræver at brugeren højst må have brugt 5 minutter før vedkommende har styr på hvordan det fungerer. Grunden til at vi satte denne begrænsning, var vi syntes begrebet ``let anvendeligt'' var meget løst, og krævede en dybere definering. På baggrund af det er dette krav et superkrav til de to følgende krav i denne kategori.
 
-Naturligvis optræder der noget tekst i programmet, og denne vil vi naturligvis også gerne have skal opretholde brugbarhedskravet ved at være let at læse og ikke kræve de store sprogfærdigheder af brugerene, da disse i største tilfælde vil være børn fra vores målgruppe. For at have et nogenlunde udgangspunkt, sigtede vi efter at LIX-tallet maksimalt skulle ligge på 8, men det ville være godtaget hvis det viste sig at børnene forstod den skrevne tekst. Dette fik vi intensivt testet ved vores brugertest, hvor børnene blev overvåget mens de brugte programmet, og udspurgt om de forstod teksten. Disse er beskrevet ydereligere i afsnittet ''Tilgængelighed, tekst, grænseflade og motivation'' på side \pageref{ref:BrugertestTilgængelighed}.
+Naturligvis optræder der noget tekst i programmet, og denne vil vi naturligvis også gerne have skal opretholde brugbarhedskravet ved at være let at læse og ikke kræve de store sprogfærdigheder af brugerene, da disse i største tilfælde vil være børn fra vores målgruppe. For at have et nogenlunde udgangspunkt, sigtede vi efter at LIX-tallet maksimalt skulle ligge på 8, men det ville være godtaget hvis det viste sig at børnene forstod den skrevne tekst. Dette fik vi intensivt testet ved vores brugertest, hvor børnene blev overvåget mens de brugte programmet, og udspurgt om de forstod teksten. Disse er beskrevet ydereligere i afsnittet ``Tilgængelighed, tekst, grænseflade og motivation'' på side \pageref{ref:BrugertestTilgaengelighed}.
 
 Styringen af programmet valgte vi selv at tilføje som et selvstændigt krav, da vi syntes at ville hjælpe betydeligt på hvor let anvendeligt programmet var, hvis brugeren kunne nøjes med udelukkende at bruge musen. Alternativet ville være at tastaturet skulle i brug, og situationen hvor brugeren var nødt til at fjerne fokus fra skærmen kunne opstå. En af de mål ved let anvendelighed vi stræbede for at opnå med dette var at brugeren med det samme skulle kunne blive fanget. Desuden er musen et mere overskueligt og brugervenligt redskab til at manurere rundt på skærmen i forhold til tastaturet. I almindeligt Sudoku på papir er der til sammenligning ikke brug for at personen der løser den kigger andre steder hen end på spillepladen. Egenskaben ved at programmet kan styres udelukkende med musen, åbner også for at computere med TouchScreen kan få fuldt udbytte af styringen.  
 
@@ -146,21 +144,31 @@ Foruden det, valgte vi at gøre det til et krav at programmet ligeledes skal kunn
 
 \subsection{Begrænsning}
 Der er mange mugligheder for at tilføje moduler til sudokuspillet. 
-Vi har blandt andet overvejet mulighederne for en highscore liste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. 
+Vi har blandt andet overvejet mulighederne for en highscore liste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. Listen over highscores skulle primært inkluderes for at give videre incitament til at fortsætte med at spille spillet, for - naturligvis - at kunne præge topscorerlisten.
 Selvom denne funktion ville være både sjov og god for spillet at have med går den unødvendigt uden for opgave kravene og derved er det ikke noget vi vil bruge tid på at implimentere.
+
+I forbindelse med ovenstående overvejede vi til slut i udviklingsprocessen også at lave en pointalgoritme, der omdannede spilstatistikkerne ``Antal fejl'', ``Antal hjælp brugt'', ``Sværhedsgrad'' samt ``Brugt tid'' til en samlet pointscore, der kunne bruges som sammenligning brugere imellem og samtidig danne basis for topscorerlisten.
+
+Vi valgte også at begrænse vores spilleplade til ``standardstørrelsen'' på 9x9 felter, idét vi ikke mente at den ekstra tid det måske tog at implementere andre størrelser i generatoren var tiden værd, når sværhedsgraden i forvejen kan gradueres så meget som den kan på en 9x9 spilleplade.
+
+Programmets maskot valgte vi også at lave til et statisk objekt. I starten overvejede vi at lave det animerbart, så forskellige tegninger kunne vises alt efter brugerens aktivitet. Den smule der var at vinde fandt vi dog ikke af en tilpas størrelse at tidsforbruget var retfærdiggjort.
+
+Hvis programmet en dag skal videreudvikles er ovenstående punkter dog klart på toppen af en imaginær prioritetsliste.
 
 \section{Design af løsning}
 \subsection{Overordnet design}
-Vi har valgt at lave vores program så det kan afvikles med Java 1.5 fra en eksekverbar JAR fil eller som applet i en browser (Internet Explorer version 5.5 eller derover samt Mozilla Firefox version 1.5 eller derover)  på Linux og Windows. Dette er valgt da vores brugere ikke altid har den nyeste version af hverken Java eller de browsere de nu bruger. 
+Vi har valgt at lave vores program så det kan afvikles med Java 1.5 fra en eksekverbar JAR fil eller som applet i en browser (Internet Explorer version 5.5 eller derover samt Mozilla Firefox version 1.5 eller derover) på Linux og Windows. Dette er valgt da vores brugere ikke altid har den nyeste version af hverken Java eller de browsere de nu bruger. Specielt på skoler, som programmets målgruppe ofte vil befinde sig på under afviklingen. 
 
-Der er flere hovedpunkter designmæssigt. Det ene og det vigtigste er græsefladen. Da det er et program for børn skal den være simpel og let at bruge. Derudover skal den være tillokkende og flot for at holde børnenes interesse. 
+Der er flere hovedpunkter designmæssigt. Det ene og et af de vigtigste er græsefladen. Da det er et program for børn skal den være simpel og let at bruge. Derudover skal den være tillokkende og flot for at holde børnenes interesse. 
 
-Det andet hovedpunkt er vores Sudokugenerator. Den skal kunne generere korrekte løsbare Sudokuer men samtidig skal det være tilfældigt genererede og det skal være muligt at tilføje flere sværhedsgrader.
+Det andet hovedpunkt er vores Sudokugenerator. Den skal kunne generere korrekte løsbare Sudokuer men samtidig skal det være tilfældigt genererede og det skal være muligt at tilføje flere sværhedsgrader. Desuden var det et mål at generatoren skulle være hurtig, så man ikke skulle vente på at nye spil blev genereret, men blot kunne fortsætte direkte når en sværhedsgrad var valgt. Hvis generatoren havde været for langsom ville det formentlig have afskrækket brugere fra at bruge programmet, fordi mange er utålmodige når de sidder foran en computer - oplysningerne skal helst komme frem med det samme.
 
-Endvidere skal systemet være let at udvide med ny funktionalitet, hvilket er en af grundende til at vi har valgt at skrive i et objektorienteret sprog. Vi har også gjort brug af Model-View-Control-designparadigmet, da det tillader nem udvidelse af én komponent uden at redigere nævneværdigt i andre. 
+Endvidere skal systemet være let at udvide med ny funktionalitet, hvilket er en af grundende til at vi har valgt at skrive i et objektorienteret sprog. Vi har også gjort brug af Model-View-Control-designparadigmet, da det tillader nem udvidelse af én komponent uden at redigere nævneværdigt i andre. Derudover har vi så vidt muligt gjort brug af abstrakte klasser og interfaces i vores programdesign, for at det skulle være nemt f.eks. at tilføje indstillinger eller andre grænseflader end de to implementerede (Java applikation og Java applet). Det gør det nemlig muligt for kommende udviklere blot at skrive klasser der læner sig op af de i forvejen lavede interfaces, hvormed al allerede eksisterende funktionalitet meget gerne skulle fungere med det samme.
 
 \subsection{MVC}
-Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model. Den indeholder de tre moduler Model, View og Control. Dette valg giver gode muligheder for videreudvikling af programmet da MVC modellen giver muligheder for at udskifte dele af programmet uden det påvirker de andre. Det er desuden nemt at vedligeholde, da al programlogikken ligger i én seperat del, komplet adskilt fra programmets udseende og data. Derudover kan man nemt f.eks. skifte spillets ''motor'' - igen uden at skulle ændre hverken programlogikken eller den grafiske grænseflade. Det fulde design dokument uddyber designet og kan findes som bilag på side \pageref{bilag:design}. \ref{fig:MVC} viser det overordnede samspil mellem de tre dele.
+Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model.
+
+Den indeholder de tre moduler Model, View og Control. Dette valg giver gode muligheder for videreudvikling af programmet da MVC modellen giver muligheder for at udskifte dele af programmet uden det påvirker de andre. Det er desuden nemt at vedligeholde, da al programlogikken ligger i én seperat del, komplet adskilt fra programmets udseende og data. Derudover kan man nemt f.eks. skifte spillets ``motor'' uden at skulle ændre hverken programlogikken eller den grafiske grænseflade. Det fulde design dokument uddyber designet og kan findes som bilag på side \pageref{bilag:design}. Figur \ref{fig:MVC} viser det overordnede samspil mellem de tre dele og viser hvorledes \texttt{Control} styrer hvad der skal vises i \texttt{View} samtidig med at komponenten ændrer dataen i \texttt{Model}.
 
 \begin{figure}[hp]
 	\centering
@@ -170,10 +178,10 @@ Vores design er bygget op omkring den klassiske MVC (Model-View-Control) model. 
 \end{figure}
 
 \subsubsection{\texttt{Model}}
-\texttt{Model} indeholder selve ''regnemaskinen'' i programmet. Det er i dette modul at Sudokuen bliver genereret. Det er også her vores Sudokuløser huserer. Vi bruger Sudokuløseren dels som hjælpefunktion til generatoren og dels som baggrund for hjælpefunktionen. \texttt{Model} indeholder oplysninger om de data der forekommer i programmet (f.eks. hvordan Sudoku-spille plader ser ud). Modulet indeholder også metoder til at ændre disse data. Endvidere indeholder \texttt{Model} også indstillinger for sværhedsgraderne samt en klasse der holder styr på spilstatistikker.
+\texttt{Model} indeholder selve ``regnemaskinen'' i programmet. Det er i dette modul at Sudokuen bliver genereret. Det er også her vores Sudokuløser huserer. Vi bruger Sudokuløseren dels som hjælpefunktion til generatoren og dels som baggrund for hjælpefunktionen. \texttt{Model} indeholder oplysninger om de data der forekommer i programmet (f.eks. hvordan Sudoku-spille plader ser ud). Modulet indeholder også metoder til at ændre disse data. Endvidere indeholder \texttt{Model} også indstillinger for sværhedsgraderne samt en klasse der holder styr på spilstatistikker. Der er også basale matematikmetoder at finde her. Matematikmetoder der f.eks. omregner et felt-Id til et koordinat på en vilkårlig Sudokuplade eller kan finde Id-numrene på alle tal i et felts kvadrant, kolonne eller række.
 
 \subsubsection{\texttt{View}}
-\texttt{View} er den grafiske repræsentation af programmet. Det indeholder hele den grafiske brugergrænseflade og sørger for at dette bliver vist korrekt. \texttt{View} henter oplysninger fra \texttt{Model} om hvilke data der skal være i de viste dele. \texttt{View} bliver kontrolleret af \texttt{Control}, så der skiftes mellem de forskellige skærmbilleder og så der bliver udført handlinger
+\texttt{View} er den grafiske repræsentation af programmet. Det indeholder hele den grafiske brugergrænseflade og sørger for at dette bliver vist korrekt. \texttt{View} henter oplysninger fra \texttt{Model} om hvilke data der skal være i de viste dele. \texttt{View} bliver kontrolleret af \texttt{Control}, så der skiftes mellem de forskellige skærmbilleder og så der bliver udført handlinger. \texttt{View} består af tre primære skærmbilleder, ``Nyt spil'', ``Spillepladen'' og ``Tillykke''. Skærmbilleder der er beskrevet yderligere i afsnittene startende på side \pageref{ref:GrafiskDesign}.
 
 \subsubsection{\texttt{Control}}
 \texttt{Control} er det modul der styrer programmet. Det er \texttt{Control} der bliver kaldt når programmet startes. Det sender besked til \texttt{Model} om at generere en løsbar Sudoku hvorefter det kalder \texttt{View} modulet til at lave en grafisk repræsentation som brugeren så kan interagere med. Det er også i \texttt{Control} at handlinger der skal udføres når man trykker på knapper, menupunkter o.l., ligger. Disse bliver vedhæftet \texttt{View} når den grafiske repræsentation oprettes. \texttt{Control} sørger også for at dataene i \texttt{Model} bliver ændret sammen med den grafiske repræsentation i \texttt{View} når brugeren foretager en handling i programmet.
@@ -183,13 +191,22 @@ Udover \texttt{MVC} paradigmet, har vi også implementeret Java-mønstrene \texttt
 
 Vi har implementeret det så \texttt{model.Board} implementerer \texttt{Observable} mens \texttt{view.Board} implementerer \texttt{Observer} og overvåger \texttt{model.Board}. På den måde bliver spillepladen gentegnet og fyldt med frisk data når der startes et nyt spil.
 
-På grund af tidspres var det denne lille og forholdsvis simple metode vi gjorde brug af, og ikke en større udgave hvor f.eks. hvert felt på spillepladen implementerede \texttt{Observer} og overvågede det specielle stykke data i \texttt{model.Board} som de viste.
+På grund af tidspres var det denne lille og forholdsvis simple metode vi gjorde brug af, og ikke en større udgave hvor f.eks. hvert felt på spillepladen implementerede \texttt{Observer} og overvågede det specielle stykke data i \texttt{model.Board} som de viste. Hvis dette var blevet implementeret kunne den del af programlogikken i \texttt{Control}, der står for at opdatere spillepladen når dataene ændrer sig være sparet væk, idét Javas interne teknikker kunne have taget sig af det. Der skulle dog naturligvis stadig være metoder i hhv. den observerende og observerbare del, der rent faktisk tog sig af at ændre tallene, men logikken kunne være flyttet ud til dér, hvor den rent faktisk bliver brugt.
 
 \section{Grafisk design}
-Det grafiske design er en væsentlig den af vores projekt. Da det skal appellere til børn er det meget vigtigt at brugerne kan lide det og føler det imødekommende. Dette kan dog kun afgøres i bruger test, men det er muligt at gøre tingene simple, men flotte før det er muligt at teste det. Vores brugergrænseflade består af tre skærmbilleder ''Vælg Sudoku'', ''Sudoku'' og ''Tillykke''. På alle skærmbilleder optræder vores maskot.
+\label{ref:GrafiskDesign}
+Det grafiske design er en væsentlig den af vores projekt. Da det skal appellere til børn er det meget vigtigt at brugerne kan lide det og føler det imødekommende. Dette kan dog kun afgøres i bruger test, men det er muligt at gøre tingene simple, men flotte før det er muligt at teste det. Vores brugergrænseflade består af tre skærmbilleder ``Vælg Sudoku'', ``Sudoku'' og ``Tillykke''. På alle skærmbilleder optræder vores maskot, som vi har gjort meget for udgør en stor del af spiloplevelsen.
+
+Alle farver er så vidt muligt præget af en pastelbaseret farvepalet, dels for at gøre knapper og overskrifter tydelige, dels for at de skal appelere til brugerne.
+
+Knapper har vi valgt at holde i store, runde former, alle med en kort tekst. Det skal hurtigt gøre brugerne i stand til instinktivt at kunne afkode hvad konsekvenserne vil være af at trykke på en knap.
+
+Overskrifter er holdt i runde, bløde skrifttyper med en forholdsvis stor skriftstørrelse. Teksten i overskrifterne er som al anden tekst i programmet holdt så kort og simpel som mulig.
+
+På spillepladen har vi valgt at gøre forudplacerede tal grå, for tydeligt at adskille dem fra de tal brugeren placerer undervejs, der er sorte. Dette er valgt for at gøre det klart over for brugeren at der ikke forekommer nogen handling når man trykker på de i forvejen placerede tal, mens det er muligt at gøre noget ved at trykke på de tal man selv har placeret.
 
 \subsubsection{Vælg Sudoku}
-På dette skærmbillede har brugeren valget mellem en ''Let'', ''Mellem'' og ''Svær'' Sudoku. Når en af disse er valgt fortsættes der til næste skærmbillede.
+På dette skærmbillede har brugeren valget mellem en ``Let'', ``Mellem'' og ``Svær'' Sudoku. Når en af disse er valgt fortsættes der til næste skærmbillede. Det er denne skærm der vises som det første når brugeren starter programmet.
 
 Figur \ref{fig:Vaelg_Sudoku} viser hvordan dette skærmbillede ser ud.
 
@@ -203,7 +220,10 @@ Figur \ref{fig:Vaelg_Sudoku} viser hvordan dette skærmbillede ser ud.
 \subsubsection{Sudoku}
 Sudoku skærmbilledet består af en menulinje, en Sudoku spille plade og to knapper. Fra menulinjen er det muligt at starte et nyt spil, lukke spillet, få hjælp til at læse Sudokuen, og at få information om hvor de generelle Sudoku regler kan findes. 
 På Sudoku pladen kan man ved hjælp af musen indsætte og fjerne tal.
-I højre side finder man de to knapper ''Hjælp'' og ''Nyt spil'' som giver brugeren mulighed for at få hjælp til at løse Sudokuen samt at komme tilbage til det foregående skærmbillede og derved starte en ny Sudoku.
+
+I højre side finder man de to knapper ``Hjælp'' og ``Nyt spil'' som giver brugeren mulighed for at få hjælp til at løse Sudokuen samt at komme tilbage til det foregående skærmbillede og derved starte en ny Sudoku.
+
+Hjælpe- og informationstekst forekommer i taleboblen ud for programmets maskot, fåret Dolly. Det er her information om fejl, hjælp til løsbare felter o.l. forekommer.
 
 Figur \ref{fig:Spilleplade} viser hvordan dette skærmbillede ser ud.
 
@@ -215,12 +235,9 @@ Figur \ref{fig:Spilleplade} viser hvordan dette skærmbillede ser ud.
 \end{figure}
 
 \subsubsection{Tillykke}
-Det sidste skærmbilledet er ''Tillykke'' billedet. Der vises statistik for den løste Sudoku samt en knap til at starte et nyt spil. Statistikken indeholder antal fejl, antal 'hjælp' brugt og tidsforbrug.
+Det sidste skærmbilledet er ``Tillykke'' billedet. Der vises statistik for den løste Sudoku samt en knap til at starte et nyt spil. Statistikken indeholder antal fejl, antal 'hjælp' brugt og tidsforbrug. Statistikteksten er holdt i simple udtryk, for at gøre teksten let forståelig.
 
 Figur \ref{fig:Tillykke} viser hvordan dette skærmbillede ser ud.
-
-\subsubsection{Maskot}
-Maskotten, fåret Dolly, følger brugeren hele vejen gennem spillet. Fåret er primært til for at gøre det sjovt for børnene mens de spiller, men det udøver også en hjælpefunktion idet det kommer med simple forklaringer til de ting der sker på skærmen.
 
 \begin{figure}[htbp]
 	\centering
@@ -229,19 +246,23 @@ Maskotten, fåret Dolly, følger brugeren hele vejen gennem spillet. Fåret er prim
 	\label{fig:Tillykke}
 \end{figure}
 
+\subsubsection{Maskot}
+Maskotten, fåret Dolly, følger brugeren hele vejen gennem spillet. Fåret er primært til for at gøre det sjovt for børnene mens de spiller, men det udøver også en hjælpefunktion idet det kommer med simple forklaringer til de ting der sker på skærmen.
 
 \section{Teknisk beskrivelse}
 
 \subsection{Programlogik}
-Når brugeren starter programmet aktiveres \texttt{Control}, der opretter en \texttt{JFrame} \footnote{En \texttt{JFrame} er hovedvinduet i en Java applikation.} eller en \texttt{JApplet}\footnote{En \texttt{JApplet} er ''hovedvinduet'' i en applet, der kan vises i internetbrowsere.}, alt efter hvordan programmet er blevet aktiveret. Startes programmet som applet, oprettes der en \texttt{MainApplet}-klasse, mens der oprettes en \texttt{MainWindow}-klasse hvis spillet eksekveres på normal vis.
+Når brugeren starter programmet aktiveres \texttt{Control}, der opretter en \texttt{JFrame} \footnote{En \texttt{JFrame} er hovedvinduet i en Java applikation.} eller en \texttt{JApplet}\footnote{En \texttt{JApplet} er ``hovedvinduet'' i en applet, der kan vises i internetbrowsere.}, alt efter hvordan programmet er blevet aktiveret. Startes programmet som applet, oprettes der en \texttt{MainApplet}-klasse, mens der oprettes en \texttt{MainWindow}-klasse hvis spillet eksekveres på normal vis.
 
-Til vinduet tilføjes der nu spilleplade, maskot, hjælpetekst, kontrolknapper og menulinje, hvorefter ''Nyt spil''-skærmen vises. Når brugeren har valgt en sværhedsgrad genereres der en Sudoku af den valgte sværhedsgrad, hvorefter spillepladen aktiveres og den primære programløkke initialiseres. Det er her, det væsentligste i Figur \ref{fig:Flowdiagram} findes.
+Til vinduet tilføjes der nu spilleplade, maskot, hjælpetekst, kontrolknapper og menulinje, hvorefter ``Nyt spil''-skærmen vises. Når brugeren har valgt en sværhedsgrad genereres der en Sudoku af den valgte sværhedsgrad, hvorefter spillepladen aktiveres og den primære programløkke initialiseres. Det er her, det væsentligste i Figur \ref{fig:Flowdiagram} findes.
 
-Her tjekkes der ved hver ''iteration''\footnote{Der er som sådan ikke tale om iterationer, da ''løkken'' blot genstarter hver gang brugeren har foretaget et valg og ikke fast, som i f.eks. en \texttt{for}- eller \texttt{while}-løkke.} om Sudokuen er løst. Hvis det er tilfældet, vises ''Tillykke''-skærmen, hvor brugeren får vist statistik og har mulighed for at starte et nyt spil.
+Her tjekkes der ved hver ``iteration''\footnote{Der er som sådan ikke tale om iterationer, da ``løkken'' blot genstarter hver gang brugeren har foretaget et valg og ikke fast, som i f.eks. en \texttt{for}- eller \texttt{while}-løkke.} om Sudokuen er løst. Hvis det er tilfældet, vises ``Tillykke''-skærmen, hvor brugeren får vist statistik og har mulighed for at starte et nyt spil.
 
-Hvis Sudokuen ikke er løst, har brugeren mulighed for at placere et tal eller bede om hjælp. Placeres der et tal på spillepladen starter ''løkken'' forfra, idet der igen tjekkes om Sudokuen er løst.
+Hvis Sudokuen ikke er løst, har brugeren mulighed for at placere et tal eller bede om hjælp. Placeres der et tal på spillepladen starter ``løkken'' forfra, idet der igen tjekkes om Sudokuen er løst.
 
 Hvis brugeren beder om assistance i stedet for at placere et tal på pladen aktiveres hjælpefunktionen. Den starter med at tjekke om der er nogle forkert placerede tal. Hvis det er tilfældet markeres felterne med rød og maskotten fortæller brugeren at der er noget galt. Er der ingen fejl kaldes Sudokuløseren, der finder et felt, som kan løses udelukkende ved hjælp af de basale Sudokuregler om tallenes placering. Er der fejl på spillepladen vises der ikke hjælp til løsbare felter. Hvis brugeren vil have vist hjælp til løsbare felter må de fjerne de forkerte tal først. Er der i forvejen markeret et løsbart felt fjernes den forrige markering når en ny vises. Når hjælpfunktionen er færdig afventer programmet interaktion fra brugeren igen, altså uden at tjekke om Sudokuen er færdig, eftersom der ikke er ændret i spillepladen.
+
+Når en ny Sudoku skal genereres dannes der et nyt statistikobjekt og spillebrættet opdateres, dog uden at der oprettes et nyt objekt. Den grafiske repræsentation ændres også blot så den viser det nyte spillebræt. Vi valgte ikke at lave nye objekter til den grafiske repræsentation, da vi alligevel havde besluttet os for ikke at bruge andre spilstørrelser end 9x9 og derfor var det nemmere blot at ændre det bagvedliggende data uden at skulle initialisere størstedelen af programmets objekter igen.
 
 \begin{figure}[htbp]
 	\centering
@@ -259,12 +280,12 @@ De vigtigste \texttt{Actions} i \texttt{Control} indbefatter: \texttt{HelpAction
 Sudokuløseren består af flere dele, den del der bliver kaldt direkte, \texttt{solveField}, som så også fungerer som guide til resten af løseren. En \texttt{solverLevelOne} og en \texttt{solverLevelTwo}. Hver af disse løserniveauer kan tage en løsning et niveau dybere. Den første kan kun kigge på feltet selv og finde en løsning til det ved at kigge på de felter der umiddelbart er i samme kvadrant, kolonne og række. \texttt{solverLevelTwo} vil kigge på om det givne felt er det eneste sted hvori der kan stå et tal, i forhold til rækken, kolonnen og kvadranten, hvis dette sted er det eneste bliver det returneret.
 
 \subsubsection{\texttt{solveField}}
-Kalder solverLevelOne, gemmer et resultat array af hvilke værdier der kom ud af den solver, det vil sige, de mulige værdier for en endelig løsning.
+Kalder \texttt{solverLevelOne}, gemmer et resultat array af hvilke værdier der kom ud af den Sudokuløser, det vil sige, de mulige værdier for en endelig løsning.
 
-Derefter, hvis der kun er en mulig løsning tilbage fra solverLevelOne bliver dette returneret til den funktion solveField blev kaldt fra. Hvis ikke denne løsning er unik vil resultat arrayet blive sendt videre til solverLevelTwo. Resultatet herfra bliver derefter returneret.
+Derefter, hvis der kun er en mulig løsning tilbage fra \texttt{solverLevelOne} bliver dette returneret til den funktion \texttt{solveField} blev kaldt fra. Hvis ikke denne løsning er unik vil resultat arrayet blive sendt videre til \texttt{solverLevelTwo}. Resultatet herfra bliver derefter returneret.
 
 \subsubsection{\texttt{solverLevelOne}}
-Denne solver får input som et array af mulige resultater for sit eget felt, positionen af feltet på boarded og boarded selv. Den vil derefter kopiere arrayet af mulige værdier til sit eget locale array og så systematisk fjerne, eller rettere sætte de pladser i arrayet til 0, som feltet ikke kan have som værdi. Det vil sige, tjekke de værdier feltet har som naboer i dets kvadrant, kolonne og række. Hver af disse værdier er ikke mulige løsninger og bliver derfor fjernet fra arrayet af mulige løsninger.
+Denne løserfunktion får inddata som et array af mulige resultater for sit eget felt, positionen af feltet på spillepladen og spillepladen selv. Den vil derefter kopiere arrayet af mulige værdier til sit eget locale array og så systematisk fjerne, eller rettere sætte de pladser i arrayet til 0, som feltet ikke kan have som værdi. Det vil sige, tjekke de værdier feltet har som naboer i dets kvadrant, kolonne og række. Hver af disse værdier er ikke mulige løsninger og bliver derfor fjernet fra arrayet af mulige løsninger.
 
 Når der ikke er flere felter at tjekke slutter funktionen og sender det nye array af mulige værdier tilbage.
 
@@ -277,45 +298,54 @@ Den næste algoritme vil tjekke kolonnen tilhørende til det enkelte felt, og så e
 
 Også den tredje algoritme gør det samme, dog er algoritmen for at finde start positionerne for de andre felter i samme kvadrant noget mere avanceret end dem for at finde positioner for række og kolonne felter.
 
+Funktionen tjekker altså om der er en mulig værdier, der kun er at finde på ét felt i en række, kvadrant og kolonne, selvom alle felterne måtte have flere forskellige muligheder.
+
 \subsection{Hjælpefunktionen}
+\label{ref:Hjaelpefunktion}
 Hjælpe funktionen er en funktion der alene eksisterer på grund af den givne opgave beskrivelse. Da programmet skal bruges af forholdsvis små børn og de skal have mulighed for at få hjælp og spille spillet uden en udefrakommende voksen eller ældre til at forklare eller få dem videre.
 
 Hjælp knappen er altid tilgængelig medens spillet er i gang, når brugeren trykker på den går der en funktion i gang:
 Hjælpe funktionen vil som standard se hele boarded igennem, det genererede fulde board, og så stille værdierne som brugeren har intastet op imod det board. Hvis de intastede værdier ikke stemmer overens med det endelige resultat markeres disse felter ved at farve dem røde. På den måde kan brugeren så se hvile fejl den har, eller hvor den har fejl, og så rette dem. Hvis der ikke er nogen brugerintastede fejl vil funktionen gå ind og få løseren til at finde et tilfældigt løsbart felt. Det felt bliver markeret med grøn, og hvis brugeren så bare bruger de samme algoritmer som løseren selv vil brugeren kunne finde en løsning på det felt og komme videre.
 
-Selvfølgelig kan det felt være for svært at løse med den givne algoritme, men hvis ikke vi bruger en så stærk algoritme som vi gør vil spillet heller ikke være sjovt for de smarteste hoveder. Det er også muligt at misbruge hjælperen, men så får man en dårligere statistik efter man har klaret sudoku opgaven.
+Selvfølgelig kan det felt være for svært at løse med den givne algoritme, men hvis ikke vi bruger en så stærk algoritme som vi gør vil spillet heller ikke være sjovt for de smarteste hoveder. Det er også muligt at misbruge hjælperen, men så får man en dårligere statistik efter man har klaret sudoku opgaven. Det vil dog altid være muligt at udlede et markeret felts værdi ud fra principperne om de basale Sudokuregler for talplaceringer samt gensidig udelukkelse\footnote{Gensidig udelukkelse vil sige at hvis et felt har flere mulige værdier, men nogle af værdierne kun kan placeres andetsteds i kvadranten, kolonnen eller rækken, skal de naturligvis ikke placeres på det pågældende felt.}.
 
 \subsection{Generator}
 \label{ref:Generator}
-Sudokugeneratoren bruger Sudokuløseren til at generere nye Sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet. Derefter fjerner generateren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
+Sudokugeneratoren bruger Sudokuløseren til at generere nye Sudokuer. Der startes med et udfyldt sudoku bræt der bliver vilkårligt blandet, dog følgende basale regler for hvilke operationer man kan udføre på en Sudokuplade uden at invalidere den:
 
-\subsection{Hjælpefunktion}
-\label{ref:Hjælpefunktion}
-[placeholder]
+\begin{itemize}
+	\item Man kan bytte om på ``kvadrantkolonner''\footnote{En kvadrantkolonne består af en kolonne bestående af kvadranter. I en 9x9-Sudoku vil det sige at kolonnerne 1-3, 4-6 og 7-9 er hhv. kvadrantkolonne 1, 2 og 3.}.
+	\item Man kan bytte om på ``kvadrantrækker''\footnote{En kvadrantrække er som en kvadrantkolonne, blot med rækker i stedet for kolonner. Deres placering i en 9x9-Sudoku er de samme.}.
+	\item Man kan bytte om på kolonner inden for kvadrantkolonner.
+	\item Man kan bytte om på rækker inden for kvadrantrækker.
+\end{itemize}
 
-\section{Afprøvning}
-Vores Sudoku program kræver to former for test. Funktions test og bruger test. Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Alle test og deres resultater kan ses i bilag ''Test specifikation'' på side \pageref{bilag:testspec}.
+Ovenstående regler vil aldrig invalidere en Sudokuplade, da der hvis de overholdes altid vil være tallene 1-9 at finde i hver kvadrant, række samt kolonne.
 
-\subsection{Funktions test}
-Funktions testene er til for at teste nogle af de centrale dele i vores program. Nogle er lavet med JUnit test og andre er blackboxtest. 
+Derefter fjerner generatoren et tilfældigt felt på brættet og kontrollerer med løseren at det kan placeres igen ved hjælp af de resterende felter på sudokubrættet. Hvis feltet ikke kan placeres sættes det tilbage og der prøves med det efterfølgende felt. Sådan fortsættes indtil et felt kan fjernes eller at der ikke kan fjernes flere felter overhovedet, hvor generatorfunktionen da vil afbryde. Hvis feltet kunne placeres igen, forbliver det fjernet fra brættet og et nyt tilfældigt felt vælges. processen gentages indtil det ønskede antal felter, som bliver hentet fra GameSettings, er fjernet eller det ikke er muligt at fjerne flere felter.
 
-\subsubsection{JUnit}
+\section{Funktions test}
+Funktions testene kontrollerer at vores program producerer det forventede output ud fra det givne input. Funktions testene er til for at teste nogle af de centrale dele i vores program. Nogle er lavet med JUnit test og andre er blackboxtest. Alle funktionstest og deres resultater kan ses i bilag ``Test specifikation'' på side \pageref{bilag:testspec}.
+
+\subsection{JUnit}
 JUnit testene er lavet for at teste at centrale moduler i programmet virker som forventet. De tester blandt andet klassen SudokuMath som er matematikken der bruges til at finde felter på spillepladen. Der er også lavet JUnit test til Helper klassen som bruges til at give hjælp til brugeren undervejs i spillet.
 
-\subsubsection{Blackbox}
-Da vores Sudoku generator skulle testes var der kun en umiddel bar fremgangsmåde. Da de bliver genereret ved hjælp af vores løser kunne denne ikke bruges til at test af Sudokuernes korrekhed. Derfor måtte vi kontrollere vores genererede Sudokuer ved hjælp af en anden Sudoku løser som vi stolede på var korrekt. Den løser de fleste Sudoku sider henviser til er den der befinder sig på http://sudoku.sf.net. Vi fik vores program til at printe sine Sudokuer ud i et format der kunne kopieres ind i den anden Sudoku løser manuelt. Efter at have konstateret at der var en fejl i vores algoritme til at løse Sudokuer (og derved fejl når vi genererer Sudokuer) blev algoritmen rettet og testet igen.
+\subsection{Blackbox}
+Da vores Sudoku generator skulle testes var der kun en umiddelbar fremgangsmåde. Da de bliver genereret ved hjælp af vores løser kunne denne ikke bruges til at test af Sudokuernes korrekthed. Derfor måtte vi kontrollere vores genererede Sudokuer ved hjælp af en anden Sudoku løser som vi stolede på var korrekt. Den løser mange Sudoku sider henviser til er den der befinder sig på http://sudoku.sf.net. Vi fik vores program til at printe sine Sudokuer ud i et format der kunne kopieres ind i den anden Sudoku løser manuelt. Vi fik derefter genereret et stort antal Sudokuer og testede deres singularitet\footnote{At en Sudoku er singulær betyder at den kun har én løsning. En singulær Sudoku kaldes også ``ægte''.}. Vi konstaterede at der var et antal Sudokuer der ikke var singulære, men havde multiple løsninger. Dette var et problem da en bruger dermed kunne løse en Sudoku helt korrekt, men vores program ville ikke anerkende løsningen, da den ikke ville stemme overens med den, der lå gemt i programmet.
 
-\subsection{Brugertest}
-Der blev lavet to forskellige brugertest. Den ene tester tilgængelighed, tekst, grænseflade og motivation i programmet. Den anden er en test af linuxkompatibilitet. 
+Efter at have konstateret at der var en fejl i vores algoritme til at løse Sudokuer (og derved fejl når vi genererer Sudokuer) blev algoritmen rettet og testet igen. Vi testede med et større antal af den sværhedsgrad, der i forrige test havde genereret flest fejl, men denne gang fandt vi ingen problemer, hvormed vi kunne opfylde vores krav om singulære, løsbare Sudokuer.
 
-\subsubsection{Tilgængelighed, tekst, grænseflade og motivation}
-\label{ref:BrugertestTilgængelighed}
+\section{Brugertest}
+Bruger testene er til for at sikre sig at programmet er imødekommende og behager brugeren, samt at det opfylder de krav der skulle være fra brugerens side. Der blev lavet tre forskellige brugertest. Den ene tester tilgængelighed, tekst, grænseflade og motivation i programmet. Den anden er en test af linuxkompatibilitet. Den trejde testede applet- og browserkompatibilitet. Alle brugertest og deres resultater kan ses i bilag ``Test specifikation'' på side \pageref{bilag:testspec}
+
+\subsection{Tilgængelighed, tekst, grænseflade og motivation}
+\label{ref:BrugertestTilgaengelighed}
 Vores program er designet til undervisningsbrug i 1. - 3. klasse. Vi har derfor testet vores program på 6 elever fra 2.B på Dronninggårdsskolen i Holte. De blev præsenteret for programmet og derefter overladt til dem selv uden instruktioner. Børnene blev så observeret mens de brugte programmet. Der blev taget notater undervejs og da første omgang var afsluttet blev de diskuteret. Programmet blev rettet til efter resultaterne af første afprøvning og børnene blev præsenteret for den opdaterede udgave af programmet. Efter anden omgang som forløb som første gav børnene deres feedback.
 Et af vores hovedpunkter i feedbacken var hvor vidt børnene kunne lide det grafiske layout. Da vi selv har tegnet det hele, for ikke at bruge noget materiale beskyttet af ophavsræt, var der uvished om hvorvidt vores maskot var tiltalende for børn. Heldigvis var brugerne meget positive overfor både vores maskot, fåret Dolly, og det resterende grafiske layout.
 
 \include{BrugertestBoern}
 
-\subsubsection{Linuxkompabilitet}
+\subsection{Linuxkompabilitet}
 Da vi ikke havde en ordentlig linux maskine i vores gruppe måtte vi låne en. Søren Houen fra Gruppe otte havde installeret Ubuntu 6.06 med kerne 2.18 og blev vores testcomputer til denne test.
 
 Vi testede at al væsentlig funktionalitet var til stede og fungerede på Linux-maskinen, såsom at det var muligt at placere tal på spillepladen, vælge sværhedsgrad, få hjælp og løse Sudokuer.
@@ -325,7 +355,7 @@ Jævnfør vores kravspecifikation, skulle vores program fungere som en Java Applet
 
 Vi udførte derfor test, i stil med dem i afsnittet om Linuxkompatibilitet, der kontrollerede hvorvidt den nødvendige funktionalitet var til stede.
 
-\subsection{Konklusion på test}
+\section{Konklusion på test}
 
 Vi kan konkludere at brugertest i henhold til vores projekt er meget væsentlige. Da vores program kun er vellykket hvis børn i 1. - 3. klasse kan lide at bruge det er det derfor meget afgørende hvilket feedback vi får fra vores brugertest. 
 Funktionstestene var også væsentlige da de fandt fejl i programmet der kunne have ledt til at en bruger havde siddet fast i en Sudoku. 
