@@ -415,12 +415,17 @@ Disse problemer finder man ikke i vores Sudoku-program. Programmet tillader børn
 
 Derudover står børnene heller ikke over for problemet med at skulle have en voksen til stede for at kunne hjælpe dem med at finde fejl eller give vink om i hvilken retning det ville være hensigtsmæssigt at fortsætte, da den i vores program bagvedliggende Sudokuløser meget hurtigt kan vise hvor der er fejl og samtidig kan vise, hvilke felter der kan løses hvis man kender Sudokureglerne.
 
-Det vigtige i et program der henvender sig til den fastsatte målgruppe er, at programmet er let og intuitivt at bruge - for målgruppen, ikke for udviklere, interessenter o.l. - samt at det 
+I vores projekt har vi lagt stor vægt på - og stort arbejde i - programmets grafiske fremtoning. For at appelere til målgruppen gjorde vi stor brug af pastelfarver og store, klare grænsefladeelementer. Vi valgte også selv at kreere vores maskot for at frihed til at bruge den som vi lystede, uden at løbe ind i problemer med ophavsret.
 
+Under udviklingen gjorde vi meget ud af at gøre programkoden så let at udvide som muligt. Derfor valgte vi at separere programlogik, data og udseende. Vi forsøgte derudover at gøre så stor brug af abstrakte klasser og \texttt{Interface}s i Java som muligt, for at skabe en ``plan'' som programmets moduler kunne interagere efter. På den måde er det let at tilføje ekstra funktionalitet til spillet - blot det implementerer de af \texttt{Interface}ne påkrævede funktioner, burde nye moduler kunne implementeres i spillet uden nævneværdige modifikationer.
 
-Vi kan konkludere at brugertest i henhold til vores projekt er meget væsentlige. Da vores program kun er vellykket hvis børn i 1. - 3. klasse kan lide at bruge det er det derfor meget afgørende hvilket feedback vi får fra vores brugertest. 
-Funktionstestene var også væsentlige da de fandt fejl i programmet der kunne have ledt til at en bruger havde siddet fast i en Sudoku. 
-Alle vores test var vellykkede da nogle fandt fejl i programmet, andre steder der kunne forbedres og nogle dokumenterede at vores program virker efter intensionen.
+For at gøre programmet godt at bruge var et vigtigt krav for os at det var responsivt og at man ikke skulle vente på data. Dette var en af grundene til at vi valgte at gøre brug af primitive datastrukturer, da operationer på dem kan udføres hurtigt og simpelt. På den måde kunne vi sørge for at der ikke er nogen mærkbar ventetid når brugeren beder om at få genereret en ny Sudoku.
+
+Det vigtige i et program der henvender sig til den fastsatte målgruppe er, at programmet er let og intuitivt at bruge - for \emph{målgruppen}, ikke for udviklere, interessenter o.l. - samt at det er en indbydende og ``venlig'' brugergrænseflade. Da dette ikke er noget der kan afgøres ved hjælp af funktionstest, er et meget vigtigt aspekt af programudvikling til den pågældende målgruppe at der bliver udført brugertest, fordi det kun er målgruppen der kan afgøre om programmet overordnet set er vellykket og ordentligt udført.
+
+Vores brugertest med børn viste generel tilfredshed med programmets funktionalitet og fremtoning. Hjælpefunktionen viste sig at indeholde nogle svagheder, men på baggrund af den feedback vi modtog var det ikke det store problem at rette væsentligt op på det. Samlet set var testgruppen til slut positive over for vores program og ytrede, at de ``meget gerne ville bruge det [programmet] i skolen i stedet for papirerne''.
+
+Funktionstest kan dog naturligvis ikke undværes, og vi fandt da også fejl i vores generatoralgoritme. Men stillet overfor de specifikke test der fejlede, fandt vi fejlen og kunne efterfølgende ikke konstatere flere problemer i algoritmen.
 
 
 \pagebreak
