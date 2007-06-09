@@ -80,7 +80,7 @@ En Sudoku er en slags spilleplade med ``som regel'' 9 gange 9 felter. Disse felt
 	\caption{En Sudoku spilleplade}
 	\label{fig:Sudoku}
 \end{figure}
-I hver række, kolonne og kvadrant skal der være præcis 1 af hver af de 9 tal. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
+I hver række, kolonne og kvadrant skal der være præcis 1 af hver af de 9 tal\footnote{Disse ``regler'' er i resten af rapporten omtalt som ``Sudokureglerne''.}. Med denne viden skal man kunne udfylde en sudoku hvor nogle eller flere af felterne er blanke. Jo færre tal der er på pladen, jo sværere bliver sudokuen at løse og man skal tænke meget langt frem for at kunne finde ud af hvordan man skal løse den. Det specielle ved at generere sådan en sudoku er at det ikke er en rigtig sudoku hvis man kommer til at fjerne nogen tal fra pladen der gør at der er flere end 1 mulighed for at løse den. Hvis man begynder med at have en tilfældigt genereret fuld plade og derefter fjerner tal fra den er man således nødt til at være sikker på at man ikke fjerner tal der åbner for flere løsninger.
 
 En spiller skal således kunne få en sudoku plade serveret med en justerbar sværhedsgrad og have mulighed for at udfylde felterne på plade samt ændre deres egne placerede tal eller fjernelse af samme. Brugeren skal have mulighed for at få hjælp til løsningen, eller til at komme videre hvis han/hun sidder fast. Dette skyldes det basale krav om at hjælp skal være muligt at få uden at skulle spørge en udefrakommende. Man skal ligeledes kunne få af vide når spillet er færdigt, få et nyt spil på et hver tidspunkt og afslutte programmet når man har lyst. Programmet skal virke indbydende og sjovt samt let tilgængeligt for mindst den givne brugergruppe.
 
@@ -116,6 +116,12 @@ Angående sværhedsgrader, valgte vi at sætte defintionen i kravspecifikationen ti
 
 Børnene skulle derudover være i stand til at få hjælp til at løse deres Sudoku. Denne funktion er utroligt åben, da typen af hjælp der kan gives er meget forskellig. Kravet valgte vi igen at sætte meget åbent, men vores eksempel med at markere felter der kunne løses udfra informationen der kunne ses, havde vi allerede på det givne tidspunkt besluttet os for at følge. Grunden til dette var at vi ikke ville have at brugeren skulle kunne løse Sudokuen udelukkende ved brug af hjælpefunktionen. En yderligere idé vi senere fik var at, i tilfælde af fejl, disse skulle markeres når hjælpefunktionen blev udført. Hjælpefunktionen er videre teknisk beskrevet på side \pageref{ref:Hjaelpefunktion}.
 
+mentalnote:
+- programmet skal være let anvendeligt.
+- der ikke kræves for høje læsefærdigheder.
+kravspec: lettilgængelighed, tekst, styring, valg af tal
+end mentalnote:
+
 \subsubsection{Kategorien Brugbarhed}
 Kategorien indeholder det fjerde og femte krav på listen fra interessenten. I denne kategori er kravene om selve brugbarheden af programmet, og hvor lettilgængeligt det er, beskrevet.
 
@@ -127,16 +133,9 @@ Styringen af programmet valgte vi selv at tilføje som et selvstændigt krav, da v
 
 Vi valgte ligeledes at tilføje et selvstændigt krav for at det skulle være muligt at slette de tal man indsætter på spillepladen. Dette kan være relevant i tilfælde af at der er fundet fejl på et eller flere felter (evt. ved brug af hjælpefunktionen), eller hvis brugeren har ombestemt sig i sit valg af talplacering, ligesom man i en Sudoku på papir kan viske sine tal ud, hvis man har lavet en fejl. Vi syntes dette ville være utroligt hensigtsmæssigt, idet vi mente at brugeren ikke skulle være bundet af de tal han/hun indsætter. Det kunne eksempelvis ske at et tal fejlagtigt blev sat ind på grund af et fejltryk. 
 
-\subsubsection{Kategorien Motivation}
---
-kravspec: resultater, maskot
-mental note: spillet skal virke underholdende og sjovt
---
-Kategorien indeholder det og sidste krav på listen fra interessenten formidlet til to forskellige punkter. De to krav vi har valgt at stille op i denne kategori omhandler kravet fra interessenten om at spillet skal virke underholdende og sjovt for brugeren.
-
-Det første af de to punkter vi kom frem til at implementere var at brugeren skulle have mulighed for at se hvordan han/hun havde klaret sig efter hvert spil. Dette inkluderer eksempelvis hvor langt tid der er brugt på at løse Sudokuen, dens sværhedsgrad, antal fejl der er brugt og hvor meget hjælp programmet har givet. Dette konkluderede vi ville være en god ide, da konkurrence er et incitationselement der får børnene til at anstrenge sig for at løse opgaven bedre end før, samt at der ligeledes kan sammenlignes resultater indbyrdes. Samtidigt vil de naturligvis blive bedre til at tænke i de logiske baner som Sudoku kræver.
-
-Den anden del del af kategorien inkluderer vores maskot, som vi som krav satte til at skulle virke sød og venlig overfor børnene. Den skulle derudover integreres med hjælpefunktionen således at brugeren 
+// I'm like here - Emil
+\subsubsection{Kategorien MOTIVATION}
+Indeholder punkterne der omhandler at programmet skal være sjovt og underholdende. Her er det originale punkt delt op i 2 mere konsekvente punkter, da vi fandt at beskrivelsen af det originale krav var for løst. De 2 nye punkter er at der skal være en maskot der følger brugeren gennem programmet og eventuelt bruges til at videresende beskeder fra programmet til brugeren. Med denne maskot har det selvfølgelig været meningen at den skal kunne være et som børnene skal finde sødt, og passe ind i den resterende del af brugergrænsefladen.
 
 \subsubsection{Kategorien TEKNIK}
 Vi valgte at basere det tekniske grundlag på en platform uafhængig af styresystem, da det dermed ikke er nogen hindring at bruge f.eks. Linux - et problem man ellers ofte kan komme ud for i mange kommercielle softwareprodukter.
@@ -410,9 +409,14 @@ Også i henhold til forventningerne om bevarelse af funktionalitet ved brug som J
 \section{Konklusioner}
 Vi blev stillet en opgave om at kreere et Sudokuprogram, der kunne bruges i undervisningsøjemed i folkeskolen. Målgruppen var børn i 1.-3. klasse, dvs. i aldersgruppen 6-10 år. Sudokuprogrammet skulle være et alternativ til den nuværende anvendelse af Sudoku i undervisningen, hvor børnene får udleveret og skal løse opgaverne på papir.
 
-Denne løsning har et par ulemper, bl.a. at børnene ikke kan få hjælp undervejs medmindre der er en voksen i nærheden, der så skal til at sætte sig ind i barnets nuværende løsning. Derudover kan børnene heller ikke nemt blive gjort opmærksom på, hvis de har lavet fejl, hvorfor de kan blive ledt ud på en lang sti, for til sidst måske enten at have løst Sudokuen forkert eller ende i en blindgyde hvorfra de ikke kan komme videre. Desuden er børnene begrænset af det antal Sudokuer de får udleveret i skolen.
+Denne løsning har et par ulemper, bl.a. at børnene ikke kan få hjælp undervejs medmindre der er en voksen i nærheden, der så skal til at sætte sig ind i barnets nuværende løsning. Derudover kan børnene heller ikke nemt blive gjort opmærksom på, hvis de har lavet fejl, hvorfor de kan blive ledt ud på en lang sti, for til sidst måske enten at have løst Sudokuen forkert eller ende i en blindgyde hvorfra de ikke kan komme videre. Desuden er børnene begrænset af det antal Sudokuer de får udleveret i skolen. Børnene kan også have et problem med sværhedsgraden, hvis de udleverede Sudokuer ikke passer til deres niveau, hvilket heller ikke er ideelt, da de mest fremmelige børn potentielt vil kede sig mens de svage børn kan komme ud for ikke at kunne løse opgaverne.
 
-Disse problemer finder man ikke i vores Sudoku-program.
+Disse problemer finder man ikke i vores Sudoku-program. Programmet tillader børnene at løse så mange Sudokuer som de gider, da spillepladerne bliver genereret tilfældigt. Derudover er der graduerbare sværhedhedsgrader, som gerne skulle tilbyde udfordring for de fleste brugere, og ikke kun ``standard''-brugerne. De forskellige sværhedsgrader tillader også progression, skulle børnene føle sig klar til sværere opgaver.
+
+Derudover står børnene heller ikke over for problemet med at skulle have en voksen til stede for at kunne hjælpe dem med at finde fejl eller give vink om i hvilken retning det ville være hensigtsmæssigt at fortsætte, da den i vores program bagvedliggende Sudokuløser meget hurtigt kan vise hvor der er fejl og samtidig kan vise, hvilke felter der kan løses hvis man kender Sudokureglerne.
+
+Det vigtige i et program der henvender sig til den fastsatte målgruppe er, at programmet er let og intuitivt at bruge - for målgruppen, ikke for udviklere, interessenter o.l. - samt at det 
+
 
 Vi kan konkludere at brugertest i henhold til vores projekt er meget væsentlige. Da vores program kun er vellykket hvis børn i 1. - 3. klasse kan lide at bruge det er det derfor meget afgørende hvilket feedback vi får fra vores brugertest. 
 Funktionstestene var også væsentlige da de fandt fejl i programmet der kunne have ledt til at en bruger havde siddet fast i en Sudoku. 
