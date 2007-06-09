@@ -88,9 +88,11 @@ I hver række, kolonne og kvadrant skal der være præcis 1 af hver af de 9 tal\foo
 En spiller skal således kunne få en sudoku plade serveret med en justerbar sværhedsgrad og have mulighed for at udfylde felterne på pladen samt ændre deres egne placerede tal eller fjernelse af samme. Brugeren skal have mulighed for at få hjælp til løsningen, eller til at komme videre hvis han/hun sidder fast. Dette skyldes det basale krav om at det skal være muligt at få hjælp uden at skulle spørge en udefrakommende. Man skal ligeledes kunne få af vide når spillet er færdigt, få et nyt spil på et hvert tidspunkt og afslutte programmet når man har lyst. Programmet skal virke indbydende og sjovt samt let tilgængeligt for mindst den givne brugergruppe.
 
 \subsection{Problemformulering}
-Vi har valgt kun at kunne generere 1 størrelse sudoku plade. Vi har været nødt til selv at skrive algoritmerne til dette da vi ikke kunne finde nogen tilgængelige algoritmer med passende licens aftaler. Dette gør vi ved først at generere en tilfældig, fyldt sudoku plade og derefter fjerner vi et tal af gangen. Efter at fjerne et tal beder vi vores sudoku løser om at løse det givne felt, hvis den kan lader vi feltet være tomt, derefter fortsætter til vi har en tilfredsstillende sudoku plade.
+Vi har valgt kun at kunne generere en størrelse sudoku plade. Vi har været nødt til selv at skrive algoritmerne til dette da vi ikke kunne finde nogen tilgængelige algoritmer med passende licens aftaler. Dette gør vi ved først at generere en tilfældig, fyldt sudokuplade. Det sker ved at vi blander en gyldig sudokuplade vilkårligt rundt. Man må dog kun bytte rækker med rækker i samme kvadrantrække og kolonner med kolonner i samme kavdrantkolonne\footnote{Da en sudoku er opdelt i kvadranter er kvadrantrækker og kvadrantkolonner defineret ved tre sammenhængende rækker eller kolonner der deler de samme tre kvadranter på spillepladen.}.
 
-Denne fremgangsmåde kræver således en algoritme til ikke bare at kunne generere, men også løse sudokuer. Til gengæld kan den samme algoritme bruges til at hjælpe brugeren med, da der altid vil være mindst 1 felt denne løser kan løse.
+Der fjernes nu et tal af gangen. Når et tal fjernes beder vi vores sudoku løser om at løse det givne felt, hvis den kan lader vi feltet være tomt, derefter fortsætter til vi har en tilfredsstillende sudoku plade.
+
+Denne fremgangsmåde kræver således en algoritme til ikke bare at kunne generere, men også løse sudokuer. Til gengæld kan den samme algoritme bruges til at hjælpe brugeren udnervejs i spillet, da der altid vil være mindst 1 felt denne løser kan løse.
 
 \section{Analyse}
 
