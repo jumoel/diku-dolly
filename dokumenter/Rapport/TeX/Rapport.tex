@@ -63,7 +63,9 @@ Derudover syntes vi at Sudoku er en god måde at indlære logisk tænkning og overb
 
 Forudsætningerne for at læse denne rapport er kendskab til programmeringssproget Java, samt simpel sudoku teori som kan findes på \url{http://www.sudokumester.dk/?ID=guide}.
 
-Sudoku bliver brugt i folkeskolens matematikundervisning. Børnene får udleveret sudokuopgaver på papir, som de skal løse, enten i klassen eller som hjemmearbejde. Denne metode har visse ulemper. Børnene kan ikke få hjælp hvis de sidder fast, hvis ikke der er en anden person der kan løse sudokuen i nærheden. Desuden kan de komme ud for at have løst en sudoku forkert, hvis de ikke har været opmærksomme på eventuelle fejl. Et program til computeren eller internettet, der kan generere og vise sudokuer, samt hjælpe børnene hvis de har brug for det, kan derfor være en hjælp for både børn og lærere. Flere sværhedsgrader giver også sudokuerne en bredere målgruppe, da børnene kan få genereret en der svarer til deres faglige niveau. Endvidere kan børnene nemt få flere sudokuer, hvis de har lyst, så de ikke er begrænset til antallet de har fået udleveret i skolen. Den indbyggede hjælpefunktion medvirker også til at børnene forhåbentlig kan løse sudokuerne uden assistance fra voksne, så børnene ikke er afhængige af f.eks. forældres tid til at lave lektier med dem. 
+Sudoku bliver brugt i folkeskolens matematikundervisning. Børnene får udleveret sudokuopgaver på papir, som de skal løse, enten i klassen eller som hjemmearbejde. Denne metode har visse ulemper. Børnene kan ikke få hjælp hvis de sidder fast, hvis ikke der er en anden person der kan løse sudokuen i nærheden. Desuden kan de komme ud for at have løst en sudoku forkert, hvis de ikke har været opmærksomme på eventuelle fejl. Et program til computeren eller internettet, der kan generere og vise sudokuer, samt hjælpe børnene hvis de har brug for det, kan derfor være en hjælp for både børn og lærere. Flere sværhedsgrader giver også sudokuerne en bredere målgruppe, da børnene kan få genereret en der svarer til deres faglige niveau. Endvidere kan børnene nemt få flere sudokuer, hvis de har lyst, så de ikke er begrænset til antallet de har fået udleveret i skolen. Den indbyggede hjælpefunktion medvirker også til at børnene forhåbentlig kan løse sudokuerne uden assistance fra voksne, så børnene ikke er afhængige af f.eks. forældres tid til at lave lektier med dem.
+
+I sidste ende er det lykkedes os at lave et program, der efter vores mening opfylder kravene stillet af interessenten og os selv. Vores program appelerede desuden til målgruppen og kan holde deres interesse fanget. I denne rapport beskriver vi forskellige aspekter af vores løsning, samt den udviklingsproces den gennemgik.
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
@@ -151,9 +153,13 @@ Vi valgte også at begrænse vores spilleplade til ``standardstørrelsen'' på 9x9 f
 
 Programmets maskot valgte vi også at lave til et statisk objekt. I starten overvejede vi at lave det animerbart, så forskellige tegninger kunne vises alt efter brugerens aktivitet. Den smule der var at vinde, fandt vi dog ikke af en tilpas størrelse til at tidsforbruget var retfærdiggjort.
 
+Én fordel ved sudokuer på papir i undervisningsøjemed er at det er muligt for en lærer at kontrollere om børnene har løst sudokuerne korrekt, og dermed vurdere klassens samlede - og elevernes individuelle - niveau. Denne mulighed er der ikke i vores program, hvorfor det ville være en naturlig udvidelse at implementere en mulighed for at udskrive resultater fra en spilsession. Dette ville give lærere mulighed for at give børn lektier for i programmet, for så derefter at aflevere en ``rapport'' til læreren, der dermed kan vurdere elevens niveau.
+
 Hvis programmet en dag skal videreudvikles er ovenstående punkter dog klart på toppen af en imaginær prioritetsliste.
 
 En mere teknisk begrænsning ligger i vores sudokuløser, der bruges til at hjælpe med at generere sudokuplader. Denne kunne være udvidet med funktionalitet, så den kunne forsøge at iterere over et ``gættetræ'', hvis det ikke ud fra udelukkelse og brug af sudokureglerne var muligt at placere et tal. Hvis en gren ville vise sig at være ugyldig skulle funktionen altså hoppe tilbage til forrige samling og forsøge en anden gren. Gættefunktionalitet i løseren ville give os mulighed for at fjerne flere tal fra en Sudokuplade og dermed kunne generere sværere Sudokuer. Dette blev dog fravalgt pga. målgruppens alder kombineret med det faktum at vores højeste sværhedsgrad er tilstrækkelig for størstedelen af eleverne i 1.-3. klasse.
+
+En mindre begrænsning ligger i, at der i programmet ikke er nogen ``Om''-skærm, der viser programmets version, udviklere o.l. Denne simple skærm ville naturligvis være hensigtsmæssig at inkludere, skulle programmet en dag videreudvikles og eventuelt udsendes til brug.
 
 \section{Design af løsning}
 \subsection{Overordnet design}
