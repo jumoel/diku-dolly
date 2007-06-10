@@ -142,6 +142,7 @@ Foruden det, valgte vi at gøre det til et krav at programmet ligeledes skal kunn
 De to ovenstående punkter fik os til at vælge at basere vores program på Java 1.5-platformen, da programmet dermed både vil kunne afvikles som eksekverbar fil men også som applet i en internetbrowser. Grunden til valget af version 1.5 er at den er mere udbredt end den i skrivende stund nyeste 1.6-udgave, og vi ikke vil have at programmets krav gør det umuligt at afvikle programmet fordi brugerne ikke står med de nyeste udgaver af deres software, hvilke grunde der end måtte ligge bag.
 
 \subsection{Begrænsninger}
+\label{ref:Begraensninger}
 Der er mange muligheder for at tilføje moduler til sudokuspillet.
 
 Vi har blandt andet overvejet mulighederne for en topscoreliste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. Listen over resultater skulle primært inkluderes for at give videre incitament til at fortsætte med at spille spillet, for - naturligvis - at kunne præge topscorerlisten.
@@ -154,6 +155,8 @@ Vi valgte også at begrænse vores spilleplade til ``standardstørrelsen'' på 9x9 f
 Programmets maskot valgte vi også at lave til et statisk objekt. I starten overvejede vi at lave det animerbart, så forskellige tegninger kunne vises alt efter brugerens aktivitet. Den smule der var at vinde, fandt vi dog ikke af en tilpas størrelse til at tidsforbruget var retfærdiggjort.
 
 Én fordel ved sudokuer på papir i undervisningsøjemed er at det er muligt for en lærer at kontrollere om børnene har løst sudokuerne korrekt, og dermed vurdere klassens samlede - og elevernes individuelle - niveau. Denne mulighed er der ikke i vores program, hvorfor det ville være en naturlig udvidelse at implementere en mulighed for at udskrive resultater fra en spilsession. Dette ville give lærere mulighed for at give børn lektier for i programmet, for så derefter at aflevere en ``rapport'' til læreren, der dermed kan vurdere elevens niveau.
+
+Da vi i vores implementation har gået ud fra, at børnene kendte reglerne for sudoku, men at det var et krav at der skulle være inkluderet de fulde regler, valgte vi blot at henvise til nogen efter vores mening velskrevne regler, befindende sig på \url{http://www.sudokumester.dk/?ID=guide}. Hvis programmet skal distribueres, skal dette naturligvis laves om, så det i programmet selv er muligt at få forklaret de fulde regler.
 
 Hvis programmet en dag skal videreudvikles er ovenstående punkter dog klart på toppen af en imaginær prioritetsliste.
 
@@ -341,6 +344,11 @@ Hjælpefunktionen er en funktion der alene eksisterer på grund af den givne opgav
 Hjælpknappen er altid tilgængelig medens spillet er i gang. Når brugeren trykker på den starter hjælpefunktionen, der som standard ser hele det genererede bræt igennem og så stiller værdierne, som brugeren har intastet, op imod det korrekt løste bræt. Hvis de indtastede værdier ikke stemmer overens med den korrekte løsning markeres disse felter som fejl, og farves røde. På den måde kan brugeren se hvor der er fejl, og derefter rette dem. Hvis der ikke er nogen fejl vil funktionen gå ind og få løseren til at finde et tilfældigt løsbart felt. Dette felt bliver markeret med grøn, og brugeren bliver gjort opmærksomt på at feltet der er fremhævet kun har én løsning.
 
 Selvfølgelig er det muligt at nogen af de fremhævede felter er sværere at løse end andre, men hvis ikke vi bruger en så forholdsvis stærk algoritme, vil spillet heller ikke være udfordrende for de smarteste af brugerne. Det er også muligt at misbruge hjælperen, på den bekostning at man får en dårligere statistik til slut. Det vil dog altid være muligt at udlede et markeret felts værdi ud fra principperne om de basale sudokuregler for talplaceringer, samt gensidig udelukkelse\footnote{Gensidig udelukkelse vil sige at hvis et felt har flere mulige værdier, men nogle af værdierne kun kan placeres andetsteds i kvadranten, kolonnen eller rækken, skal de naturligvis ikke placeres på det pågældende felt.}.
+
+\subsubsection{De fulde regler}
+For at få vist de fulde sudokuregler i programmet, skal menupunktet ``Hjælp'' \rightarrow ``Vis Sudoku-reglerne'' vælges. Da vi som beskrevet i afsnit \ref{ref:Begraensninger} på side \pageref{ref:Begraensninger}, valgte kun at henvise til en ekstern internetside hvor reglerne er beskrevet, er vores implementation lidt speciel.
+
+For at bevare kompatibilitet med både Linux- og Windows-platformen, bliver \url{http://www.sudokumester.dk/?ID=guide} overført til udklipsholderen, som brugeren derefter selv skal sætte ind i sin internetbrowser. Grunden til denne lidt snørklede metode er, at der er meget stor forskel på hvordan internetbrowsere startes på de forskellige platforme og at tage højde for alle kombinationer ville være nær umuligt.
 
 \subsection{Generator}
 \label{ref:Generator}
