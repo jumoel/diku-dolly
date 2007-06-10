@@ -59,11 +59,11 @@ Den følgende rapport er en besvarelse på den stillede opgave til kurset Førsteår
 I dette projekt emne var der mange muligheder for at prøve forskellige aspekter af software-udvikling. Der skulle laves en pæn, underholdende og overskuelig brugergrænseflade. Der skulle arbejdes med matematikken og algoritmerne bag sudoku og begge ting skulle tilpasses således at det tiltalte og var brugbart for børn.
 Derudover syntes vi at Sudoku er en god måde at indlære logisk tænkning og overblik, noget som er en god egenskab senere i de matematiske fag. Sudoku var desværre ikke fremme dengang vi selv var på de klassetrin, og vi syntes det virker som passende at have det sjovt mens man indlærer sådanne færdigheder.
 
-Forudsætningerne for at læse denne rapport er kendskab til programmeringssproget Java, samt simpel sudoku teori som kan findes på \url{http://www.sudokumester.dk/?ID=guide}.
-
 Sudoku bliver brugt i folkeskolens matematikundervisning. Børnene får udleveret sudokuopgaver på papir, som de skal løse, enten i klassen eller som hjemmearbejde. Denne metode har visse ulemper. Børnene kan ikke få hjælp hvis de sidder fast, hvis ikke der er en anden person der kan løse sudokuen i nærheden. Desuden kan de komme ud for at have løst en sudoku forkert, hvis de ikke har været opmærksomme på eventuelle fejl. Et program til computeren eller internettet, der kan generere og vise sudokuer, samt hjælpe børnene hvis de har brug for det, kan derfor være en hjælp for både børn og lærere. Flere sværhedsgrader giver også sudokuerne en bredere målgruppe, da børnene kan få genereret en der svarer til deres faglige niveau. Endvidere kan børnene nemt få flere sudokuer, hvis de har lyst, så de ikke er begrænset til antallet de har fået udleveret i skolen. Den indbyggede hjælpefunktion medvirker også til at børnene forhåbentlig kan løse sudokuerne uden assistance fra voksne, så børnene ikke er afhængige af f.eks. forældres tid til at lave lektier med dem.
 
 I sidste ende er det lykkedes os at lave et program, der efter vores mening opfylder kravene stillet af interessenten og os selv. Vores program appelerede desuden til målgruppen og kan holde deres interesse fanget. I denne rapport beskriver vi forskellige aspekter af vores løsning, samt den udviklingsproces den gennemgik.
+
+Forudsætningerne for at læse denne rapport er kendskab til programmeringssproget Java, samt simpel sudoku teori, som kan findes på \url{http://www.sudokumester.dk/?ID=guide}.
 
 \section{Problemformulering og afgrænsning}
 \subsection{Baggrund}
@@ -141,14 +141,7 @@ De to ovenstående punkter fik os til at vælge at basere vores program på Java 1.
 
 \subsection{Begrænsninger}
 \label{ref:Begraensninger}
-Der er mange muligheder for at tilføje moduler til sudokuspillet.
-
-Vi har blandt andet overvejet mulighederne for en topscoreliste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. Listen over resultater skulle primært inkluderes for at give videre incitament til at fortsætte med at spille spillet, for - naturligvis - at kunne præge topscorerlisten.
-Selvom denne funktion ville være både sjov, og god for spillet at have med, går den unødvendigt uden for opgavekravene og derved er det ikke noget vi vil bruge tid på at implimentere.
-
-I forbindelse med ovenstående overvejede vi til slut i udviklingsprocessen også at lave en pointalgoritme, der omdannede spilstatistikkerne ``Antal fejl'', ``Antal hjælp brugt'', ``Sværhedsgrad'' samt ``Brugt tid'' til en samlet pointscore, der kunne bruges som sammenligning brugere imellem og samtidig danne basis for topscorerlisten.
-
-Vi valgte også at begrænse vores spilleplade til ``standardstørrelsen'' på 9x9 felter, idét vi ikke mente at den ekstra tid det eventuelt ville tage at implementere andre størrelser i generatoren var tiden værd, når sværhedsgraden i forvejen kan gradueres så meget som den kan på en 9x9 spilleplade.
+Vi valgte at begrænse vores spilleplade til ``standardstørrelsen'' på 9x9 felter, idét vi ikke mente at den ekstra tid det eventuelt ville tage at implementere andre størrelser i generatoren var tiden værd, når sværhedsgraden i forvejen kan gradueres så meget som den kan på en 9x9 spilleplade.
 
 Programmets maskot valgte vi også at lave til et statisk objekt. I starten overvejede vi at lave det animerbart, så forskellige tegninger kunne vises alt efter brugerens aktivitet. Den smule der var at vinde, fandt vi dog ikke af en tilpas størrelse til at tidsforbruget var retfærdiggjort.
 
@@ -345,7 +338,7 @@ Selvfølgelig er det muligt at nogen af de fremhævede felter er sværere at løse e
 Det er også muligt at udnytte hjælperen, på bekostning af en dårligere statistik til slut. Det vil sige at man kan placere tilfældige tal og derefter få hjælperen til at vise alle de forkerte. Så kan man fjerne de forkerte og gætte igen.
 
 \subsubsection{De fulde regler}
-For at få vist de fulde sudokuregler i programmet, skal menupunktet ``Hjælp'' $\rightarrow$ ``Vis Sudoku-reglerne'' vælges.Da vi som beskrevet i afsnit \ref{ref:Begraensninger} på side \pageref{ref:Begraensninger}, valgte kun at henvise til en ekstern internetside hvor reglerne er beskrevet, er vores implementation lidt speciel.
+For at få vist de fulde sudokuregler i programmet, skal menupunktet ``Hjælp'' $\rightarrow$ ``Vis Sudoku-reglerne'' vælges. Da vi som beskrevet i afsnit \ref{ref:Begraensninger} på side \pageref{ref:Begraensninger}, valgte kun at henvise til en ekstern internetside hvor reglerne er beskrevet, er vores implementation lidt speciel.
 
 For at bevare kompatibilitet med både Linux- og Windows-platformen, bliver \url{http://www.sudokumester.dk/?ID=guide} overført til udklipsholderen, som brugeren derefter selv skal sætte ind i sin internetbrowser. Grunden til denne lidt snørklede metode er, at der er meget stor forskel på hvordan internetbrowsere startes på de forskellige platforme og at tage højde for alle kombinationer ville være nær umuligt.
 
@@ -446,7 +439,15 @@ Vores brugertest med børn viste generel tilfredshed med programmets funktionalit
 
 Funktionstest kan dog naturligvis ikke undværes, og vi fandt da også fejl i vores generatoralgoritme. Men stillet overfor de specifikke test der fejlede, fandt vi fejlen og kunne efterfølgende ikke konstatere flere problemer i algoritmen.
 
+Vores program opfyldte de stillede krav, men der er stadig rig mulighed for at udvide funktionaliteten.
 
+Vi har blandt andet overvejet mulighederne for en topscoreliste. Det kunne ske ved at resultaterne gemmes i en fil på harddisken, eller at der blev oprettet en database på en server hvor man så uploadede resultatet til. Listen over resultater skulle primært inkluderes for at give videre incitament til at fortsætte med at spille spillet, for - naturligvis - at kunne præge topscorerlisten.
+
+I forbindelse med ovenstående overvejede vi til slut i udviklingsprocessen også at lave en pointalgoritme, der omdannede spilstatistikkerne ``Antal fejl'', ``Antal hjælp brugt'', ``Sværhedsgrad'' samt ``Brugt tid'' til en samlet pointscore, der kunne bruges som sammenligning brugere imellem og samtidig danne basis for topscorerlisten.
+
+Derudover ville vi i en videreudvikling af programmet også rette op på de begrænsninger\footnote{Beskrevet i afsnit \ref{ref:Begraensninger} på side \pageref{ref:Begraensninger}} vi for simplicitetens skyld valgte at indføre. Specielt vigtigt er punkterne om sudokureglerne samt muligheden for flere sudokustørrelser. Kombineret med en udvidelse af vores generator ville vi kunne generere sværere sudokuer, der ville kunne udvide programmets målgruppe væsentligt.
+
+Endvidere synes vi også det kunne være godt at udvide hjælpefunktionen på flere punkter. Én ligefrem mulighed ville være at gøre hjælpefunktionen i stand til f.eks. at kunne henvise til at en række/kvadrant/kolonne kun manglede de og de tal. Derudover har vi tænkt på idéen om at implementere et ``scratch pad'', der lod brugeren skrive notater til felter om hvilke tal der er mulige at placere. En anden funktion kunne være muligheden for at lave tilbagerulninger. Med en sådan funktionalitet ville en bruger kunne gemme et ``bogmærke'' til en tilstand af sudokupladen, så der nemt kunne returneres til denne, hvis vedkommende fandt ud af at nuværende spor ikke var korrekt.
 
 \pagebreak
 \section{Bilag}
