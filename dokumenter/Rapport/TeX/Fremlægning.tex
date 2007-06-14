@@ -13,6 +13,8 @@
 \title{Sudoku til undervisningsbrug}
 \titlegraphic{\includegraphics[width=30mm]{billeder/welcome.png}}
 
+\setcounter{tocdepth}{2}
+
 \mode<presentation>
 { \usetheme[hideothersubsections, right]{Goettingen} }
 
@@ -103,9 +105,6 @@
 \end{frame}
 
 \subsubsection{Model}
-\subsubsection{View}
-\subsubsection{Control}
-
 \begin{frame}
 	\frametitle{Model-View-Control (forts.)}
 	
@@ -122,6 +121,7 @@
 	\end{itemize}		
 \end{frame}
 
+\subsubsection{View}
 \begin{frame}
 	\frametitle{Model-View-Control (forts.)}
 	
@@ -136,6 +136,7 @@
 	\end{itemize}	
 \end{frame}
 
+\subsubsection{Control}
 \begin{frame}
 	\frametitle{Model-View-Control (forts.)}
 	
@@ -165,14 +166,9 @@
 	\end{itemize}
 \end{frame}
 
-%\subsection{Datarepræsentation}
-Vores sudokuplader er i programmet repræsenteret som et simpelt array af heltal med en fastsat størrelse.
-
-Vi har valgt denne primitive datastruktur da den simplificerer de matematiske funktioner. De er nødvendige for at kunne operere med sudokuplader, fordi hvert element i et array har en værdi og et Id-nummer. Desuden er et array en af de hurtigste datatyper i Java, hvis man ved på hvilken plads elementerne skal hentes fra eller indsættes på. Da dette er veldefineret i et sudokuspil fandt vi det sensibelt at gøre brug af arrays. Høj hastighed var også et vigtigt kriterie for os, i forbindelse med vores sudokugenerator, så på dette punkt var det naturligt at bruge arrays af heltal.
-
-Naturligvis kunne vi have oprettet et array af felt-objekter, men eneste umiddelbare fordel vi så ved dette var udvidelsen af \texttt{Observer}-\texttt{Observable}-designparadigmet, som beskrevet i afsnit XX.
-
 \subsection{Algoritmer}
+\begin{frame}
+	\begin{itemize}
 I vores indledende udviklingsfase undersøgte vi diverse muligheder for at bruge en i forvejen lavet sudokugenerator og -løser. Vi fandt dog ingen med passende licenser, der samtidig var lette at implementere i vores eget program. Derfor endte vi med at tage beslutningen om selv at udvikle både generatoren og løseren. På denne måde var vi også sikre på at vi ville ende med singulære sudokuer. Derudover kunne vi også selv bestemme hvordan de forskellige sværhedsgrader skulle håndteres og gradueres. Således kunne vi nemt ende med sværhedsgrader, der passede til vores målgruppe.
 
 Dette betød dog også at vi fik tilføjet en væsentlig arbejdsbyrde, idet vi også skulle konstruere hjælpefunktioner til at regne på sudokuplader samt selv finde ud af hvordan sværhedsgrader kunne defineres. Alt i alt føler vi dog at alt dette har givet os en mere solid løsning, fordi vi selv har kontrol over alle aspekter af programmets bagvedliggende funktionalitet.
@@ -182,6 +178,7 @@ Vi har valgt kun at kunne generere en størrelse sudokuplade. Dette gør vi ved fø
 Der fjernes herefter et tal af gangen. Når et tal fjernes beder vi vores sudokuløser om at løse det givne felt. Hvis den kan, lader vi feltet være tomt, hvorefter der fortsættes til vi har en tilfredsstillende sudokuplade.
 
 Denne fremgangsmåde kræver således en algoritme til ikke bare at kunne generere, men også løse sudokuer. Til gengæld kan den samme algoritme bruges til at hjælpe brugeren undervejs i spillet, da der altid vil være mindst ét felt denne løser kan løse.
+\end{frame}
 
 \section{Teknisk beskrivelse}
 
