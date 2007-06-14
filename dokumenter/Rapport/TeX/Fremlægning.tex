@@ -166,20 +166,6 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Algoritmer}
-\begin{frame}
-	\begin{itemize}
-I vores indledende udviklingsfase undersøgte vi diverse muligheder for at bruge en i forvejen lavet sudokugenerator og -løser. Vi fandt dog ingen med passende licenser, der samtidig var lette at implementere i vores eget program. Derfor endte vi med at tage beslutningen om selv at udvikle både generatoren og løseren. På denne måde var vi også sikre på at vi ville ende med singulære sudokuer. Derudover kunne vi også selv bestemme hvordan de forskellige sværhedsgrader skulle håndteres og gradueres. Således kunne vi nemt ende med sværhedsgrader, der passede til vores målgruppe.
-
-Dette betød dog også at vi fik tilføjet en væsentlig arbejdsbyrde, idet vi også skulle konstruere hjælpefunktioner til at regne på sudokuplader samt selv finde ud af hvordan sværhedsgrader kunne defineres. Alt i alt føler vi dog at alt dette har givet os en mere solid løsning, fordi vi selv har kontrol over alle aspekter af programmets bagvedliggende funktionalitet.
-
-Vi har valgt kun at kunne generere en størrelse sudokuplade. Dette gør vi ved først at generere en tilfældig, fyldt sudokuplade. Det sker ved at vi blander en gyldig sudokuplade vilkårligt rundt. Man må dog kun bytte rundt på rækker i samme kvadrantrække og kolonner i samme kavdrantkolonne\footnote{En sudoku er opdelt i kvadranter og kvadrantrækker og kvadrantkolonner defineret som kolonner og rækker af disse. Dvs. kolonnerne 1-3 udgør kvadrantkolonne 1.}.
-
-Der fjernes herefter et tal af gangen. Når et tal fjernes beder vi vores sudokuløser om at løse det givne felt. Hvis den kan, lader vi feltet være tomt, hvorefter der fortsættes til vi har en tilfredsstillende sudokuplade.
-
-Denne fremgangsmåde kræver således en algoritme til ikke bare at kunne generere, men også løse sudokuer. Til gengæld kan den samme algoritme bruges til at hjælpe brugeren undervejs i spillet, da der altid vil være mindst ét felt denne løser kan løse.
-\end{frame}
-
 \section{Teknisk beskrivelse}
 
 \section{Grafisk design}
