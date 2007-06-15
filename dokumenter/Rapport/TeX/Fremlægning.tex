@@ -6,6 +6,8 @@
 \usepackage{sudoku}
 \usepackage{hyperref}
 \usepackage{lastpage}
+\setlength{\sudokusize}{4cm}
+\renewcommand*\sudokuformat[1]{\small#1}
 
 \date{20. juni 2007}
 \author[Emil Erik Hansen \newline \newline Julian Møller \newline \newline Klaes Bo Rasmussen \newline \newline Steen Nordsmark Pedersen]{Emil Erik Hansen \and Julian Møller \and Klaes Bo Rasmussen \and Steen Nordsmark Pedersen}
@@ -251,7 +253,6 @@
 	\frametitle{Logik i Control}
 	
 	\begin{itemize}
-		\item Indhold og mening
 		\item \texttt{DifficultyAction}
 		\item \texttt{NumberAction}
 		\item \texttt{HelpAction}
@@ -264,15 +265,14 @@
 	\frametitle{Hjælpefunktion}
 	
 	\begin{itemize}
-		\item Fælles funktion
 		\item Fejl på brættet
 		\item Hjælp til næste placering
 	\end{itemize}
 \end{frame}
 
-\subsection{Solver}
+\subsection{Sudokuløser}
 \begin{frame}
-	\frametitle{Solver}
+	\frametitle{Sudokuløser}
 	
 	\begin{itemize}
 		\item Opbygning
@@ -281,9 +281,9 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{SudokuMath}
+\subsection{Sudokumatematik}
 \begin{frame}
-	\frametitle{SudokuMath}
+	\frametitle{Sudokumatematik}
 	
 	\begin{itemize}
 		\item Formål
@@ -296,8 +296,21 @@
 	\frametitle{Generator}
 	
 	\begin{itemize}
-		\item Brætblanding
-		\item Talfjerning vha. \texttt{Solver}
+		\item Blanding af bræt
+		\item Talfjerning vha. \texttt{Solver} 
+		
+		\centering
+			\begin{sudoku}
+				|2|5| | |3| |9| |1|.
+				| |1| | | |4| | | |.
+				|4| |7| | | |2| |8|.
+				| | |5|2| | | | | |.
+				| | | | |9|8|1| | |.
+				| |4| | | |3| | | |.
+				| | | |3|6| | |7|2|.
+				| |7| | | | | | |3|.
+				|9| |3| | | |6| |4|.
+		\end{sudoku}
 	\end{itemize}
 \end{frame}
 
